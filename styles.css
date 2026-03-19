@@ -145,6 +145,7 @@ a {
   align-items: center;
   gap: 12px;
   min-width: 0;
+  flex-shrink: 0;
 }
 
 .logo {
@@ -222,6 +223,7 @@ a {
   gap: 22px;
   font-size: 0.95rem;
   color: var(--ink-muted);
+  min-width: 0;
 }
 
 .nav a {
@@ -258,6 +260,7 @@ a {
   transition: transform 0.3s ease, border 0.55s ease, background 0.55s ease,
     color 0.55s ease, box-shadow 0.55s ease;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .btn:hover {
@@ -301,6 +304,7 @@ a {
     color 0.85s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.85s cubic-bezier(0.22, 1, 0.36, 1);
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .theme-light .toggle {
@@ -1207,6 +1211,47 @@ a {
 
   .footer-links {
     justify-content: center;
+  }
+}
+
+@media (min-width: 1081px) and (max-width: 1220px) {
+  .site-header {
+    gap: 14px;
+    padding-left: 6vw;
+    padding-right: 6vw;
+  }
+
+  .logo {
+    max-width: 190px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .logo img {
+    width: 146px;
+  }
+
+  .nav {
+    gap: 10px;
+    font-size: 0.9rem;
+  }
+
+  .nav a {
+    padding: 8px 10px;
+  }
+
+  .header-actions {
+    gap: 10px;
+  }
+
+  .header-actions .btn {
+    padding: 11px 16px;
+    font-size: 0.95rem;
+  }
+
+  .header-actions .toggle {
+    min-width: 132px;
+    padding: 10px 14px;
   }
 }
 
