@@ -1334,7 +1334,7 @@ a {
   }
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 1240px) {
   .site-header {
     display: grid;
     grid-template-columns: auto auto;
@@ -1428,7 +1428,7 @@ a {
   }
 }
 
-@media (min-width: 1081px) and (max-width: 1220px) {
+@media (min-width: 1241px) and (max-width: 1380px) {
   .site-header {
     gap: 14px;
     padding-left: 6vw;
@@ -1455,21 +1455,30 @@ a {
   }
 
   .header-actions {
-    gap: 10px;
+    gap: 8px;
   }
 
   .header-actions .btn {
-    padding: 11px 16px;
-    font-size: 0.95rem;
+    padding: 10px 14px;
+    font-size: 0.9rem;
   }
 
   .header-actions .toggle {
-    min-width: 132px;
-    padding: 10px 14px;
+    min-width: 122px;
+    padding: 10px 12px;
+  }
+
+  .nav {
+    gap: 8px;
+    font-size: 0.88rem;
+  }
+
+  .nav a {
+    padding: 8px 9px;
   }
 }
 
-@media (min-width: 641px) and (max-width: 1080px) {
+@media (min-width: 641px) and (max-width: 1240px) {
   .site-header {
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 18px;
