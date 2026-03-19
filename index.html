@@ -359,9 +359,17 @@
       }
     })();
   </script>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
   <script type="module">
-    import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
-    import { OBJLoader } from "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/loaders/OBJLoader.js";
+    import * as THREE from "three";
+    import { OBJLoader } from "three/addons/loaders/OBJLoader.js";
 
     (function () {
       var canvas = document.getElementById("three-bg");
@@ -448,8 +456,9 @@
           onResize();
         },
         undefined,
-        function () {
+        function (error) {
           loadedModel = null;
+          console.error("No se pudo cargar iMAC.obj", error);
         }
       );
 
