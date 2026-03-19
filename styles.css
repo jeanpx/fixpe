@@ -607,17 +607,82 @@ a {
 }
 
 .about-card {
+  position: relative;
+  overflow: hidden;
   padding: 24px;
   border-radius: 22px;
   background: rgba(22, 29, 38, 0.55);
   border: 1px solid rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(16px);
-  transition: background 0.7s ease, border-color 0.7s ease,
-    box-shadow 0.7s ease, color 0.55s ease;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.7s ease, border-color 0.45s ease,
+    box-shadow 0.45s ease, color 0.55s ease;
+}
+
+.about-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg,
+      rgba(124, 181, 255, 0.78),
+      rgba(123, 241, 186, 0.28),
+      rgba(255, 210, 121, 0.72));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.about-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at top left,
+      rgba(124, 181, 255, 0.18),
+      transparent 45%),
+    radial-gradient(circle at bottom right,
+      rgba(255, 210, 121, 0.12),
+      transparent 42%);
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
+}
+
+.about-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(124, 181, 255, 0.5);
+  box-shadow: 0 22px 46px rgba(6, 10, 18, 0.28);
+}
+
+.about-card:hover::before,
+.about-card:hover::after {
+  opacity: 1;
+}
+
+.about-card:hover::after {
+  transform: scale(1);
+}
+
+.about-card h3,
+.about-card p {
+  position: relative;
+  z-index: 1;
 }
 
 .theme-light .about-card {
   background: rgba(255, 255, 255, 0.78);
+}
+
+.theme-light .about-card:hover {
+  border-color: rgba(37, 99, 235, 0.34);
+  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.14);
 }
 
 .claims {
