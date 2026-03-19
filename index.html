@@ -360,9 +360,10 @@
     })();
   </script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/loaders/OBJLoader.js"></script>
   <script>
     (function () {
-      if (!window.THREE) return;
+      if (!window.THREE || !window.THREE.OBJLoader) return;
       var canvas = document.getElementById("three-bg");
       var scene = new THREE.Scene();
       var camera = new THREE.PerspectiveCamera(
@@ -383,120 +384,17 @@
       }
 
       var group = new THREE.Group();
-
-      var bodyMaterial = new THREE.MeshStandardMaterial({
-        color: 0x1f2937,
-        metalness: 0.35,
-        roughness: 0.4,
-        transparent: true,
-        opacity: 0.8,
-      });
-      var metalMaterial = new THREE.MeshStandardMaterial({
-        color: 0x94a3b8,
-        metalness: 0.7,
-        roughness: 0.2,
-      });
-      var screenMaterial = new THREE.MeshStandardMaterial({
-        color: 0x0f172a,
-        emissive: 0x2563eb,
-        emissiveIntensity: 0.5,
-        metalness: 0.2,
-        roughness: 0.4,
-      });
-      var glowMaterial = new THREE.MeshBasicMaterial({
-        color: 0x60a5fa,
-        transparent: true,
-        opacity: 0.25,
-      });
-
-      var monitor = new THREE.Mesh(
-        new THREE.BoxGeometry(2.2, 1.35, 0.14),
-        bodyMaterial
-      );
-      monitor.position.set(0, 0.5, 0);
-
-      var screen = new THREE.Mesh(
-        new THREE.PlaneGeometry(1.85, 1.05),
-        screenMaterial
-      );
-      screen.position.set(0, 0.5, 0.08);
-
-      var screenGlow = new THREE.Mesh(
-        new THREE.PlaneGeometry(1.95, 1.15),
-        glowMaterial
-      );
-      screenGlow.position.set(0, 0.5, 0.09);
-
-      var stand = new THREE.Mesh(
-        new THREE.BoxGeometry(0.5, 0.35, 0.2),
-        metalMaterial
-      );
-      stand.position.set(0, -0.45, 0);
-
-      var base = new THREE.Mesh(
-        new THREE.BoxGeometry(1.2, 0.15, 0.7),
-        metalMaterial
-      );
-      base.position.set(0, -0.7, 0);
-
-      var keyboard = new THREE.Mesh(
-        new THREE.BoxGeometry(1.8, 0.08, 0.7),
-        bodyMaterial
-      );
-      keyboard.position.set(0, -0.95, 0.2);
-
-      var touchpad = new THREE.Mesh(
-        new THREE.BoxGeometry(0.5, 0.02, 0.28),
-        metalMaterial
-      );
-      touchpad.position.set(0, -0.91, 0.35);
-
-      group.add(
-        monitor,
-        screen,
-        screenGlow,
-        stand,
-        base,
-        keyboard,
-        touchpad
-      );
       group.position.set(2.2, -0.1, -1.2);
       scene.add(group);
 
-      var ringMaterial = new THREE.MeshStandardMaterial({
-        color: 0x3b82f6,
-        metalness: 0.6,
-        roughness: 0.25,
+      var modelMaterial = new THREE.MeshStandardMaterial({
+        color: 0xb8c2cf,
+        metalness: 0.72,
+        roughness: 0.26,
         transparent: true,
-        opacity: 0.55,
+        opacity: 0.96,
       });
-      var ring = new THREE.Mesh(
-        new THREE.TorusGeometry(1.7, 0.06, 16, 80),
-        ringMaterial
-      );
-      ring.rotation.x = Math.PI / 2.4;
-      ring.position.set(2.2, 0.15, -1.2);
-      scene.add(ring);
-
-      var nodeMaterial = new THREE.MeshStandardMaterial({
-        color: 0xf59e0b,
-        metalness: 0.4,
-        roughness: 0.3,
-        transparent: true,
-        opacity: 0.7,
-      });
-      var nodes = [];
-      var nodeGeometry = new THREE.SphereGeometry(0.08, 16, 16);
-      for (var i = 0; i < 7; i++) {
-        var node = new THREE.Mesh(nodeGeometry, nodeMaterial);
-        node.position.set(
-          2.2 + Math.cos(i) * 1.25,
-          0.15 + Math.sin(i * 0.7) * 0.35,
-          -1.2 + Math.sin(i) * 0.35
-        );
-        nodes.push(node);
-        scene.add(node);
-      }
+      var loadedModel = null;
 
       var ambient = new THREE.AmbientLight(0xffffff, 0.6);
       var keyLight = new THREE.PointLight(0x60a5fa, 1.1, 10);
@@ -517,67 +415,76 @@
       var sceneConfig = {
         baseX: 2.2,
         baseY: -0.1,
-        ringX: 2.2,
-        ringY: 0.15,
-        nodeX: 2.2,
-        nodeY: 0.15,
-        orbit: 1.25,
       };
+
+      function normalizeModel(object) {
+        var box = new THREE.Box3().setFromObject(object);
+        var size = box.getSize(new THREE.Vector3());
+        var center = box.getCenter(new THREE.Vector3());
+        object.position.sub(center);
+        var maxAxis = Math.max(size.x, size.y, size.z) || 1;
+        var normalizedScale = 3.2 / maxAxis;
+        object.scale.setScalar(normalizedScale);
+      }
+
+      function applyModelMaterial(object) {
+        object.traverse(function (child) {
+          if (!child.isMesh) return;
+          child.material = modelMaterial;
+          child.castShadow = false;
+          child.receiveShadow = false;
+        });
+      }
+
+      new THREE.OBJLoader().load(
+        "iMAC.obj",
+        function (object) {
+          applyModelMaterial(object);
+          normalizeModel(object);
+          group.clear();
+          group.add(object);
+          loadedModel = object;
+          applySceneTheme();
+          onResize();
+        },
+        undefined,
+        function () {
+          loadedModel = null;
+        }
+      );
 
       function applySceneTheme() {
         var isLight = root.classList.contains("theme-light");
         var isMobile = window.innerWidth <= 768;
 
         if (isLight) {
-          bodyMaterial.opacity = isMobile ? 0.8 : 0.28;
-          metalMaterial.opacity = isMobile ? 1 : 0.3;
-          metalMaterial.transparent = true;
-          screenMaterial.opacity = isMobile ? 1 : 0.34;
-          screenMaterial.transparent = true;
-          screenMaterial.emissiveIntensity = isMobile ? 0.5 : 0.14;
-          glowMaterial.opacity = isMobile ? 0.25 : 0.1;
-          ringMaterial.opacity = isMobile ? 0.55 : 0.18;
-          nodeMaterial.opacity = isMobile ? 0.7 : 0.24;
-          ambient.intensity = isMobile ? 0.6 : 0.4;
-          keyLight.intensity = isMobile ? 1.1 : 0.55;
-          fillLight.intensity = isMobile ? 0.6 : 0.28;
-          sceneConfig.baseX = isMobile ? -0.01 : 2.2;
-          sceneConfig.baseY = isMobile ? -1.34 : -0.1;
-          sceneConfig.ringX = isMobile ? 0.04 : 2.2;
-          sceneConfig.ringY = isMobile ? -1.10 : 0.15;
-          sceneConfig.nodeX = sceneConfig.ringX;
-          sceneConfig.nodeY = sceneConfig.ringY;
-          sceneConfig.orbit = isMobile ? 0.92 : 1.25;
+          modelMaterial.color.setHex(0xc2ccd9);
+          modelMaterial.opacity = isMobile ? 0.98 : 0.92;
+          modelMaterial.emissive.setHex(0x1d4ed8);
+          modelMaterial.emissiveIntensity = isMobile ? 0.08 : 0.03;
+          ambient.intensity = isMobile ? 0.95 : 0.6;
+          keyLight.intensity = isMobile ? 1.45 : 1.1;
+          fillLight.intensity = isMobile ? 0.8 : 0.6;
+          sceneConfig.baseX = isMobile ? 0.04 : 2.2;
+          sceneConfig.baseY = isMobile ? -0.82 : -0.1;
         } else {
-          bodyMaterial.opacity = 0.8;
-          metalMaterial.opacity = 1;
-          metalMaterial.transparent = false;
-          screenMaterial.opacity = 1;
-          screenMaterial.transparent = false;
-          screenMaterial.emissiveIntensity = 0.5;
-          glowMaterial.opacity = 0.25;
-          ringMaterial.opacity = 0.55;
-          nodeMaterial.opacity = 0.7;
+          modelMaterial.color.setHex(0xaeb8c8);
+          modelMaterial.opacity = 0.96;
+          modelMaterial.emissive.setHex(0x2563eb);
+          modelMaterial.emissiveIntensity = 0.05;
           ambient.intensity = 0.6;
           keyLight.intensity = 1.1;
           fillLight.intensity = 0.6;
-          sceneConfig.baseX = isMobile ? -0.01 : 2.2;
-          sceneConfig.baseY = isMobile ? -1.34 : -0.1;
-          sceneConfig.ringX = isMobile ? 0.04 : 2.2;
-          sceneConfig.ringY = isMobile ? -1.10 : 0.15;
-          sceneConfig.nodeX = sceneConfig.ringX;
-          sceneConfig.nodeY = sceneConfig.ringY;
-          sceneConfig.orbit = isMobile ? 0.92 : 1.25;
+          sceneConfig.baseX = isMobile ? 0.04 : 2.2;
+          sceneConfig.baseY = isMobile ? -0.82 : -0.1;
         }
 
+        modelMaterial.needsUpdate = true;
         group.position.set(sceneConfig.baseX, sceneConfig.baseY, -1.2);
-        ring.position.set(sceneConfig.ringX, sceneConfig.ringY, -1.2);
         if (isMobile) {
-          group.scale.set(1.74, 1.74, 1.74);
-          ring.scale.set(1.9, 1.9, 1.9);
+          group.scale.set(1.32, 1.32, 1.32);
         } else {
           group.scale.set(1, 1, 1);
-          ring.scale.set(1, 1, 1);
         }
       }
 
@@ -664,21 +571,12 @@
 
       var t = 0;
       function renderScene() {
+        if (!loadedModel) {
+          renderer.render(scene, camera);
+          return;
+        }
         group.position.x = sceneConfig.baseX;
         group.position.y = sceneConfig.baseY + Math.sin(t) * 0.06;
-        ring.rotation.z = t * 0.4;
-        ring.rotation.y = t * 0.2;
-        ring.position.x = sceneConfig.ringX;
-        ring.position.y = sceneConfig.ringY;
-        for (var n = 0; n < nodes.length; n++) {
-          var node = nodes[n];
-          node.position.y =
-            sceneConfig.nodeY +
-            Math.sin(t + n * 0.6) * 0.35 +
-            Math.cos(t * 0.8) * 0.05;
-          node.position.x =
-            sceneConfig.nodeX + Math.cos(t + n) * sceneConfig.orbit;
-        }
         if (window.innerWidth <= 768) {
           group.rotation.y += (dragRotation.y - group.rotation.y) * 0.14;
           group.rotation.x += (dragRotation.x - group.rotation.x) * 0.14;
