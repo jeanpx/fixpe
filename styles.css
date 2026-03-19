@@ -5,8 +5,10 @@
 }
 
 html {
+  height: 100%;
   width: 100%;
   max-width: 100%;
+  overflow: hidden;
   overflow-x: hidden;
 }
 
@@ -22,6 +24,7 @@ html {
 }
 
 body {
+  height: 100%;
   width: 100%;
   max-width: 100%;
   margin: 0;
@@ -29,9 +32,9 @@ body {
   font-family: "Space Grotesk", system-ui, -apple-system, sans-serif;
   background: radial-gradient(circle at top left, #1f2a3a 0%, #0c1118 58%);
   color: var(--ink);
-  min-height: 100vh;
-  min-height: 100svh;
+  min-height: 100%;
   overflow-x: hidden;
+  overflow-y: auto;
   line-height: 1.5;
 }
 
@@ -110,6 +113,7 @@ a {
 }
 
 #three-bg {
+  display: block;
   position: fixed;
   top: 0;
   left: 0;
