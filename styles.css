@@ -11,6 +11,8 @@ html {
   background: #0c1118;
   overflow-x: hidden;
   overflow-y: auto;
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
 }
 
 :root {
@@ -40,6 +42,7 @@ body {
   line-height: 1.5;
   transition: background 1.15s cubic-bezier(0.22, 1, 0.36, 1),
     color 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  overscroll-behavior-y: none;
 }
 
 body {
@@ -52,7 +55,7 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.04);
 }
 
 body::-webkit-scrollbar-thumb {
@@ -60,10 +63,15 @@ body::-webkit-scrollbar-thumb {
   border: 2px solid transparent;
   background-clip: padding-box;
   background: linear-gradient(180deg, rgba(113, 168, 255, 0.72), rgba(53, 104, 209, 0.72));
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.22);
 }
 
 body::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, rgba(143, 194, 255, 0.88), rgba(69, 123, 235, 0.88));
+}
+
+body::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(180deg, rgba(167, 210, 255, 0.94), rgba(90, 142, 244, 0.94));
 }
 
 .theme-light body {
@@ -71,7 +79,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .theme-light body::-webkit-scrollbar-track {
-  background: transparent;
+  background: rgba(15, 23, 42, 0.05);
 }
 
 .theme-light body::-webkit-scrollbar-thumb {
