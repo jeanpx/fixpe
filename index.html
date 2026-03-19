@@ -507,9 +507,6 @@
       camera.position.z = 4;
 
       var pointer = { x: 0, y: 0 };
-      var raycaster = new THREE.Raycaster();
-      var isHovering = false;
-      var cta = document.querySelector(".cta");
       var root = document.documentElement;
       var sceneConfig = {
         baseX: 2.2,
@@ -588,21 +585,6 @@
         pointer.y = (event.clientY / window.innerHeight) * 2 - 1;
       });
 
-      function handleClick() {
-        if (window.innerWidth <= 768) return;
-        raycaster.setFromCamera(pointer, camera);
-        var hits = raycaster.intersectObjects(group.children, true);
-        if (hits.length && cta) {
-          group.scale.set(1.06, 1.06, 1.06);
-          setTimeout(function () {
-            group.scale.set(1, 1, 1);
-          }, 160);
-          cta.scrollIntoView({ behavior: "smooth" });
-        }
-      }
-
-      canvas.addEventListener("click", handleClick);
-
       function onResize() {
         var rect = canvas.getBoundingClientRect();
         var width = Math.max(1, Math.round(rect.width || window.innerWidth));
@@ -640,17 +622,6 @@
         }
         group.rotation.y += (pointer.x * 0.6 - group.rotation.y) * 0.05;
         group.rotation.x += (-pointer.y * 0.4 - group.rotation.x) * 0.05;
-        raycaster.setFromCamera(pointer, camera);
-        var hits = raycaster.intersectObjects(group.children, true);
-        if (hits.length !== 0) {
-          if (!isHovering) {
-            canvas.classList.add("is-interactive");
-            isHovering = true;
-          }
-        } else if (isHovering) {
-          canvas.classList.remove("is-interactive");
-          isHovering = false;
-        }
         renderer.render(scene, camera);
         requestAnimationFrame(animate);
       }

@@ -124,8 +124,8 @@ a {
 }
 
 #three-bg.is-interactive {
-  cursor: pointer;
-  pointer-events: auto;
+  cursor: default;
+  pointer-events: none;
 }
 
 .theme-light .grid {
