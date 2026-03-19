@@ -536,13 +536,13 @@
           ambient.intensity = 0.4;
           keyLight.intensity = 0.55;
           fillLight.intensity = 0.28;
-          sceneConfig.baseX = isMobile ? -0.08 : 2.2;
-          sceneConfig.baseY = isMobile ? 0.18 : -0.1;
-          sceneConfig.ringX = isMobile ? 0.08 : 2.2;
-          sceneConfig.ringY = isMobile ? 0.48 : 0.15;
+          sceneConfig.baseX = isMobile ? -0.02 : 2.2;
+          sceneConfig.baseY = isMobile ? -0.16 : -0.1;
+          sceneConfig.ringX = isMobile ? 0.04 : 2.2;
+          sceneConfig.ringY = isMobile ? 0.14 : 0.15;
           sceneConfig.nodeX = sceneConfig.ringX;
           sceneConfig.nodeY = sceneConfig.ringY;
-          sceneConfig.orbit = isMobile ? 0.72 : 1.25;
+          sceneConfig.orbit = isMobile ? 0.8 : 1.25;
         } else {
           bodyMaterial.opacity = 0.8;
           metalMaterial.opacity = 1;
@@ -556,13 +556,13 @@
           ambient.intensity = 0.6;
           keyLight.intensity = 1.1;
           fillLight.intensity = 0.6;
-          sceneConfig.baseX = isMobile ? -0.08 : 2.2;
-          sceneConfig.baseY = isMobile ? 0.18 : -0.1;
-          sceneConfig.ringX = isMobile ? 0.08 : 2.2;
-          sceneConfig.ringY = isMobile ? 0.48 : 0.15;
+          sceneConfig.baseX = isMobile ? -0.02 : 2.2;
+          sceneConfig.baseY = isMobile ? -0.16 : -0.1;
+          sceneConfig.ringX = isMobile ? 0.04 : 2.2;
+          sceneConfig.ringY = isMobile ? 0.14 : 0.15;
           sceneConfig.nodeX = sceneConfig.ringX;
           sceneConfig.nodeY = sceneConfig.ringY;
-          sceneConfig.orbit = isMobile ? 0.72 : 1.25;
+          sceneConfig.orbit = isMobile ? 0.8 : 1.25;
         }
 
         group.position.set(sceneConfig.baseX, sceneConfig.baseY, -1.2);
@@ -585,6 +585,16 @@
         pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
         pointer.y = (event.clientY / window.innerHeight) * 2 - 1;
       });
+
+      window.addEventListener(
+        "touchmove",
+        function (event) {
+          if (!event.touches || !event.touches[0]) return;
+          pointer.x = (event.touches[0].clientX / window.innerWidth) * 2 - 1;
+          pointer.y = (event.touches[0].clientY / window.innerHeight) * 2 - 1;
+        },
+        { passive: true }
+      );
 
       function onResize() {
         var rect = canvas.getBoundingClientRect();
@@ -632,17 +642,7 @@
       }
 
       function syncRenderingMode() {
-        var isMobile = window.innerWidth <= 768;
-        if (isMobile) {
-          if (animationFrameId) {
-            cancelAnimationFrame(animationFrameId);
-            animationFrameId = null;
-          }
-          t = 0.35;
-          group.rotation.y = 0;
-          group.rotation.x = 0;
-          renderScene();
-        } else if (!animationFrameId) {
+        if (!animationFrameId) {
           animate();
         }
       }
@@ -653,8 +653,9 @@
 
       if (window.innerWidth <= 768) {
         t = 0.35;
-        renderScene();
-      } else {
+      }
+
+      if (!animationFrameId) {
         animationFrameId = requestAnimationFrame(animate);
       }
     })();
