@@ -118,3 +118,9 @@ function fetch_rows(string $sql, array $params = []): array
     $stmt->execute($params);
     return $stmt->fetchAll();
 }
+
+function admin_exists(): bool
+{
+    $stmt = db()->query("SELECT id FROM users WHERE role = 'admin' LIMIT 1");
+    return (bool) $stmt->fetch();
+}
