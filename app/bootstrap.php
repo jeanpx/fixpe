@@ -119,8 +119,27 @@ function fetch_rows(string $sql, array $params = []): array
     return $stmt->fetchAll();
 }
 
+function fetch_one(string $sql, array $params = []): ?array
+{
+    $stmt = db()->prepare($sql);
+    $stmt->execute($params);
+    $row = $stmt->fetch();
+
+    return $row ?: null;
+}
+
 function admin_exists(): bool
 {
     $stmt = db()->query("SELECT id FROM users WHERE role = 'admin' LIMIT 1");
     return (bool) $stmt->fetch();
+}
+
+function count_rows(string $sql, array $params = []): int
+{
+    $row = fetch_one($sql, $params);
+    if (!$row) {
+        return 0;
+    }
+
+    return (int) array_values($row)[0];
 }
