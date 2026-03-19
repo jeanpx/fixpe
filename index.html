@@ -399,6 +399,7 @@
         color: 0xb8c2cf,
         metalness: 0.72,
         roughness: 0.26,
+        side: THREE.DoubleSide,
         transparent: true,
         opacity: 0.96,
       });
@@ -443,8 +444,9 @@
         var center = box.getCenter(new THREE.Vector3());
         object.position.sub(center);
         var maxAxis = Math.max(size.x, size.y, size.z) || 1;
-        var normalizedScale = 3.2 / maxAxis;
+        var normalizedScale = 8 / maxAxis;
         object.scale.setScalar(normalizedScale);
+        object.rotation.set(-0.14, -0.78, 0);
       }
 
       function applyModelMaterial(object) {
@@ -453,6 +455,7 @@
           child.material = modelMaterial;
           child.castShadow = false;
           child.receiveShadow = false;
+          child.frustumCulled = false;
         });
       }
 
@@ -492,8 +495,8 @@
           ambient.intensity = isMobile ? 0.95 : 0.6;
           keyLight.intensity = isMobile ? 1.45 : 1.1;
           fillLight.intensity = isMobile ? 0.8 : 0.6;
-          sceneConfig.baseX = isMobile ? 0.04 : 1.45;
-          sceneConfig.baseY = isMobile ? -0.82 : -0.1;
+          sceneConfig.baseX = isMobile ? 0.04 : 1.85;
+          sceneConfig.baseY = isMobile ? -0.82 : -0.08;
         } else {
           modelMaterial.color.setHex(0xaeb8c8);
           modelMaterial.opacity = 0.96;
@@ -502,8 +505,8 @@
           ambient.intensity = 0.6;
           keyLight.intensity = 1.1;
           fillLight.intensity = 0.6;
-          sceneConfig.baseX = isMobile ? 0.04 : 1.45;
-          sceneConfig.baseY = isMobile ? -0.82 : -0.1;
+          sceneConfig.baseX = isMobile ? 0.04 : 1.85;
+          sceneConfig.baseY = isMobile ? -0.82 : -0.08;
         }
 
         modelMaterial.needsUpdate = true;
@@ -511,7 +514,7 @@
         if (isMobile) {
           group.scale.set(1.32, 1.32, 1.32);
         } else {
-          group.scale.set(1.65, 1.65, 1.65);
+          group.scale.set(1.18, 1.18, 1.18);
         }
       }
 
@@ -584,7 +587,7 @@
         var width = Math.max(1, Math.round(rect.width || window.innerWidth));
         var height = Math.max(1, Math.round(rect.height || window.innerHeight));
         camera.aspect = width / height;
-        camera.position.z = isMobile ? 3.05 : 3.45;
+        camera.position.z = isMobile ? 3.05 : 4.6;
         camera.updateProjectionMatrix();
         renderer.setSize(width, height, false);
         renderer.setPixelRatio(
