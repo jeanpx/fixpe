@@ -359,11 +359,11 @@
       }
     })();
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/loaders/OBJLoader.js"></script>
-  <script>
+  <script type="module">
+    import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
+    import { OBJLoader } from "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/loaders/OBJLoader.js";
+
     (function () {
-      if (!window.THREE || !window.THREE.OBJLoader) return;
       var canvas = document.getElementById("three-bg");
       var scene = new THREE.Scene();
       var camera = new THREE.PerspectiveCamera(
@@ -436,7 +436,7 @@
         });
       }
 
-      new THREE.OBJLoader().load(
+      new OBJLoader().load(
         "iMAC.obj",
         function (object) {
           applyModelMaterial(object);
