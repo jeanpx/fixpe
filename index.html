@@ -390,6 +390,20 @@
         root.classList.add("theme-light");
       }
       updateThemeLabel();
+
+      function focusSection(section) {
+        if (!section) {
+          return;
+        }
+
+        section.classList.remove("section-focus");
+        void section.offsetWidth;
+        section.classList.add("section-focus");
+        window.setTimeout(function () {
+          section.classList.remove("section-focus");
+        }, 1000);
+      }
+
       window.requestAnimationFrame(function () {
         window.requestAnimationFrame(function () {
           document.body.classList.add("is-ready");
@@ -418,7 +432,29 @@
         });
 
         nav.querySelectorAll("a").forEach(function (link) {
-          link.addEventListener("click", function () {
+          link.addEventListener("click", function (event) {
+            var href = link.getAttribute("href") || "";
+            if (href.charAt(0) === "#") {
+              var target = document.querySelector(href);
+              if (target) {
+                event.preventDefault();
+                link.classList.add("is-jumping");
+                window.setTimeout(function () {
+                  link.classList.remove("is-jumping");
+                }, 260);
+
+                target.scrollIntoView({
+                  behavior: reducedMotion.matches ? "auto" : "smooth",
+                  block: "start",
+                });
+
+                window.history.replaceState(null, "", href);
+                window.setTimeout(function () {
+                  focusSection(target);
+                }, reducedMotion.matches ? 0 : 420);
+              }
+            }
+
             document.body.classList.remove("nav-open");
             menuToggle.setAttribute("aria-expanded", "false");
           });
