@@ -112,24 +112,6 @@ a {
   z-index: 0;
 }
 
-#three-bg {
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.92;
-  transition: opacity 0.3s ease, filter 0.3s ease;
-}
-
-#three-bg.is-interactive {
-  cursor: default;
-  pointer-events: none;
-}
-
 .theme-light .grid {
   opacity: 0.12;
   mask-image: radial-gradient(circle at 30% 20%, black 0%, transparent 68%);
@@ -141,11 +123,6 @@ a {
 
 .theme-light .orb-b {
   background: radial-gradient(circle, rgba(148, 163, 184, 0.32), transparent 68%);
-}
-
-.theme-light #three-bg {
-  opacity: 0.3;
-  filter: saturate(0.75);
 }
 
 .site-header {
@@ -165,9 +142,23 @@ a {
 }
 
 .logo {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
   font-family: "Unbounded", "Space Grotesk", sans-serif;
   font-size: 1.1rem;
   letter-spacing: 0.06em;
+}
+
+.theme-light .logo {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  padding: 0;
 }
 
 .logo img {
@@ -175,6 +166,7 @@ a {
   height: auto;
   aspect-ratio: 2816 / 1536;
   display: block;
+  object-fit: contain;
 }
 
 .menu-toggle {
@@ -349,10 +341,6 @@ a {
   background: rgba(37, 99, 235, 0.12);
   color: #1e40af;
   border-color: rgba(37, 99, 235, 0.35);
-}
-
-.hero-model-slot {
-  display: none;
 }
 
 .hero-actions {
@@ -967,15 +955,6 @@ a {
 }
 
 @media (max-width: 640px) {
-  #three-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 220px;
-    max-width: 100%;
-  }
-
   .site-header {
     padding: 20px 6vw 0;
     gap: 14px;
@@ -1023,11 +1002,6 @@ a {
 
   .hero-copy p {
     font-size: 1rem;
-  }
-
-  .hero-model-slot {
-    display: block;
-    height: clamp(220px, 42vw, 290px);
   }
 
   .hero-actions {
@@ -1105,26 +1079,9 @@ a {
     gap: 10px;
   }
 
-  #three-bg {
-    pointer-events: auto;
-    touch-action: pan-y;
-    opacity: 0.92;
-  }
-
-  .theme-light #three-bg {
-    opacity: 0.3;
-  }
 }
 
 @media (max-width: 420px) {
-  #three-bg {
-    height: 220px;
-  }
-
-  .hero-model-slot {
-    height: clamp(190px, 44vw, 250px);
-  }
-
   .site-header,
   .hero,
   .section,
