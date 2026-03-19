@@ -38,8 +38,8 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
   line-height: 1.5;
-  transition: background 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-    color 0.55s ease;
+  transition: background 1.15s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .glass {
@@ -290,8 +290,11 @@ a {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  transition: transform 0.35s ease, background 0.6s ease,
-    border-color 0.6s ease, color 0.6s ease, box-shadow 0.6s ease;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.85s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .theme-light .toggle {
@@ -307,7 +310,7 @@ a {
       rgba(255, 210, 121, 0.2),
       rgba(140, 194, 255, 0.08));
   opacity: 0;
-  transition: opacity 0.6s ease;
+  transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1);
   z-index: -1;
 }
 
@@ -334,8 +337,9 @@ a {
   box-shadow: 0 0 0 0.22rem rgba(255, 210, 121, 0.16);
   position: relative;
   flex: 0 0 auto;
-  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-    background 0.6s ease, box-shadow 0.6s ease;
+  transition: transform 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.85s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .toggle-icon::after {
@@ -345,8 +349,8 @@ a {
   border-radius: inherit;
   background: var(--bg);
   transform: translate(0.28rem, -0.18rem) scale(0.92);
-  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-    background 0.6s ease;
+  transition: transform 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.85s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .theme-light .toggle-icon {
@@ -1020,8 +1024,8 @@ a {
 
   ::view-transition-old(root),
   ::view-transition-new(root) {
-    animation-duration: 1s;
-    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    animation-duration: 1.45s;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
     mix-blend-mode: normal;
   }
 
@@ -1038,22 +1042,27 @@ a {
   from {
     opacity: 1;
     filter: blur(0);
+    transform: scale(1);
   }
 
   to {
-    opacity: 0;
-    filter: blur(10px);
-    transform: scale(1.015);
+    opacity: 0.18;
+    filter: blur(3px);
+    transform: scale(1.006);
   }
 }
 
 @keyframes themeRevealIn {
   from {
-    opacity: 0;
-    clip-path: circle(0 at var(--theme-x) var(--theme-y));
+    opacity: 0.22;
+    clip-path: circle(18vmax at var(--theme-x) var(--theme-y));
   }
 
-  60% {
+  55% {
+    opacity: 0.72;
+  }
+
+  78% {
     opacity: 1;
   }
 
