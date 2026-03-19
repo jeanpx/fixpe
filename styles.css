@@ -963,7 +963,7 @@ a {
 @media (max-width: 640px) {
   #three-bg {
     position: absolute;
-    top: 168px;
+    top: 120px;
     left: 0;
     width: 100%;
     height: 500px;
