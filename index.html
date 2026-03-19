@@ -54,6 +54,7 @@
   <main class="hero">
     <div class="hero-copy">
       <span class="pill">Tecnologia a medida para tu negocio</span>
+      <div class="hero-model-slot" id="heroModelSlot" aria-hidden="true"></div>
       <h1>
         Creamos paginas web, web apps e implementamos Odoo con soporte
         tecnico cercano.
@@ -508,6 +509,7 @@
 
       var pointer = { x: 0, y: 0 };
       var root = document.documentElement;
+      var heroModelSlot = document.getElementById("heroModelSlot");
       var animationFrameId = null;
       var sceneConfig = {
         baseX: 2.2,
@@ -598,14 +600,25 @@
 
       function onResize() {
         var rect = canvas.getBoundingClientRect();
+        var isMobile = window.innerWidth <= 768;
+        if (isMobile && heroModelSlot) {
+          var slotRect = heroModelSlot.getBoundingClientRect();
+          canvas.style.top = window.scrollY + slotRect.top + "px";
+          canvas.style.height = Math.max(160, Math.round(slotRect.height)) + "px";
+        } else {
+          canvas.style.top = "";
+          canvas.style.height = "";
+        }
+
+        rect = canvas.getBoundingClientRect();
         var width = Math.max(1, Math.round(rect.width || window.innerWidth));
         var height = Math.max(1, Math.round(rect.height || window.innerHeight));
         camera.aspect = width / height;
-        camera.position.z = window.innerWidth <= 768 ? 4.8 : 4;
+        camera.position.z = isMobile ? 4.8 : 4;
         camera.updateProjectionMatrix();
         renderer.setSize(width, height, false);
         renderer.setPixelRatio(
-          window.innerWidth <= 768 ? 1 : Math.min(window.devicePixelRatio || 1, 2)
+          isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 2)
         );
         applySceneTheme();
       }
