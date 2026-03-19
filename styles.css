@@ -651,6 +651,20 @@ a {
     color 0.55s ease, box-shadow 0.6s ease;
 }
 
+.claims-form select {
+  color-scheme: dark;
+}
+
+.claims-form select option {
+  color: #0f172a;
+  background: #ffffff;
+}
+
+.claims-form select option:checked {
+  color: #ffffff;
+  background: #2563eb;
+}
+
 .claims-field-wide,
 .claims-form .btn {
   grid-column: 1 / -1;
@@ -661,6 +675,10 @@ a {
 .theme-light .claims-form textarea {
   background: rgba(255, 255, 255, 0.9);
   color: var(--ink);
+}
+
+.theme-light .claims-form select {
+  color-scheme: light;
 }
 
 .claims-note {
