@@ -247,6 +247,10 @@ body::after {
   margin-top: 36px;
 }
 
+.stats + .stats {
+  margin-top: 36px;
+}
+
 .stats article {
   position: relative;
   padding: 24px 22px;
