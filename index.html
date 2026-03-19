@@ -511,6 +511,9 @@
       var root = document.documentElement;
       var heroModelSlot = document.getElementById("heroModelSlot");
       var animationFrameId = null;
+      var isDraggingModel = false;
+      var lastDragPoint = null;
+      var dragRotation = { x: 0, y: 0 };
       var sceneConfig = {
         baseX: 2.2,
         baseY: -0.1,
@@ -526,18 +529,18 @@
         var isMobile = window.innerWidth <= 768;
 
         if (isLight) {
-          bodyMaterial.opacity = isMobile ? 0.2 : 0.28;
-          metalMaterial.opacity = isMobile ? 0.22 : 0.3;
+          bodyMaterial.opacity = isMobile ? 0.42 : 0.28;
+          metalMaterial.opacity = isMobile ? 0.5 : 0.3;
           metalMaterial.transparent = true;
-          screenMaterial.opacity = isMobile ? 0.22 : 0.34;
+          screenMaterial.opacity = isMobile ? 0.48 : 0.34;
           screenMaterial.transparent = true;
-          screenMaterial.emissiveIntensity = isMobile ? 0.08 : 0.14;
-          glowMaterial.opacity = isMobile ? 0.05 : 0.1;
-          ringMaterial.opacity = isMobile ? 0.12 : 0.18;
-          nodeMaterial.opacity = isMobile ? 0.18 : 0.24;
-          ambient.intensity = 0.4;
-          keyLight.intensity = 0.55;
-          fillLight.intensity = 0.28;
+          screenMaterial.emissiveIntensity = isMobile ? 0.22 : 0.14;
+          glowMaterial.opacity = isMobile ? 0.16 : 0.1;
+          ringMaterial.opacity = isMobile ? 0.34 : 0.18;
+          nodeMaterial.opacity = isMobile ? 0.4 : 0.24;
+          ambient.intensity = isMobile ? 0.72 : 0.4;
+          keyLight.intensity = isMobile ? 1 : 0.55;
+          fillLight.intensity = isMobile ? 0.48 : 0.28;
           sceneConfig.baseX = isMobile ? -0.01 : 2.2;
           sceneConfig.baseY = isMobile ? -1.34 : -0.1;
           sceneConfig.ringX = isMobile ? 0.04 : 2.2;
@@ -598,6 +601,39 @@
         { passive: true }
       );
 
+      function getDragPoint(event) {
+        if (event.touches && event.touches[0]) {
+          return { x: event.touches[0].clientX, y: event.touches[0].clientY };
+        }
+        return { x: event.clientX, y: event.clientY };
+      }
+
+      function startModelDrag(event) {
+        if (window.innerWidth > 768) return;
+        isDraggingModel = true;
+        lastDragPoint = getDragPoint(event);
+      }
+
+      function moveModelDrag(event) {
+        if (!isDraggingModel || window.innerWidth > 768) return;
+        var point = getDragPoint(event);
+        var dx = point.x - lastDragPoint.x;
+        var dy = point.y - lastDragPoint.y;
+        dragRotation.y += dx * 0.015;
+        dragRotation.x += dy * 0.01;
+        lastDragPoint = point;
+      }
+
+      function endModelDrag() {
+        isDraggingModel = false;
+        lastDragPoint = null;
+      }
+
+      canvas.addEventListener("pointerdown", startModelDrag);
+      window.addEventListener("pointermove", moveModelDrag);
+      window.addEventListener("pointerup", endModelDrag);
+      window.addEventListener("pointercancel", endModelDrag);
+
       function onResize() {
         var rect = canvas.getBoundingClientRect();
         var isMobile = window.innerWidth <= 768;
@@ -643,8 +679,13 @@
           node.position.x =
             sceneConfig.nodeX + Math.cos(t + n) * sceneConfig.orbit;
         }
-        group.rotation.y += (pointer.x * 0.6 - group.rotation.y) * 0.05;
-        group.rotation.x += (-pointer.y * 0.4 - group.rotation.x) * 0.05;
+        if (window.innerWidth <= 768) {
+          group.rotation.y += (dragRotation.y - group.rotation.y) * 0.14;
+          group.rotation.x += (dragRotation.x - group.rotation.x) * 0.14;
+        } else {
+          group.rotation.y += (pointer.x * 0.6 - group.rotation.y) * 0.05;
+          group.rotation.x += (-pointer.y * 0.4 - group.rotation.x) * 0.05;
+        }
         renderer.render(scene, camera);
       }
 
