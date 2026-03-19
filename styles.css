@@ -1046,7 +1046,7 @@ a {
 
   ::view-transition-old(root),
   ::view-transition-new(root) {
-    animation-duration: 0.9s;
+    animation-duration: 1.05s;
     animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
     mix-blend-mode: normal;
   }
@@ -1073,10 +1073,16 @@ a {
 @keyframes themeRevealIn {
   from {
     opacity: 0;
+    clip-path: circle(10vmax at var(--theme-x) var(--theme-y));
+  }
+
+  55% {
+    opacity: 1;
   }
 
   to {
     opacity: 1;
+    clip-path: circle(150vmax at var(--theme-x) var(--theme-y));
   }
 }
 
