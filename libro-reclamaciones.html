@@ -74,67 +74,6 @@
     (function () {
       var form = document.getElementById("claimsForm");
       var success = document.getElementById("claimsSuccess");
-      var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-      function setupModernScroll() {
-        if (reducedMotion.matches) {
-          return;
-        }
-
-        var targetY = window.scrollY;
-        var currentY = window.scrollY;
-        var rafId = 0;
-        var ease = 0.12;
-
-        function maxScroll() {
-          return Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-        }
-
-        function animate() {
-          currentY += (targetY - currentY) * ease;
-
-          if (Math.abs(targetY - currentY) < 0.4) {
-            currentY = targetY;
-            window.scrollTo(0, currentY);
-            rafId = 0;
-            return;
-          }
-
-          window.scrollTo(0, currentY);
-          rafId = window.requestAnimationFrame(animate);
-        }
-
-        window.addEventListener(
-          "wheel",
-          function (event) {
-            if (event.ctrlKey || event.deltaY === 0) {
-              return;
-            }
-
-            event.preventDefault();
-            targetY = Math.max(0, Math.min(targetY + event.deltaY, maxScroll()));
-
-            if (!rafId) {
-              rafId = window.requestAnimationFrame(animate);
-            }
-          },
-          { passive: false }
-        );
-
-        window.addEventListener("scroll", function () {
-          if (!rafId) {
-            currentY = window.scrollY;
-            targetY = window.scrollY;
-          }
-        });
-
-        window.addEventListener("resize", function () {
-          targetY = Math.max(0, Math.min(targetY, maxScroll()));
-          currentY = Math.max(0, Math.min(currentY, maxScroll()));
-        });
-      }
-
-      setupModernScroll();
       window.requestAnimationFrame(function () {
         window.requestAnimationFrame(function () {
           document.body.classList.add("is-ready");
