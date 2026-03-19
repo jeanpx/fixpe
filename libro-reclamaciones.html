@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="styles.css?v=20260319-3" />
 </head>
 
-<body>
+<body class="page-enter">
   <main class="section claims-page">
     <div class="section-title">
       <h2>Libro de Reclamaciones</h2>
@@ -135,6 +135,11 @@
       }
 
       setupModernScroll();
+      window.requestAnimationFrame(function () {
+        window.requestAnimationFrame(function () {
+          document.body.classList.add("is-ready");
+        });
+      });
 
       if (!form || !success) return;
 

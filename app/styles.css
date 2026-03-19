@@ -48,6 +48,15 @@ body {
   scrollbar-width: none;
 }
 
+body.page-enter {
+  opacity: 0;
+  transform: translateY(16px) scale(0.996);
+}
+
+body.page-enter.is-ready {
+  animation: page-fade-in 0.82s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
   width: 0;
@@ -512,13 +521,33 @@ tbody tr:hover {
   }
 }
 
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.996);
+  }
+
+  60% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  body.page-enter,
+  body.page-enter.is-ready,
   *,
   *::before,
   *::after {
     animation: none !important;
     transition: none !important;
     scroll-behavior: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
   }
 }
 

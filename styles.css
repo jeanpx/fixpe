@@ -46,6 +46,15 @@ body {
   scrollbar-width: none;
 }
 
+body.page-enter {
+  opacity: 0;
+  transform: translateY(18px) scale(0.995);
+}
+
+body.page-enter.is-ready {
+  animation: pageFadeIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
   width: 0;
@@ -1073,6 +1082,22 @@ a {
   }
 }
 
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.995);
+  }
+
+  60% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @supports (view-transition-name: root) {
   :root {
     view-transition-name: root;
@@ -1121,6 +1146,8 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  body.page-enter,
+  body.page-enter.is-ready,
   body,
   .site-header,
   .nav a,
@@ -1140,6 +1167,9 @@ a {
   .step,
   .case {
     transition: none;
+    animation: none;
+    transform: none;
+    opacity: 1;
   }
 
   ::view-transition-old(root),

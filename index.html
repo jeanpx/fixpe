@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="styles.css?v=20260319-3" />
 </head>
 
-<body>
+<body class="page-enter">
   <div class="orb orb-a" aria-hidden="true"></div>
   <div class="orb orb-b" aria-hidden="true"></div>
   <div class="grid" aria-hidden="true"></div>
@@ -449,6 +449,11 @@
       }
       updateThemeLabel();
       setupModernScroll();
+      window.requestAnimationFrame(function () {
+        window.requestAnimationFrame(function () {
+          document.body.classList.add("is-ready");
+        });
+      });
 
       toggle.addEventListener("click", function (event) {
         var nextTheme = root.classList.contains("theme-light") ? "dark" : "light";
