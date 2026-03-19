@@ -22,6 +22,7 @@ body {
   color: var(--ink);
   min-height: 100vh;
   overflow-x: hidden;
+  line-height: 1.5;
 }
 
 .glass {
@@ -129,6 +130,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 20px;
   padding: 28px 8vw 0;
 }
 
@@ -150,8 +152,48 @@ a {
   display: block;
 }
 
+.menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  width: 52px;
+  min-width: 52px;
+  height: 52px;
+  padding: 10px;
+  border-radius: 16px;
+  border: 1px solid var(--stroke);
+  background: rgba(255, 255, 255, 0.08);
+  color: inherit;
+  cursor: pointer;
+}
+
+.menu-toggle-line {
+  display: block;
+  width: 18px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.menu-toggle-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .nav {
   display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 22px;
   font-size: 0.95rem;
   color: var(--ink-muted);
@@ -177,6 +219,9 @@ a {
 }
 
 .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font: inherit;
   border: 1px solid var(--stroke);
   padding: 12px 20px;
@@ -238,10 +283,18 @@ a {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
   gap: 48px;
   padding: 72px 8vw 40px;
   align-items: center;
+}
+
+.hero-copy,
+.profile-content,
+.section-title,
+.claims-card > div,
+.cta > div {
+  min-width: 0;
 }
 
 .hero-copy h1 {
@@ -254,6 +307,7 @@ a {
   color: var(--ink-muted);
   font-size: 1.05rem;
   line-height: 1.6;
+  max-width: 62ch;
 }
 
 .pill {
@@ -300,6 +354,8 @@ a {
   padding: 28px;
   backdrop-filter: blur(18px);
   animation: fadeIn 0.8s ease forwards;
+  justify-self: end;
+  width: min(100%, 420px);
 }
 
 .theme-light .hero-card {
@@ -401,6 +457,7 @@ a {
 
 .section-title p {
   color: var(--ink-muted);
+  line-height: 1.7;
 }
 
 .cards {
@@ -460,6 +517,8 @@ a {
   display: grid;
   gap: 16px;
   margin-bottom: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
 }
 
 .claims-form label {
@@ -472,12 +531,18 @@ a {
 .claims-form input,
 .claims-form select,
 .claims-form textarea {
+  width: 100%;
   padding: 12px 14px;
   border-radius: 12px;
   border: 1px solid var(--stroke);
   background: rgba(255, 255, 255, 0.06);
   color: var(--ink);
   font: inherit;
+}
+
+.claims-field-wide,
+.claims-form .btn {
+  grid-column: 1 / -1;
 }
 
 .theme-light .claims-form input,
@@ -514,7 +579,7 @@ a {
 .profile-grid {
   display: grid;
   gap: 32px;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: minmax(260px, 0.85fr) minmax(0, 1.15fr);
   align-items: center;
 }
 
@@ -525,6 +590,7 @@ a {
   background: rgba(22, 29, 38, 0.4);
   backdrop-filter: blur(18px);
   max-width: 420px;
+  width: 100%;
 }
 
 .profile-photo img {
@@ -700,6 +766,18 @@ a {
   backdrop-filter: blur(18px);
 }
 
+.cta h2,
+.cta p,
+.claims-card h2,
+.claims-card p,
+.service p,
+.about-card p,
+.step p,
+.case h3,
+.profile-content p {
+  overflow-wrap: anywhere;
+}
+
 .theme-light .cta {
   background: linear-gradient(120deg,
       rgba(37, 99, 235, 0.18),
@@ -710,13 +788,17 @@ a {
 .footer {
   padding: 24px 8vw 40px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  gap: 20px;
   color: var(--ink-muted);
   font-size: 0.9rem;
 }
 
 .footer-links {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   gap: 18px;
 }
 
@@ -746,32 +828,85 @@ a {
 
 @media (max-width: 900px) {
   .site-header {
-    flex-direction: column;
-    gap: 16px;
-    text-align: center;
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    padding-top: 24px;
   }
 
   .header-actions {
-    flex-direction: column;
-    width: 100%;
+    grid-column: 1 / -1;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+    justify-self: end;
   }
 
   .nav {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 14px;
+    grid-column: 1 / -1;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 18px;
+    border-radius: 22px;
+    border: 1px solid transparent;
+    background: rgba(15, 20, 27, 0.3);
+    opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.2s ease, padding 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .theme-light .nav {
+    background: rgba(255, 255, 255, 0.7);
+  }
+
+  body.nav-open .nav {
+    max-height: 320px;
+    padding: 18px;
+    border-color: var(--stroke);
+    opacity: 1;
+  }
+
+  body.nav-open .menu-toggle-line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  body.nav-open .menu-toggle-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  body.nav-open .menu-toggle-line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .nav a {
+    width: 100%;
+    text-align: center;
   }
 
   .hero {
     grid-template-columns: 1fr;
+    gap: 36px;
   }
 
   .hero-card {
     order: 2;
+    justify-self: stretch;
+    width: 100%;
   }
 
   .hero-copy {
     order: 1;
+  }
+
+  .profile-grid,
+  .claims-form {
+    grid-template-columns: 1fr;
   }
 
   .cta,
@@ -779,15 +914,33 @@ a {
     flex-direction: column;
     text-align: center;
   }
+
+  .footer-links {
+    justify-content: center;
+  }
 }
 
 @media (max-width: 640px) {
   .site-header {
     padding: 20px 6vw 0;
+    gap: 14px;
   }
 
-  .nav {
-    font-size: 0.9rem;
+  .logo img {
+    width: 142px;
+  }
+
+  .header-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .header-actions .btn,
+  .header-actions .toggle,
+  .claims-card .btn,
+  .cta .btn {
+    width: 100%;
   }
 
   .hero {
@@ -797,6 +950,10 @@ a {
 
   .hero-copy h1 {
     font-size: clamp(2.1rem, 7vw, 2.8rem);
+  }
+
+  .hero-copy p {
+    font-size: 1rem;
   }
 
   .hero-actions {
@@ -811,6 +968,20 @@ a {
   .hero-metrics {
     grid-template-columns: 1fr;
     gap: 10px;
+  }
+
+  .hero-metrics div,
+  .profile-metrics div {
+    padding: 14px 16px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .theme-light .hero-metrics div,
+  .theme-light .profile-metrics div {
+    background: rgba(255, 255, 255, 0.82);
+    border-color: rgba(15, 23, 42, 0.08);
   }
 
   .hero-card {
@@ -832,6 +1003,11 @@ a {
   .claims-card {
     flex-direction: column;
     align-items: flex-start;
+    padding: 24px;
+  }
+
+  .claims-form {
+    gap: 14px;
   }
 
   .cta {
@@ -843,5 +1019,31 @@ a {
     flex-direction: column;
     align-items: center;
     gap: 10px;
+  }
+
+  #three-bg {
+    opacity: 0.28;
+  }
+}
+
+@media (max-width: 420px) {
+  .site-header,
+  .hero,
+  .section,
+  .cta,
+  .footer {
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+
+  .hero-copy h1,
+  .section-title h2,
+  .profile-content h2 {
+    word-break: break-word;
+  }
+
+  .btn,
+  .toggle {
+    padding: 12px 16px;
   }
 }

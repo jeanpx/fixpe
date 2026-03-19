@@ -27,7 +27,13 @@
     <div class="logo">
       <img src="imagen/logofixpe.png" alt="Fixpe" />
     </div>
-    <nav class="nav">
+    <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="primaryNav">
+      <span class="menu-toggle-line"></span>
+      <span class="menu-toggle-line"></span>
+      <span class="menu-toggle-line"></span>
+      <span class="menu-toggle-label">Menu</span>
+    </button>
+    <nav class="nav" id="primaryNav">
       <a href="#quienes">Quienes somos</a>
       <a href="#servicios">Servicios</a>
       <a href="#proceso">Proceso</a>
@@ -40,7 +46,7 @@
         Agenda una llamada o Mensaje
       </a>
       <button class="toggle" id="themeToggle" type="button">
-        <span>Dia</span>
+        <span>Cambiar tema</span>
       </button>
     </div>
   </header>
@@ -54,7 +60,7 @@
       </h1>
       <p>
         Alineamos diseño, desarrollo y procesos para que vendas mas, operes
-        mejor y tengas visibilidad en tiempo real pru
+        mejor y tengas visibilidad en tiempo real
       </p>
       <div class="hero-actions">
         <a class="btn btn-ghost"
@@ -314,20 +320,41 @@
     (function () {
       var root = document.documentElement;
       var toggle = document.getElementById("themeToggle");
+      var menuToggle = document.getElementById("menuToggle");
+      var nav = document.getElementById("primaryNav");
       var saved = localStorage.getItem("theme");
+
+      function updateThemeLabel() {
+        var isLight = root.classList.contains("theme-light");
+        toggle.querySelector("span").textContent = isLight
+          ? "Modo oscuro"
+          : "Modo claro";
+      }
 
       if (saved === "light") {
         root.classList.add("theme-light");
-        toggle.querySelector("span:last-child").textContent = "Modo Oscuro";
       }
+      updateThemeLabel();
 
       toggle.addEventListener("click", function () {
         var isLight = root.classList.toggle("theme-light");
         localStorage.setItem("theme", isLight ? "light" : "dark");
-        toggle.querySelector("span:last-child").textContent = isLight
-          ? "Modo Oscuro"
-          : "Modo Claro";
+        updateThemeLabel();
       });
+
+      if (menuToggle && nav) {
+        menuToggle.addEventListener("click", function () {
+          var isOpen = document.body.classList.toggle("nav-open");
+          menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        });
+
+        nav.querySelectorAll("a").forEach(function (link) {
+          link.addEventListener("click", function () {
+            document.body.classList.remove("nav-open");
+            menuToggle.setAttribute("aria-expanded", "false");
+          });
+        });
+      }
     })();
   </script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
@@ -350,6 +377,9 @@
 
       renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
       renderer.setSize(window.innerWidth, window.innerHeight);
+      if (window.innerWidth <= 768) {
+        renderer.setPixelRatio(1);
+      }
 
       var group = new THREE.Group();
 
@@ -505,6 +535,9 @@
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(
+          window.innerWidth <= 768 ? 1 : Math.min(window.devicePixelRatio || 1, 2)
+        );
       }
 
       window.addEventListener("resize", onResize);
