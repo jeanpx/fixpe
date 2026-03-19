@@ -384,6 +384,8 @@ a {
   backdrop-filter: blur(18px);
   animation: fadeIn 0.8s ease forwards;
   justify-self: end;
+  align-self: start;
+  margin-top: 18px;
   width: min(100%, 420px);
 }
 
