@@ -40,6 +40,7 @@ $directLeads = fetch_rows(
         dr.message,
         dr.budget,
         dr.status,
+        dr.quoted_amount,
         dr.created_at,
         u.full_name AS client_name
      FROM direct_requests dr
@@ -122,6 +123,9 @@ render_header('Panel proveedor');
             <div class="meta">
               <?php if ($lead['budget'] !== null): ?>
                 <span class="chip">Presupuesto <?= e((string) $lead['budget']) ?></span>
+              <?php endif; ?>
+              <?php if ($lead['quoted_amount'] !== null): ?>
+                <span class="chip">Cotizado <?= e((string) $lead['quoted_amount']) ?></span>
               <?php endif; ?>
               <span class="chip"><?= e($lead['created_at']) ?></span>
             </div>

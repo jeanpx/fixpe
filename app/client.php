@@ -37,9 +37,12 @@ $quotes = fetch_rows(
 );
 $directRequests = fetch_rows(
     'SELECT
+        dr.id,
         dr.subject,
         dr.status,
         dr.budget,
+        dr.quoted_amount,
+        dr.quoted_delivery_days,
         dr.created_at,
         u.full_name AS provider_name
      FROM direct_requests dr
@@ -122,7 +125,16 @@ render_header('Panel cliente');
               <?php if ($directRequest['budget'] !== null): ?>
                 <span class="chip">Presupuesto <?= e((string) $directRequest['budget']) ?></span>
               <?php endif; ?>
+              <?php if ($directRequest['quoted_amount'] !== null): ?>
+                <span class="chip">Respuesta <?= e((string) $directRequest['quoted_amount']) ?></span>
+              <?php endif; ?>
+              <?php if ($directRequest['quoted_delivery_days'] !== null): ?>
+                <span class="chip"><?= e((string) $directRequest['quoted_delivery_days']) ?> dias</span>
+              <?php endif; ?>
               <span class="chip"><?= e($directRequest['created_at']) ?></span>
+            </div>
+            <div class="toolbar">
+              <a class="button secondary" href="direct-request-detail.php?id=<?= e((string) $directRequest['id']) ?>">Abrir solicitud</a>
             </div>
           </article>
         <?php endforeach; ?>
