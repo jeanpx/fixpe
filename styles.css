@@ -1046,7 +1046,7 @@ a {
 
   ::view-transition-old(root),
   ::view-transition-new(root) {
-    animation-duration: 1.45s;
+    animation-duration: 0.9s;
     animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
     mix-blend-mode: normal;
   }
@@ -1063,34 +1063,20 @@ a {
 @keyframes themeFadeOut {
   from {
     opacity: 1;
-    filter: blur(0);
-    transform: scale(1);
   }
 
   to {
-    opacity: 0.18;
-    filter: blur(3px);
-    transform: scale(1.006);
+    opacity: 0;
   }
 }
 
 @keyframes themeRevealIn {
   from {
-    opacity: 0.22;
-    clip-path: circle(18vmax at var(--theme-x) var(--theme-y));
-  }
-
-  55% {
-    opacity: 0.72;
-  }
-
-  78% {
-    opacity: 1;
+    opacity: 0;
   }
 
   to {
     opacity: 1;
-    clip-path: circle(150vmax at var(--theme-x) var(--theme-y));
   }
 }
 
