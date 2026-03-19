@@ -1025,7 +1025,7 @@ a {
 
   .hero-model-slot {
     display: block;
-    height: clamp(150px, 30vw, 210px);
+    height: clamp(190px, 36vw, 250px);
   }
 
   .hero-actions {
@@ -1118,7 +1118,7 @@ a {
   }
 
   .hero-model-slot {
-    height: clamp(132px, 32vw, 176px);
+    height: clamp(170px, 38vw, 220px);
   }
 
   .site-header,

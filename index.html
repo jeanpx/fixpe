@@ -570,8 +570,8 @@
         group.position.set(sceneConfig.baseX, sceneConfig.baseY, -1.2);
         ring.position.set(sceneConfig.ringX, sceneConfig.ringY, -1.2);
         if (isMobile) {
-          group.scale.set(1.08, 1.08, 1.08);
-          ring.scale.set(1.18, 1.18, 1.18);
+          group.scale.set(1.42, 1.42, 1.42);
+          ring.scale.set(1.56, 1.56, 1.56);
         } else {
           group.scale.set(1, 1, 1);
           ring.scale.set(1, 1, 1);
@@ -614,7 +614,7 @@
         var width = Math.max(1, Math.round(rect.width || window.innerWidth));
         var height = Math.max(1, Math.round(rect.height || window.innerHeight));
         camera.aspect = width / height;
-        camera.position.z = isMobile ? 4.8 : 4;
+        camera.position.z = isMobile ? 3.9 : 4;
         camera.updateProjectionMatrix();
         renderer.setSize(width, height, false);
         renderer.setPixelRatio(
