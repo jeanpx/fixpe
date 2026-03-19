@@ -429,8 +429,6 @@ a {
   gap: 48px;
   padding: 72px 8vw 40px;
   align-items: center;
-  max-width: 1440px;
-  margin: 0 auto;
 }
 
 .hero-copy,
