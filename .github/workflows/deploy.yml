@@ -21,7 +21,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftp
           port: 21
-          server-dir: /public_html/
+          server-dir: /domains/fixpesupport.com/public_html/
           local-dir: ./
           exclude: |
             **/.git*
