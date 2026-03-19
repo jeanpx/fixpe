@@ -35,6 +35,7 @@ $openRequests = fetch_rows(
 );
 $directLeads = fetch_rows(
     'SELECT
+        dr.id,
         dr.subject,
         dr.message,
         dr.budget,
@@ -123,6 +124,9 @@ render_header('Panel proveedor');
                 <span class="chip">Presupuesto <?= e((string) $lead['budget']) ?></span>
               <?php endif; ?>
               <span class="chip"><?= e($lead['created_at']) ?></span>
+            </div>
+            <div class="toolbar">
+              <a class="button secondary" href="direct-request-detail.php?id=<?= e((string) $lead['id']) ?>">Abrir solicitud</a>
             </div>
           </article>
         <?php endforeach; ?>
