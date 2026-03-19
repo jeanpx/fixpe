@@ -508,6 +508,7 @@
 
       var pointer = { x: 0, y: 0 };
       var root = document.documentElement;
+      var animationFrameId = null;
       var sceneConfig = {
         baseX: 2.2,
         baseY: -0.1,
@@ -603,8 +604,7 @@
       onResize();
 
       var t = 0;
-      function animate() {
-        t += 0.01;
+      function renderScene() {
         group.position.x = sceneConfig.baseX;
         group.position.y = sceneConfig.baseY + Math.sin(t) * 0.06;
         ring.rotation.z = t * 0.4;
@@ -623,10 +623,40 @@
         group.rotation.y += (pointer.x * 0.6 - group.rotation.y) * 0.05;
         group.rotation.x += (-pointer.y * 0.4 - group.rotation.x) * 0.05;
         renderer.render(scene, camera);
-        requestAnimationFrame(animate);
       }
 
-      animate();
+      function animate() {
+        t += 0.01;
+        renderScene();
+        animationFrameId = requestAnimationFrame(animate);
+      }
+
+      function syncRenderingMode() {
+        var isMobile = window.innerWidth <= 768;
+        if (isMobile) {
+          if (animationFrameId) {
+            cancelAnimationFrame(animationFrameId);
+            animationFrameId = null;
+          }
+          t = 0.35;
+          group.rotation.y = 0;
+          group.rotation.x = 0;
+          renderScene();
+        } else if (!animationFrameId) {
+          animate();
+        }
+      }
+
+      window.addEventListener("resize", syncRenderingMode);
+      window.addEventListener("themechange", syncRenderingMode);
+      window.addEventListener("storage", syncRenderingMode);
+
+      if (window.innerWidth <= 768) {
+        t = 0.35;
+        renderScene();
+      } else {
+        animationFrameId = requestAnimationFrame(animate);
+      }
     })();
   </script>
 </body>
