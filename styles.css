@@ -31,6 +31,7 @@ body {
   background: radial-gradient(circle at top left, #1f2a3a 0%, #0c1118 58%);
   color: var(--ink);
   min-height: 100vh;
+  min-height: 100svh;
   overflow-x: clip;
   overflow-x: hidden;
   line-height: 1.5;
@@ -172,6 +173,7 @@ a {
 .logo img {
   width: 170px;
   height: auto;
+  aspect-ratio: 2816 / 1536;
   display: block;
 }
 
@@ -616,10 +618,13 @@ a {
   backdrop-filter: blur(18px);
   max-width: 420px;
   width: 100%;
+  aspect-ratio: 1453 / 2574;
 }
 
 .profile-photo img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
 
