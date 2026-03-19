@@ -8,9 +8,11 @@ html {
   height: 100%;
   width: 100%;
   max-width: 100%;
+  background: #0c1118;
   overflow-x: hidden;
   overflow-y: auto;
   scrollbar-gutter: stable;
+  scrollbar-color: rgba(140, 194, 255, 0.38) #0c1118;
 }
 
 :root {
@@ -100,6 +102,11 @@ body::-webkit-scrollbar-thumb:hover {
   --accent: #2563eb;
   --accent-dark: #1d4ed8;
   --stroke: rgba(15, 23, 42, 0.12);
+}
+
+.theme-light html {
+  background: #f5f7fb;
+  scrollbar-color: rgba(37, 99, 235, 0.42) #f5f7fb;
 }
 
 .theme-light body {
