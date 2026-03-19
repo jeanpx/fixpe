@@ -8,8 +8,9 @@ html {
   height: 100%;
   width: 100%;
   max-width: 100%;
-  overflow: hidden;
   overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
 }
 
 :root {
@@ -34,12 +35,47 @@ body {
   font-family: "Space Grotesk", system-ui, -apple-system, sans-serif;
   background: radial-gradient(circle at top left, #1f2a3a 0%, #0c1118 58%);
   color: var(--ink);
-  min-height: 100%;
+  min-height: 100vh;
   overflow-x: hidden;
-  overflow-y: auto;
   line-height: 1.5;
   transition: background 1.15s cubic-bezier(0.22, 1, 0.36, 1),
     color 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(140, 194, 255, 0.38) rgba(255, 255, 255, 0.05);
+}
+
+body::-webkit-scrollbar {
+  width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+body::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  border: 3px solid rgba(10, 14, 20, 0.78);
+  background: linear-gradient(180deg, rgba(113, 168, 255, 0.72), rgba(53, 104, 209, 0.72));
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(143, 194, 255, 0.88), rgba(69, 123, 235, 0.88));
+}
+
+.theme-light body {
+  scrollbar-color: rgba(37, 99, 235, 0.42) rgba(15, 23, 42, 0.06);
+}
+
+.theme-light body::-webkit-scrollbar-track {
+  background: rgba(148, 163, 184, 0.14);
+}
+
+.theme-light body::-webkit-scrollbar-thumb {
+  border-color: rgba(255, 255, 255, 0.9);
+  background: linear-gradient(180deg, rgba(59, 130, 246, 0.72), rgba(37, 99, 235, 0.72));
 }
 
 .glass {
@@ -388,6 +424,8 @@ a {
   gap: 48px;
   padding: 72px 8vw 40px;
   align-items: center;
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
 .hero-copy,
@@ -461,6 +499,7 @@ a {
   width: min(100%, 420px);
   transition: background 0.7s ease, border-color 0.7s ease,
     box-shadow 0.7s ease, color 0.55s ease;
+  box-shadow: 0 24px 60px rgba(4, 8, 14, 0.28);
 }
 
 .theme-light .hero-card {
