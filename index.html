@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fixpe</title>
+  <link rel="icon" type="image/png" href="/imagen/icono.png">
+
+  <meta name="description"
+    content="Landing page para creacion de paginas web, web apps, implementacion Odoo, soporte tecnico y asesoria ERP." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Unbounded:wght@500;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="orb orb-a" aria-hidden="true"></div>
+  <div class="orb orb-b" aria-hidden="true"></div>
+  <div class="grid" aria-hidden="true"></div>
+  <canvas id="three-bg" aria-hidden="true"></canvas>
+
+  <header class="site-header">
+    <div class="logo">
+      <img src="imagen/logofixpe.png" alt="Fixpe" />
+    </div>
+    <nav class="nav">
+      <a href="#quienes">Quienes somos</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#casos">Casos</a>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn-ghost"
+        href="https://mail.google.com/mail/?view=cm&fs=1&to=info@fixpesupport.com&su=Solicitud%20de%20propuesta%20-%20Fixpe&body=Hola%20Fixpe%2C%0A%0AQuisiera%20una%20propuesta%20para%3A%20%5Bweb%2Fweb%20app%2FOdoo%2Fsoporte%5D.%0AEmpresa%3A%20%0ANombre%3A%20%0ATelefono%3A%20%0APlazo%20estimado%3A%20%0ADetalles%3A%20%0A%0AGracias."
+        target="_blank" rel="noreferrer">
+        Agenda una llamada o Mensaje
+      </a>
+      <button class="toggle" id="themeToggle" type="button">
+        <span>Dia</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="hero">
+    <div class="hero-copy">
+      <span class="pill">Tecnologia a medida para tu negocio</span>
+      <h1>
+        Creamos paginas web, web apps e implementamos Odoo con soporte
+        tecnico cercano.
+      </h1>
+      <p>
+        Alineamos diseño, desarrollo y procesos para que vendas mas, operes
+        mejor y tengas visibilidad en tiempo real.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-ghost"
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=info@fixpesupport.com&su=Solicitud%20de%20propuesta%20-%20Fixpe&body=Hola%20Fixpe%2C%0A%0AQuisiera%20una%20propuesta%20para%3A%20%5Bweb%2Fweb%20app%2FOdoo%2Fsoporte%5D.%0AEmpresa%3A%20%0ANombre%3A%20%0ATelefono%3A%20%0APlazo%20estimado%3A%20%0ADetalles%3A%20%0A%0AGracias."
+          target="_blank" rel="noreferrer">
+          Quiero una propuesta
+        </a>
+        <a class="btn btn-ghost" href="#casos">Ver proyectos</a>
+      </div>
+      <div class="hero-metrics">
+        <div>
+          <strong>+120%</strong>
+          <span>mejora en leads</span>
+        </div>
+        <div>
+          <strong>4 a 8 semanas</strong>
+          <span>tiempo de entrega</span>
+        </div>
+        <div>
+          <strong>Soporte 7x12</strong>
+          <span>computadoras y sistemas</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="card-head">
+        <span>Panel de proyecto</span>
+        <span class="status">En curso</span>
+      </div>
+      <div class="card-body">
+        <div class="stat">
+          <span>Modulos ERP</span>
+          <strong>8</strong>
+          <em>finanzas, ventas, inventario</em>
+        </div>
+        <div class="stat">
+          <span>Tiempo de respuesta</span>
+          <strong>2 horas</strong>
+          <em>SLA estandar</em>
+        </div>
+        <div class="stat">
+          <span>Disponibilidad</span>
+          <strong>99.9%</strong>
+          <em>monitoreo proactivo</em>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <section id="quienes" class="section about">
+    <div class="section-title">
+      <h2>Quienes somos</h2>
+      <p>
+        Somos Fixpe, un equipo de desarrollo, diseño y soporte TI que
+        acompaña a empresas a digitalizar procesos con web, web apps y Odoo.
+        Detras de cada proyecto hay un equipo capacitado y con amplia
+        experiencia en tecnologia, operaciones y atencion al cliente; no es
+        solo una persona, es un grupo comprometido con resultados reales.
+      </p>
+    </div>
+    <div class="about-grid">
+      <article class="about-card">
+        <h3>Equipo cercano</h3>
+        <p>
+          Trabajamos contigo como socios: entendemos tu negocio y hablamos tu
+          idioma.
+        </p>
+      </article>
+      <article class="about-card">
+        <h3>Metodologia clara</h3>
+        <p>
+          Diagnostico, implementación y mejora continua para que el cambio se
+          sostenga.
+        </p>
+      </article>
+      <article class="about-card">
+        <h3>Soporte continuo</h3>
+        <p>
+          Monitoreo, soporte de computadoras y asesorias para mantener todo
+          operativo.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section id="perfil" class="section profile">
+    <div class="profile-grid">
+      <div class="profile-photo">
+        <img src="imagen/luis.png" alt="Ingeniero de software especializado en IA" />
+      </div>
+      <div class="profile-content">
+        <h2>Sobre mi - Luis Romero A</h2>
+        <p>
+          Soy ingeniero de software con enfoque en inteligencia artificial y
+          amplia experiencia en el mundo de la automatización y los sistemas
+          empresariales. He liderado proyectos de web apps, integraciones con
+          Odoo y soluciones a medida que optimizan procesos y elevan la
+          productividad.
+        </p>
+        <div class="profile-tags">
+          <span>IA aplicada</span>
+          <span>Odoo ERP</span>
+          <span>Arquitectura web</span>
+          <span>Soporte TI</span>
+        </div>
+        <div class="profile-metrics">
+          <div>
+            <strong>3 años</strong>
+            <span>en tecnologia y consultoria</span>
+          </div>
+          <div>
+            <strong>10 proyectos</strong>
+            <span>web y ERP entregados</span>
+          </div>
+          <div>
+            <strong>24/7</strong>
+            <span>acompanamiento continuo</span>
+          </div>
+        </div>
+        <a class="btn btn-ghost"
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=info@fixpesupport.com&su=Solicitud%20de%20propuesta%20-%20Fixpe&body=Hola%20Fixpe%2C%0A%0AQuisiera%20una%20propuesta%20para%3A%20%5Bweb%2Fweb%20app%2FOdoo%2Fsoporte%5D.%0AEmpresa%3A%20%0ANombre%3A%20%0ATelefono%3A%20%0APlazo%20estimado%3A%20%0ADetalles%3A%20%0A%0AGracias."
+          target="_blank" rel="noreferrer">
+          Hablemos de tu proyecto
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios" class="section">
+    <div class="section-title">
+      <h2>Servicios para digitalizar tu operacion</h2>
+      <p>
+        Un equipo integral para crear, mantener y evolucionar tus sistemas.
+      </p>
+    </div>
+    <div class="cards">
+      <article class="service">
+        <h3>Creacion de paginas web</h3>
+        <p>
+          Sitios corporativos, landing pages y ecommerce listos para
+          conversion.
+        </p>
+      </article>
+      <article class="service">
+        <h3>Web apps a medida</h3>
+        <p>
+          Portales, dashboards y automatizaciones para tu flujo de trabajo.
+        </p>
+      </article>
+      <article class="service">
+        <h3>Odoo y soporte tecnico</h3>
+        <p>
+          Implementación Odoo, mejoras y soporte a equipos de computo.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section id="proceso" class="section process">
+    <div class="section-title">
+      <h2>Un proceso claro y ejecutable</h2>
+      <p>Te acompañamos desde el diagnostico hasta la adopcion del equipo.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span>01</span>
+        <h4>Diagnostico</h4>
+        <p>Levantamos procesos, necesidades y objetivos de negocio.</p>
+      </div>
+      <div class="step">
+        <span>02</span>
+        <h4>Diseno y desarrollo</h4>
+        <p>Prototipamos, construimos y validamos con tu equipo.</p>
+      </div>
+      <div class="step">
+        <span>03</span>
+        <h4>Implementacion</h4>
+        <p>Capacitacion, soporte y mejoras continuas post lanzamiento.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="casos" class="section cases">
+    <div class="section-title">
+      <h2>Casos recientes</h2>
+      <p>Proyectos reales con impacto medible.</p>
+    </div>
+    <div class="case-grid">
+      <article class="case">
+        <span>Servicios</span>
+        <h3>Web corporativa con 3x mas solicitudes.</h3>
+        <a class="case-link" href="https://fiberpro.com.pe/" target="_blank" rel="noreferrer">
+          Ver proyecto
+        </a>
+      </article>
+      <article class="case">
+        <span>Distribucion</span>
+        <h3>Odoo integrado con inventario en tiempo real.</h3>
+        <a class="case-link" href="https://fiberapp.fiberpro.com.pe/" target="_blank" rel="noreferrer">
+          Ver proyecto
+        </a>
+      </article>
+      <article class="case">
+        <span>Soporte TI</span>
+        <h3>Soporte a 80 equipos con 99.9% disponibilidad.</h3>
+      </article>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div>
+      <h2>Listos para digitalizar tu negocio?</h2>
+      <p>
+        Agenda una llamada y definimos tu proyecto en 48 horas. Escríbenos a
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@fixpesupport.com&su=Consulta%20-%20Fixpe&body=Hola%20Fixpe%2C%0A%0ANecesito%20informacion%20sobre%20sus%20servicios.%0A%0AGracias."
+          target="_blank" rel="noreferrer">
+          fixpesupport@gmail.com
+        </a>
+      </p>
+    </div>
+    <a class="btn btn-ghost"
+      href="https://mail.google.com/mail/?view=cm&fs=1&to=info@fixpesupport.com&su=Solicitud%20de%20propuesta%20-%20Fixpe&body=Hola%20Fixpe%2C%0A%0AQuisiera%20una%20propuesta%20para%3A%20%5Bweb%2Fweb%20app%2FOdoo%2Fsoporte%5D.%0AEmpresa%3A%20%0ANombre%3A%20%0ATelefono%3A%20%0APlazo%20estimado%3A%20%0ADetalles%3A%20%0A%0AGracias."
+      target="_blank" rel="noreferrer">
+      Coordinar ahora
+    </a>
+  </section>
+
+  <section id="reclamaciones" class="section claims">
+    <div class="claims-card">
+      <div>
+        <h2>Libro de Reclamaciones</h2>
+        <p>
+          Si deseas registrar un reclamo o queja, puedes hacerlo en nuestro
+          libro de reclamaciones virtual.
+        </p>
+      </div>
+      <a class="btn btn-ghost" href="libro-reclamaciones.html">
+        Ir al libro
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <span><strong>Fixpe 2026</strong></span>
+    <div class="footer-links">
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@fixpesupport.com&su=Consulta%20-%20Fixpe&body=Hola%20Fixpe%2C%0A%0ANecesito%20informacion%20sobre%20sus%20servicios.%0A%0AGracias."
+        target="_blank" rel="noreferrer">
+        info@fixpesupport.com
+      </a>
+      <a href="libro-reclamaciones.html">Libro de reclamaciones</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var toggle = document.getElementById("themeToggle");
+      var saved = localStorage.getItem("theme");
+
+      if (saved === "light") {
+        root.classList.add("theme-light");
+        toggle.querySelector("span:last-child").textContent = "Modo Oscuro";
+      }
+
+      toggle.addEventListener("click", function () {
+        var isLight = root.classList.toggle("theme-light");
+        localStorage.setItem("theme", isLight ? "light" : "dark");
+        toggle.querySelector("span:last-child").textContent = isLight
+          ? "Modo Oscuro"
+          : "Modo Claro";
+      });
+    })();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script>
+    (function () {
+      if (!window.THREE) return;
+      var canvas = document.getElementById("three-bg");
+      var scene = new THREE.Scene();
+      var camera = new THREE.PerspectiveCamera(
+        60,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        100
+      );
+      var renderer = new THREE.WebGLRenderer({
+        canvas: canvas,
+        alpha: true,
+        antialias: true,
+      });
+
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setSize(window.innerWidth, window.innerHeight);
+
+      var group = new THREE.Group();
+
+      var bodyMaterial = new THREE.MeshStandardMaterial({
+        color: 0x1f2937,
+        metalness: 0.35,
+        roughness: 0.4,
+        transparent: true,
+        opacity: 0.8,
+      });
+      var metalMaterial = new THREE.MeshStandardMaterial({
+        color: 0x94a3b8,
+        metalness: 0.7,
+        roughness: 0.2,
+      });
+      var screenMaterial = new THREE.MeshStandardMaterial({
+        color: 0x0f172a,
+        emissive: 0x2563eb,
+        emissiveIntensity: 0.5,
+        metalness: 0.2,
+        roughness: 0.4,
+      });
+      var glowMaterial = new THREE.MeshBasicMaterial({
+        color: 0x60a5fa,
+        transparent: true,
+        opacity: 0.25,
+      });
+
+      var monitor = new THREE.Mesh(
+        new THREE.BoxGeometry(2.2, 1.35, 0.14),
+        bodyMaterial
+      );
+      monitor.position.set(0, 0.5, 0);
+
+      var screen = new THREE.Mesh(
+        new THREE.PlaneGeometry(1.85, 1.05),
+        screenMaterial
+      );
+      screen.position.set(0, 0.5, 0.08);
+
+      var screenGlow = new THREE.Mesh(
+        new THREE.PlaneGeometry(1.95, 1.15),
+        glowMaterial
+      );
+      screenGlow.position.set(0, 0.5, 0.09);
+
+      var stand = new THREE.Mesh(
+        new THREE.BoxGeometry(0.5, 0.35, 0.2),
+        metalMaterial
+      );
+      stand.position.set(0, -0.45, 0);
+
+      var base = new THREE.Mesh(
+        new THREE.BoxGeometry(1.2, 0.15, 0.7),
+        metalMaterial
+      );
+      base.position.set(0, -0.7, 0);
+
+      var keyboard = new THREE.Mesh(
+        new THREE.BoxGeometry(1.8, 0.08, 0.7),
+        bodyMaterial
+      );
+      keyboard.position.set(0, -0.95, 0.2);
+
+      var touchpad = new THREE.Mesh(
+        new THREE.BoxGeometry(0.5, 0.02, 0.28),
+        metalMaterial
+      );
+      touchpad.position.set(0, -0.91, 0.35);
+
+      group.add(
+        monitor,
+        screen,
+        screenGlow,
+        stand,
+        base,
+        keyboard,
+        touchpad
+      );
+      group.position.set(2.2, -0.1, -1.2);
+      scene.add(group);
+
+      var ringMaterial = new THREE.MeshStandardMaterial({
+        color: 0x3b82f6,
+        metalness: 0.6,
+        roughness: 0.25,
+        transparent: true,
+        opacity: 0.55,
+      });
+      var ring = new THREE.Mesh(
+        new THREE.TorusGeometry(1.7, 0.06, 16, 80),
+        ringMaterial
+      );
+      ring.rotation.x = Math.PI / 2.4;
+      ring.position.set(2.2, 0.15, -1.2);
+      scene.add(ring);
+
+      var nodeMaterial = new THREE.MeshStandardMaterial({
+        color: 0xf59e0b,
+        metalness: 0.4,
+        roughness: 0.3,
+        transparent: true,
+        opacity: 0.7,
+      });
+      var nodes = [];
+      var nodeGeometry = new THREE.SphereGeometry(0.08, 16, 16);
+      for (var i = 0; i < 7; i++) {
+        var node = new THREE.Mesh(nodeGeometry, nodeMaterial);
+        node.position.set(
+          2.2 + Math.cos(i) * 1.25,
+          0.15 + Math.sin(i * 0.7) * 0.35,
+          -1.2 + Math.sin(i) * 0.35
+        );
+        nodes.push(node);
+        scene.add(node);
+      }
+
+      var ambient = new THREE.AmbientLight(0xffffff, 0.6);
+      var keyLight = new THREE.PointLight(0x60a5fa, 1.1, 10);
+      keyLight.position.set(3, 2, 4);
+      var fillLight = new THREE.PointLight(0xf59e0b, 0.6, 8);
+      fillLight.position.set(-3, -1, 3);
+      scene.add(ambient, keyLight, fillLight);
+
+      camera.position.z = 4;
+
+      var pointer = { x: 0, y: 0 };
+      var raycaster = new THREE.Raycaster();
+      var isHovering = false;
+      var cta = document.querySelector(".cta");
+
+      window.addEventListener("mousemove", function (event) {
+        pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
+        pointer.y = (event.clientY / window.innerHeight) * 2 - 1;
+      });
+
+      function handleClick() {
+        raycaster.setFromCamera(pointer, camera);
+        var hits = raycaster.intersectObjects(group.children, true);
+        if (hits.length && cta) {
+          group.scale.set(1.06, 1.06, 1.06);
+          setTimeout(function () {
+            group.scale.set(1, 1, 1);
+          }, 160);
+          cta.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+
+      canvas.addEventListener("click", handleClick);
+      canvas.addEventListener("touchstart", handleClick, { passive: true });
+
+      function onResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      }
+
+      window.addEventListener("resize", onResize);
+
+      var t = 0;
+      function animate() {
+        t += 0.01;
+        group.position.y = -0.1 + Math.sin(t) * 0.06;
+        ring.rotation.z = t * 0.4;
+        ring.rotation.y = t * 0.2;
+        for (var n = 0; n < nodes.length; n++) {
+          var node = nodes[n];
+          node.position.y =
+            0.15 + Math.sin(t + n * 0.6) * 0.35 + Math.cos(t * 0.8) * 0.05;
+          node.position.x = 2.2 + Math.cos(t + n) * 1.25;
+        }
+        group.rotation.y += (pointer.x * 0.6 - group.rotation.y) * 0.05;
+        group.rotation.x += (-pointer.y * 0.4 - group.rotation.x) * 0.05;
+        raycaster.setFromCamera(pointer, camera);
+        var hits = raycaster.intersectObjects(group.children, true);
+        if (hits.length !== 0) {
+          if (!isHovering) {
+            canvas.classList.add("is-interactive");
+            isHovering = true;
+          }
+        } else if (isHovering) {
+          canvas.classList.remove("is-interactive");
+          isHovering = false;
+        }
+        renderer.render(scene, camera);
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    })();
+  </script>
+</body>
+
+</html>
