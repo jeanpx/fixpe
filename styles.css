@@ -38,8 +38,8 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
   line-height: 1.5;
-  transition: background 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-    color 0.35s ease;
+  transition: background 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.55s ease;
 }
 
 .glass {
@@ -137,7 +137,7 @@ a {
   justify-content: space-between;
   gap: 20px;
   padding: 28px 8vw 0;
-  transition: color 0.35s ease;
+  transition: color 0.55s ease;
 }
 
 .header-actions {
@@ -226,8 +226,8 @@ a {
   border-radius: 999px;
   border: 1px solid transparent;
   background: transparent;
-  transition: color 0.35s ease, background 0.35s ease, border 0.35s ease,
-    transform 0.25s ease;
+  transition: color 0.55s ease, background 0.55s ease, border 0.55s ease,
+    transform 0.35s ease;
 }
 
 .nav a:hover {
@@ -252,8 +252,8 @@ a {
   background: transparent;
   color: inherit;
   cursor: pointer;
-  transition: transform 0.2s ease, border 0.35s ease, background 0.35s ease,
-    color 0.35s ease, box-shadow 0.35s ease;
+  transition: transform 0.3s ease, border 0.55s ease, background 0.55s ease,
+    color 0.55s ease, box-shadow 0.55s ease;
 }
 
 .btn:hover {
@@ -290,8 +290,8 @@ a {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  transition: transform 0.25s ease, background 0.35s ease,
-    border-color 0.35s ease, color 0.35s ease, box-shadow 0.35s ease;
+  transition: transform 0.35s ease, background 0.6s ease,
+    border-color 0.6s ease, color 0.6s ease, box-shadow 0.6s ease;
 }
 
 .theme-light .toggle {
@@ -307,7 +307,7 @@ a {
       rgba(255, 210, 121, 0.2),
       rgba(140, 194, 255, 0.08));
   opacity: 0;
-  transition: opacity 0.35s ease;
+  transition: opacity 0.6s ease;
   z-index: -1;
 }
 
@@ -334,8 +334,8 @@ a {
   box-shadow: 0 0 0 0.22rem rgba(255, 210, 121, 0.16);
   position: relative;
   flex: 0 0 auto;
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-    background 0.35s ease, box-shadow 0.35s ease;
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.6s ease, box-shadow 0.6s ease;
 }
 
 .toggle-icon::after {
@@ -345,8 +345,8 @@ a {
   border-radius: inherit;
   background: var(--bg);
   transform: translate(0.28rem, -0.18rem) scale(0.92);
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-    background 0.35s ease;
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.6s ease;
 }
 
 .theme-light .toggle-icon {
@@ -443,8 +443,8 @@ a {
   align-self: start;
   margin-top: 18px;
   width: min(100%, 420px);
-  transition: background 0.4s ease, border-color 0.4s ease,
-    box-shadow 0.4s ease, color 0.35s ease;
+  transition: background 0.7s ease, border-color 0.7s ease,
+    box-shadow 0.7s ease, color 0.55s ease;
 }
 
 .theme-light .hero-card {
@@ -571,8 +571,8 @@ a {
   background: rgba(22, 29, 38, 0.55);
   border: 1px solid rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(16px);
-  transition: background 0.4s ease, border-color 0.4s ease,
-    box-shadow 0.4s ease, color 0.35s ease;
+  transition: background 0.7s ease, border-color 0.7s ease,
+    box-shadow 0.7s ease, color 0.55s ease;
 }
 
 .theme-light .about-card {
@@ -593,8 +593,8 @@ a {
   background: rgba(22, 29, 38, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(16px);
-  transition: background 0.4s ease, border-color 0.4s ease,
-    box-shadow 0.4s ease, color 0.35s ease;
+  transition: background 0.7s ease, border-color 0.7s ease,
+    box-shadow 0.7s ease, color 0.55s ease;
 }
 
 .theme-light .claims-card {
@@ -631,8 +631,8 @@ a {
   background: rgba(255, 255, 255, 0.06);
   color: var(--ink);
   font: inherit;
-  transition: background 0.35s ease, border-color 0.35s ease,
-    color 0.35s ease, box-shadow 0.35s ease;
+  transition: background 0.6s ease, border-color 0.6s ease,
+    color 0.55s ease, box-shadow 0.6s ease;
 }
 
 .claims-field-wide,
@@ -687,8 +687,8 @@ a {
   max-width: 420px;
   width: 100%;
   aspect-ratio: 1453 / 2574;
-  transition: background 0.4s ease, border-color 0.4s ease,
-    box-shadow 0.4s ease;
+  transition: background 0.7s ease, border-color 0.7s ease,
+    box-shadow 0.7s ease;
 }
 
 .profile-photo img {
@@ -766,8 +766,8 @@ a {
   border: 1px solid rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(16px);
   min-height: 180px;
-  transition: background 0.4s ease, border-color 0.4s ease,
-    box-shadow 0.4s ease, color 0.35s ease;
+  transition: background 0.7s ease, border-color 0.7s ease,
+    box-shadow 0.7s ease, color 0.55s ease;
 }
 
 .theme-light .service,
@@ -798,8 +798,8 @@ a {
   background: rgba(22, 29, 38, 0.45);
   border: 1px solid rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(16px);
-  transition: background 0.4s ease, border-color 0.4s ease,
-    box-shadow 0.4s ease, color 0.35s ease;
+  transition: background 0.7s ease, border-color 0.7s ease,
+    box-shadow 0.7s ease, color 0.55s ease;
 }
 
 .step span {
@@ -834,8 +834,8 @@ a {
   background: rgba(22, 29, 38, 0.55);
   border: 1px solid rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(16px);
-  transition: background 0.4s ease, border-color 0.4s ease,
-    box-shadow 0.4s ease, color 0.35s ease;
+  transition: background 0.7s ease, border-color 0.7s ease,
+    box-shadow 0.7s ease, color 0.55s ease;
 }
 
 .case span {
@@ -951,8 +951,8 @@ a {
 
   ::view-transition-old(root),
   ::view-transition-new(root) {
-    animation-duration: 0.6s;
-    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    animation-duration: 1s;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
     mix-blend-mode: normal;
   }
 
@@ -973,8 +973,8 @@ a {
 
   to {
     opacity: 0;
-    filter: blur(8px);
-    transform: scale(1.01);
+    filter: blur(10px);
+    transform: scale(1.015);
   }
 }
 
