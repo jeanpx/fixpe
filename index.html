@@ -456,24 +456,29 @@
         });
       }
 
-      new OBJLoader().load(
-        "iMAC.obj",
-        function (object) {
+      fetch("iMAC.obj")
+        .then(function (response) {
+          if (!response.ok) {
+            throw new Error("HTTP " + response.status + " al pedir iMAC.obj");
+          }
+          return response.text();
+        })
+        .then(function (objText) {
+          var object = new OBJLoader().parse(objText);
           applyModelMaterial(object);
           normalizeModel(object);
           group.clear();
           group.add(object);
           loadedModel = object;
+          fallbackMesh.visible = false;
           applySceneTheme();
           onResize();
-        },
-        undefined,
-        function (error) {
+        })
+        .catch(function (error) {
           loadedModel = null;
-          console.error("No se pudo cargar iMAC.obj", error);
           fallbackMesh.visible = true;
-        }
-      );
+          console.error("No se pudo cargar o parsear iMAC.obj", error);
+        });
 
       function applySceneTheme() {
         var isLight = root.classList.contains("theme-light");
