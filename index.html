@@ -539,13 +539,13 @@
           ambient.intensity = 0.4;
           keyLight.intensity = 0.55;
           fillLight.intensity = 0.28;
-          sceneConfig.baseX = isMobile ? 0.2 : 2.2;
+          sceneConfig.baseX = isMobile ? -0.1 : 2.2;
           sceneConfig.baseY = isMobile ? -0.52 : -0.1;
-          sceneConfig.ringX = isMobile ? 0.35 : 2.2;
+          sceneConfig.ringX = isMobile ? 0 : 2.2;
           sceneConfig.ringY = isMobile ? -0.08 : 0.15;
           sceneConfig.nodeX = sceneConfig.ringX;
           sceneConfig.nodeY = sceneConfig.ringY;
-          sceneConfig.orbit = isMobile ? 0.95 : 1.25;
+          sceneConfig.orbit = isMobile ? 0.78 : 1.25;
         } else {
           bodyMaterial.opacity = 0.8;
           metalMaterial.opacity = 1;
@@ -559,20 +559,20 @@
           ambient.intensity = 0.6;
           keyLight.intensity = 1.1;
           fillLight.intensity = 0.6;
-          sceneConfig.baseX = isMobile ? 0.2 : 2.2;
+          sceneConfig.baseX = isMobile ? -0.1 : 2.2;
           sceneConfig.baseY = isMobile ? -0.52 : -0.1;
-          sceneConfig.ringX = isMobile ? 0.35 : 2.2;
+          sceneConfig.ringX = isMobile ? 0 : 2.2;
           sceneConfig.ringY = isMobile ? -0.08 : 0.15;
           sceneConfig.nodeX = sceneConfig.ringX;
           sceneConfig.nodeY = sceneConfig.ringY;
-          sceneConfig.orbit = isMobile ? 0.95 : 1.25;
+          sceneConfig.orbit = isMobile ? 0.78 : 1.25;
         }
 
         group.position.set(sceneConfig.baseX, sceneConfig.baseY, -1.2);
         ring.position.set(sceneConfig.ringX, sceneConfig.ringY, -1.2);
         if (isMobile) {
-          group.scale.set(0.82, 0.82, 0.82);
-          ring.scale.set(0.86, 0.86, 0.86);
+          group.scale.set(0.72, 0.72, 0.72);
+          ring.scale.set(0.76, 0.76, 0.76);
         } else {
           group.scale.set(1, 1, 1);
           ring.scale.set(1, 1, 1);
@@ -606,6 +606,7 @@
 
       function onResize() {
         camera.aspect = window.innerWidth / window.innerHeight;
+        camera.position.z = window.innerWidth <= 768 ? 4.8 : 4;
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(
@@ -615,6 +616,7 @@
       }
 
       window.addEventListener("resize", onResize);
+      onResize();
 
       var t = 0;
       function animate() {
