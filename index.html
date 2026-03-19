@@ -377,7 +377,6 @@
       });
 
       renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-      renderer.setSize(window.innerWidth, window.innerHeight);
       if (window.innerWidth <= 768) {
         renderer.setPixelRatio(1);
       }
@@ -605,10 +604,13 @@
       canvas.addEventListener("click", handleClick);
 
       function onResize() {
-        camera.aspect = window.innerWidth / window.innerHeight;
+        var rect = canvas.getBoundingClientRect();
+        var width = Math.max(1, Math.round(rect.width || window.innerWidth));
+        var height = Math.max(1, Math.round(rect.height || window.innerHeight));
+        camera.aspect = width / height;
         camera.position.z = window.innerWidth <= 768 ? 4.8 : 4;
         camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setSize(width, height, false);
         renderer.setPixelRatio(
           window.innerWidth <= 768 ? 1 : Math.min(window.devicePixelRatio || 1, 2)
         );

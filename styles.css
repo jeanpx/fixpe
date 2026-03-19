@@ -960,6 +960,14 @@ a {
 }
 
 @media (max-width: 640px) {
+  #three-bg {
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    height: 560px;
+    max-width: 100%;
+  }
+
   .site-header {
     padding: 20px 6vw 0;
     gap: 14px;
@@ -1094,6 +1102,10 @@ a {
 }
 
 @media (max-width: 420px) {
+  #three-bg {
+    height: 520px;
+  }
+
   .site-header,
   .hero,
   .section,
