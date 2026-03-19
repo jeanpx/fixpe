@@ -7,6 +7,7 @@
 html {
   width: 100%;
   max-width: 100%;
+  overflow-x: clip;
   overflow-x: hidden;
 }
 
@@ -25,10 +26,12 @@ body {
   width: 100%;
   max-width: 100%;
   margin: 0;
+  position: relative;
   font-family: "Space Grotesk", system-ui, -apple-system, sans-serif;
   background: radial-gradient(circle at top left, #1f2a3a 0%, #0c1118 58%);
   color: var(--ink);
   min-height: 100vh;
+  overflow-x: clip;
   overflow-x: hidden;
   line-height: 1.5;
 }
@@ -72,6 +75,7 @@ a {
   filter: blur(0px);
   z-index: 0;
   opacity: 0.65;
+  pointer-events: none;
 }
 
 .orb-a {
@@ -95,6 +99,7 @@ a {
 .grid {
   position: absolute;
   inset: 0;
+  overflow: hidden;
   background-image: linear-gradient(rgba(255, 255, 255, 0.06) 1px,
       transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
@@ -144,6 +149,7 @@ a {
 .site-header {
   position: relative;
   z-index: 2;
+  overflow-x: clip;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -299,6 +305,7 @@ a {
 .hero {
   position: relative;
   z-index: 1;
+  overflow-x: clip;
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
   gap: 48px;
@@ -459,6 +466,7 @@ a {
 .section {
   position: relative;
   z-index: 1;
+  overflow-x: clip;
   padding: 64px 8vw;
 }
 
@@ -782,6 +790,7 @@ a {
 .cta {
   margin: 60px 8vw 40px;
   padding: 36px 40px;
+  overflow-x: clip;
   border-radius: 30px;
   background: linear-gradient(120deg,
       rgba(255, 176, 0, 0.25),
@@ -816,6 +825,7 @@ a {
 
 .footer {
   padding: 24px 8vw 40px;
+  overflow-x: clip;
   display: flex;
   align-items: center;
   justify-content: space-between;
