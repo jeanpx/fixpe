@@ -165,7 +165,7 @@ a {
   background: transparent;
   border-color: transparent;
   box-shadow: none;
-  padding: 0;
+  padding: 4px 16px;
 }
 
 .logo img {
@@ -294,6 +294,7 @@ a {
   position: relative;
   overflow: hidden;
   isolation: isolate;
+  min-width: 152px;
   transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
     background 0.85s cubic-bezier(0.22, 1, 0.36, 1),
     border-color 0.85s cubic-bezier(0.22, 1, 0.36, 1),
@@ -707,6 +708,20 @@ a {
   display: block;
 }
 
+.profile-content {
+  position: relative;
+  padding: 32px;
+  border-radius: 30px;
+  background: linear-gradient(135deg,
+      rgba(22, 29, 38, 0.72),
+      rgba(22, 29, 38, 0.42));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 18px 44px rgba(7, 10, 16, 0.18);
+  backdrop-filter: blur(18px);
+  transition: background 0.7s ease, border-color 0.7s ease,
+    box-shadow 0.7s ease, color 0.55s ease;
+}
+
 .profile-content h2 {
   font-size: clamp(2rem, 3vw, 2.6rem);
   margin-bottom: 14px;
@@ -751,15 +766,11 @@ a {
 }
 
 .theme-light .profile-content {
-  position: relative;
-  padding: 32px;
-  border-radius: 30px;
   background: linear-gradient(135deg,
       rgba(255, 255, 255, 0.9),
       rgba(255, 255, 255, 0.72));
   border: 1px solid rgba(37, 99, 235, 0.14);
   box-shadow: 0 18px 44px rgba(148, 163, 184, 0.2);
-  backdrop-filter: blur(18px);
 }
 
 .theme-light .profile-tags span {
@@ -1344,6 +1355,7 @@ a {
     padding: 22px;
   }
 
+  .profile-content,
   .theme-light .profile-content {
     padding: 24px;
   }
