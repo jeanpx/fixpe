@@ -403,6 +403,18 @@
         opacity: 0.96,
       });
       var loadedModel = null;
+      var fallbackMesh = new THREE.Mesh(
+        new THREE.BoxGeometry(1.6, 1.1, 0.4),
+        new THREE.MeshStandardMaterial({
+          color: 0x2563eb,
+          metalness: 0.35,
+          roughness: 0.28,
+          transparent: true,
+          opacity: 0.85,
+        })
+      );
+      fallbackMesh.visible = true;
+      group.add(fallbackMesh);
 
       var ambient = new THREE.AmbientLight(0xffffff, 0.6);
       var keyLight = new THREE.PointLight(0x60a5fa, 1.1, 10);
@@ -459,6 +471,7 @@
         function (error) {
           loadedModel = null;
           console.error("No se pudo cargar iMAC.obj", error);
+          fallbackMesh.visible = true;
         }
       );
 
@@ -474,7 +487,7 @@
           ambient.intensity = isMobile ? 0.95 : 0.6;
           keyLight.intensity = isMobile ? 1.45 : 1.1;
           fillLight.intensity = isMobile ? 0.8 : 0.6;
-          sceneConfig.baseX = isMobile ? 0.04 : 2.2;
+          sceneConfig.baseX = isMobile ? 0.04 : 1.45;
           sceneConfig.baseY = isMobile ? -0.82 : -0.1;
         } else {
           modelMaterial.color.setHex(0xaeb8c8);
@@ -484,7 +497,7 @@
           ambient.intensity = 0.6;
           keyLight.intensity = 1.1;
           fillLight.intensity = 0.6;
-          sceneConfig.baseX = isMobile ? 0.04 : 2.2;
+          sceneConfig.baseX = isMobile ? 0.04 : 1.45;
           sceneConfig.baseY = isMobile ? -0.82 : -0.1;
         }
 
@@ -493,7 +506,7 @@
         if (isMobile) {
           group.scale.set(1.32, 1.32, 1.32);
         } else {
-          group.scale.set(1, 1, 1);
+          group.scale.set(1.65, 1.65, 1.65);
         }
       }
 
@@ -566,7 +579,7 @@
         var width = Math.max(1, Math.round(rect.width || window.innerWidth));
         var height = Math.max(1, Math.round(rect.height || window.innerHeight));
         camera.aspect = width / height;
-        camera.position.z = isMobile ? 3.05 : 4;
+        camera.position.z = isMobile ? 3.05 : 3.45;
         camera.updateProjectionMatrix();
         renderer.setSize(width, height, false);
         renderer.setPixelRatio(
