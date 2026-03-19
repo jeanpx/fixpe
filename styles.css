@@ -1106,11 +1106,11 @@ a {
   #three-bg {
     pointer-events: auto;
     touch-action: pan-y;
-    opacity: 0.28;
+    opacity: 0.6;
   }
 
   .theme-light #three-bg {
-    opacity: 0.32;
+    opacity: 0.72;
   }
 }
 
