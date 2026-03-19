@@ -6,6 +6,7 @@
 
 html {
   width: 100%;
+  max-width: 100%;
   overflow-x: hidden;
 }
 
@@ -22,6 +23,7 @@ html {
 
 body {
   width: 100%;
+  max-width: 100%;
   margin: 0;
   font-family: "Space Grotesk", system-ui, -apple-system, sans-serif;
   background: radial-gradient(circle at top left, #1f2a3a 0%, #0c1118 58%);
@@ -106,7 +108,9 @@ a {
 #three-bg {
   position: fixed;
   inset: 0;
+  left: 0;
   width: 100%;
+  max-width: 100vw;
   height: 100%;
   z-index: 0;
   pointer-events: none;
@@ -949,6 +953,8 @@ a {
   .site-header {
     padding: 20px 6vw 0;
     gap: 14px;
+    width: 100%;
+    max-width: 100%;
   }
 
   .logo img {
@@ -957,6 +963,7 @@ a {
 
   .header-actions {
     width: 100%;
+    max-width: 100%;
     flex-direction: column;
     align-items: stretch;
   }
@@ -971,6 +978,17 @@ a {
   .hero {
     padding: 56px 6vw 28px;
     gap: 32px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-copy,
+  .hero-actions,
+  .hero-metrics,
+  .hero-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
   }
 
   .hero-copy h1 {
@@ -988,6 +1006,12 @@ a {
 
   .hero-actions .btn {
     width: 100%;
+  }
+
+  .btn,
+  .toggle,
+  .nav a {
+    max-width: 100%;
   }
 
   .hero-metrics {
