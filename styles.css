@@ -770,6 +770,75 @@ a {
     box-shadow 0.7s ease, color 0.55s ease;
 }
 
+.service-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.service-head h3 {
+  margin: 0;
+}
+
+.service-icon {
+  width: 52px;
+  height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
+  color: #ffd279;
+  flex: 0 0 auto;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.service-icon svg {
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.service-icon-web {
+  color: #8cc2ff;
+}
+
+.service-icon-app {
+  color: #7bf1ba;
+}
+
+.service-icon-odoo {
+  color: #a24689;
+  background: linear-gradient(135deg, rgba(162, 70, 137, 0.22), rgba(92, 36, 79, 0.14));
+  border-color: rgba(162, 70, 137, 0.34);
+}
+
+.theme-light .service-icon {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(255, 255, 255, 0.8));
+  border-color: rgba(37, 99, 235, 0.18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.theme-light .service-icon-web {
+  color: #2563eb;
+}
+
+.theme-light .service-icon-app {
+  color: #0f766e;
+}
+
+.theme-light .service-icon-odoo {
+  color: #714b67;
+  background: linear-gradient(135deg, rgba(113, 75, 103, 0.16), rgba(255, 255, 255, 0.84));
+  border-color: rgba(113, 75, 103, 0.24);
+}
+
 .theme-light .service,
 .theme-light .case,
 .theme-light .step {
