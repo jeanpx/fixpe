@@ -39,6 +39,13 @@ function app_name(): string
     return $config['app_name'] ?? 'Fixpe App';
 }
 
+function asset_url(string $path): string
+{
+    $fullPath = __DIR__ . DIRECTORY_SEPARATOR . ltrim($path, '/\\');
+    $version = is_file($fullPath) ? (string) filemtime($fullPath) : (string) time();
+    return $path . '?v=' . rawurlencode($version);
+}
+
 function e(?string $value): string
 {
     return htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8');

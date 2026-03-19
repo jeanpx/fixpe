@@ -7,6 +7,9 @@ require_once __DIR__ . '/bootstrap.php';
 function render_header(string $title): void
 {
     header('Content-Type: text/html; charset=UTF-8');
+    header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+    header('Pragma: no-cache');
+    header('Expires: 0');
     $flash = flash();
     $user = current_user();
     ?>
@@ -16,7 +19,7 @@ function render_header(string $title): void
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><?= e($title) ?> | <?= e(app_name()) ?></title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="<?= e(asset_url('styles.css')) ?>">
 </head>
 <body>
   <header class="topbar">
