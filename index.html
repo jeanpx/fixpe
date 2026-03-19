@@ -536,13 +536,13 @@
           ambient.intensity = 0.4;
           keyLight.intensity = 0.55;
           fillLight.intensity = 0.28;
-          sceneConfig.baseX = isMobile ? 0 : 2.2;
-          sceneConfig.baseY = isMobile ? -1.18 : -0.1;
-          sceneConfig.ringX = isMobile ? 0.06 : 2.2;
-          sceneConfig.ringY = isMobile ? -0.86 : 0.15;
+          sceneConfig.baseX = isMobile ? -0.04 : 2.2;
+          sceneConfig.baseY = isMobile ? -1.82 : -0.1;
+          sceneConfig.ringX = isMobile ? 0.02 : 2.2;
+          sceneConfig.ringY = isMobile ? -1.48 : 0.15;
           sceneConfig.nodeX = sceneConfig.ringX;
           sceneConfig.nodeY = sceneConfig.ringY;
-          sceneConfig.orbit = isMobile ? 0.8 : 1.25;
+          sceneConfig.orbit = isMobile ? 0.92 : 1.25;
         } else {
           bodyMaterial.opacity = 0.8;
           metalMaterial.opacity = 1;
@@ -556,20 +556,20 @@
           ambient.intensity = 0.6;
           keyLight.intensity = 1.1;
           fillLight.intensity = 0.6;
-          sceneConfig.baseX = isMobile ? 0 : 2.2;
-          sceneConfig.baseY = isMobile ? -1.18 : -0.1;
-          sceneConfig.ringX = isMobile ? 0.06 : 2.2;
-          sceneConfig.ringY = isMobile ? -0.86 : 0.15;
+          sceneConfig.baseX = isMobile ? -0.04 : 2.2;
+          sceneConfig.baseY = isMobile ? -1.82 : -0.1;
+          sceneConfig.ringX = isMobile ? 0.02 : 2.2;
+          sceneConfig.ringY = isMobile ? -1.48 : 0.15;
           sceneConfig.nodeX = sceneConfig.ringX;
           sceneConfig.nodeY = sceneConfig.ringY;
-          sceneConfig.orbit = isMobile ? 0.8 : 1.25;
+          sceneConfig.orbit = isMobile ? 0.92 : 1.25;
         }
 
         group.position.set(sceneConfig.baseX, sceneConfig.baseY, -1.2);
         ring.position.set(sceneConfig.ringX, sceneConfig.ringY, -1.2);
         if (isMobile) {
-          group.scale.set(0.72, 0.72, 0.72);
-          ring.scale.set(0.78, 0.78, 0.78);
+          group.scale.set(1.08, 1.08, 1.08);
+          ring.scale.set(1.18, 1.18, 1.18);
         } else {
           group.scale.set(1, 1, 1);
           ring.scale.set(1, 1, 1);
