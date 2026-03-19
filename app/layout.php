@@ -1,0 +1,47 @@
+<?php
+
+declare(strict_types=1);
+
+require_once __DIR__ . '/bootstrap.php';
+
+function render_header(string $title): void
+{
+    $flash = flash();
+    $user = current_user();
+    ?>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><?= e($title) ?> | <?= e(app_name()) ?></title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.php"><?= e(app_name()) ?></a>
+    <nav class="topnav">
+      <?php if ($user): ?>
+        <a href="dashboard.php">Panel</a>
+        <a href="logout.php">Salir</a>
+      <?php else: ?>
+        <a href="login.php">Ingresar</a>
+        <a href="register.php">Crear cuenta</a>
+      <?php endif; ?>
+    </nav>
+  </header>
+  <main class="container">
+    <?php if ($flash): ?>
+      <div class="alert alert-<?= e($flash['type']) ?>"><?= e($flash['message']) ?></div>
+    <?php endif; ?>
+<?php
+}
+
+function render_footer(): void
+{
+    ?>
+  </main>
+</body>
+</html>
+<?php
+}
