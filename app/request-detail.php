@@ -55,7 +55,7 @@ if ($currentUser['role'] === 'provider' && $_SERVER['REQUEST_METHOD'] === 'POST'
             'delivery_days' => $deliveryDays !== '' ? $deliveryDays : null,
             'id' => $existingQuote['id'],
         ]);
-        set_flash('success', 'Cotizacion actualizada.');
+        set_flash('success', 'Cotización actualizada.');
     } else {
         $stmt = db()->prepare(
             'INSERT INTO quotes
@@ -70,7 +70,7 @@ if ($currentUser['role'] === 'provider' && $_SERVER['REQUEST_METHOD'] === 'POST'
             'amount' => $amount,
             'delivery_days' => $deliveryDays !== '' ? $deliveryDays : null,
         ]);
-        set_flash('success', 'Cotizacion enviada.');
+        set_flash('success', 'Cotización enviada.');
     }
 
     redirect('request-detail.php?id=' . $requestId);
@@ -115,7 +115,7 @@ render_header('Detalle de solicitud');
     <span class="chip"><?= e($request['category']) ?></span>
     <span class="chip"><?= e($request['status']) ?></span>
     <span class="chip"><?= e($request['urgency']) ?></span>
-    <span class="chip"><?= e($request['country'] ?: 'Pais no definido') ?></span>
+    <span class="chip"><?= e($request['country'] ?: 'País no definido') ?></span>
     <?php if ($request['budget_min'] !== null || $request['budget_max'] !== null): ?>
       <span class="chip">
         Presupuesto <?= e((string) ($request['budget_min'] ?? '0')) ?> - <?= e((string) ($request['budget_max'] ?? '0')) ?>
@@ -126,14 +126,14 @@ render_header('Detalle de solicitud');
 <?php if ($currentUser['role'] === 'provider'): ?>
   <section class="grid two">
     <section class="card">
-      <h2>Enviar cotizacion</h2>
+      <h2>Enviar cotización</h2>
       <form method="post">
         <label>
           Monto
           <input type="number" step="0.01" name="amount" value="<?= e((string) ($myQuote['amount'] ?? '')) ?>" required>
         </label>
         <label>
-          Dias de entrega
+          Días de entrega
           <input type="number" name="delivery_days" value="<?= e((string) ($myQuote['delivery_days'] ?? '')) ?>">
         </label>
         <label>
@@ -141,7 +141,7 @@ render_header('Detalle de solicitud');
           <textarea name="message" rows="7" required><?= e($myQuote['message'] ?? '') ?></textarea>
         </label>
         <div class="toolbar">
-          <button type="submit"><?= $myQuote ? 'Actualizar cotizacion' : 'Enviar cotizacion' ?></button>
+          <button type="submit"><?= $myQuote ? 'Actualizar cotización' : 'Enviar cotización' ?></button>
           <a class="button secondary" href="browse-requests.php">Volver</a>
         </div>
       </form>
@@ -149,7 +149,7 @@ render_header('Detalle de solicitud');
     <section class="card">
       <h2>Otras cotizaciones</h2>
       <?php if (!$quotes): ?>
-        <p class="muted">Aun no hay cotizaciones enviadas.</p>
+        <p class="muted">Aún no hay cotizaciones enviadas.</p>
       <?php else: ?>
         <div class="list">
           <?php foreach ($quotes as $quote): ?>
@@ -159,7 +159,7 @@ render_header('Detalle de solicitud');
               <div class="meta">
                 <span class="chip">Monto <?= e((string) $quote['amount']) ?></span>
                 <?php if ($quote['delivery_days'] !== null): ?>
-                  <span class="chip"><?= e((string) $quote['delivery_days']) ?> dias</span>
+                  <span class="chip"><?= e((string) $quote['delivery_days']) ?> días</span>
                 <?php endif; ?>
                 <span class="chip"><?= e($quote['status']) ?></span>
               </div>
@@ -173,7 +173,7 @@ render_header('Detalle de solicitud');
   <section class="card">
     <h2>Cotizaciones recibidas</h2>
     <?php if (!$quotes): ?>
-      <p class="muted">Aun no recibiste cotizaciones para esta solicitud.</p>
+      <p class="muted">Aún no recibiste cotizaciones para esta solicitud.</p>
     <?php else: ?>
       <div class="list">
         <?php foreach ($quotes as $quote): ?>
@@ -183,7 +183,7 @@ render_header('Detalle de solicitud');
             <div class="meta">
               <span class="chip">Monto <?= e((string) $quote['amount']) ?></span>
               <?php if ($quote['delivery_days'] !== null): ?>
-                <span class="chip"><?= e((string) $quote['delivery_days']) ?> dias</span>
+                <span class="chip"><?= e((string) $quote['delivery_days']) ?> días</span>
               <?php endif; ?>
               <span class="chip"><?= e($quote['status']) ?></span>
             </div>

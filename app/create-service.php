@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $deliveryDays = trim($_POST['delivery_days'] ?? '');
 
     if ($title === '' || $category === '' || $description === '') {
-        set_flash('error', 'Completa titulo, categoria y descripcion.');
+        set_flash('error', 'Completa título, categoría y descripción.');
         redirect('create-service.php');
     }
 
@@ -42,12 +42,12 @@ render_header('Nuevo servicio');
   <h1>Publicar servicio</h1>
   <form method="post">
     <label>
-      Titulo
+      Título
       <input type="text" name="title" required>
     </label>
     <div class="grid two">
       <label>
-        Categoria
+        Categoría
         <input type="text" name="category" placeholder="Soporte Odoo" required>
       </label>
       <label>
@@ -56,11 +56,11 @@ render_header('Nuevo servicio');
       </label>
     </div>
     <label>
-      Dias de entrega
+      Días de entrega
       <input type="number" name="delivery_days">
     </label>
     <label>
-      Descripcion
+      Descripción
       <textarea name="description" rows="6" required></textarea>
     </label>
     <div class="form-actions">

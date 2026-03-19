@@ -76,7 +76,7 @@ render_header('Panel proveedor');
     <p class="muted">
       Perfil: <?= e($profileRow['headline']) ?> |
       Estado: <?= e($profileRow['availability_status']) ?> |
-      Verificado: <?= (int) $profileRow['verified'] === 1 ? 'si' : 'no' ?>
+      Verificado: <?= (int) $profileRow['verified'] === 1 ? 'sí' : 'no' ?>
     </p>
   <?php endif; ?>
   <div class="toolbar">
@@ -92,7 +92,7 @@ render_header('Panel proveedor');
 <section class="card">
   <h2>Mis servicios</h2>
   <?php if (!$services): ?>
-    <p class="muted">Aun no has publicado servicios.</p>
+    <p class="muted">Aún no has publicado servicios.</p>
   <?php else: ?>
     <div class="list">
       <?php foreach ($services as $service): ?>
@@ -112,7 +112,7 @@ render_header('Panel proveedor');
   <section class="card">
     <h2>Solicitudes directas de clientes</h2>
     <?php if (!$directLeads): ?>
-      <p class="muted">Aun no recibes solicitudes directas.</p>
+      <p class="muted">Aún no recibes solicitudes directas.</p>
     <?php else: ?>
       <div class="list">
         <?php foreach ($directLeads as $lead): ?>
@@ -140,7 +140,7 @@ render_header('Panel proveedor');
   <section class="card">
     <h2>Cotizaciones enviadas</h2>
     <?php if (!$sentQuotes): ?>
-      <p class="muted">Aun no envias cotizaciones.</p>
+      <p class="muted">Aún no envías cotizaciones.</p>
     <?php else: ?>
       <div class="list">
         <?php foreach ($sentQuotes as $quote): ?>

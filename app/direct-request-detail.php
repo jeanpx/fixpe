@@ -101,7 +101,7 @@ render_header('Solicitud directa');
           <input type="number" step="0.01" name="quoted_amount" value="<?= e((string) ($directRequest['quoted_amount'] ?? '')) ?>" required>
         </label>
         <label>
-          Dias de entrega
+          Días de entrega
           <input type="number" name="quoted_delivery_days" value="<?= e((string) ($directRequest['quoted_delivery_days'] ?? '')) ?>">
         </label>
         <label>
@@ -126,7 +126,7 @@ render_header('Solicitud directa');
     <section class="card">
       <h2>Resumen de respuesta</h2>
       <?php if ($directRequest['quoted_amount'] === null && !$directRequest['provider_response']): ?>
-        <p class="muted">Aun no respondiste esta solicitud.</p>
+        <p class="muted">Aún no respondiste esta solicitud.</p>
       <?php else: ?>
         <article class="item">
           <h4><?= e($directRequest['provider_name']) ?></h4>
@@ -136,7 +136,7 @@ render_header('Solicitud directa');
               <span class="chip">Monto <?= e((string) $directRequest['quoted_amount']) ?></span>
             <?php endif; ?>
             <?php if ($directRequest['quoted_delivery_days'] !== null): ?>
-              <span class="chip"><?= e((string) $directRequest['quoted_delivery_days']) ?> dias</span>
+              <span class="chip"><?= e((string) $directRequest['quoted_delivery_days']) ?> días</span>
             <?php endif; ?>
             <span class="chip"><?= e($directRequest['status']) ?></span>
           </div>
@@ -148,7 +148,7 @@ render_header('Solicitud directa');
   <section class="card">
     <h2>Respuesta del especialista</h2>
     <?php if ($directRequest['quoted_amount'] === null && !$directRequest['provider_response']): ?>
-      <p class="muted">Aun no recibiste respuesta del partner.</p>
+      <p class="muted">Aún no recibiste respuesta del partner.</p>
     <?php else: ?>
       <article class="item">
         <h4><?= e($directRequest['provider_name']) ?></h4>
@@ -158,7 +158,7 @@ render_header('Solicitud directa');
             <span class="chip">Monto <?= e((string) $directRequest['quoted_amount']) ?></span>
           <?php endif; ?>
           <?php if ($directRequest['quoted_delivery_days'] !== null): ?>
-            <span class="chip"><?= e((string) $directRequest['quoted_delivery_days']) ?> dias</span>
+            <span class="chip"><?= e((string) $directRequest['quoted_delivery_days']) ?> días</span>
           <?php endif; ?>
           <span class="chip"><?= e($directRequest['status']) ?></span>
         </div>

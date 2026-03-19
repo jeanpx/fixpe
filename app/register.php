@@ -15,15 +15,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $country = trim($_POST['country'] ?? '');
 
     if (!in_array($role, ['client', 'provider'], true)) {
-        set_flash('error', 'Selecciona un tipo de cuenta valido.');
+        set_flash('error', 'Selecciona un tipo de cuenta válido.');
     } elseif ($fullName === '' || $email === '' || $password === '') {
-        set_flash('error', 'Completa nombre, correo y contrasena.');
+        set_flash('error', 'Completa nombre, correo y contraseña.');
     } else {
         $stmt = db()->prepare('SELECT id FROM users WHERE email = :email LIMIT 1');
         $stmt->execute(['email' => $email]);
 
         if ($stmt->fetch()) {
-            set_flash('error', 'Ese correo ya esta registrado.');
+            set_flash('error', 'Ese correo ya está registrado.');
         } else {
             $insert = db()->prepare(
                 'INSERT INTO users (role, full_name, email, password_hash, phone, country)
@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ]);
             }
 
-            set_flash('success', 'Cuenta creada. Ya puedes iniciar sesion.');
+            set_flash('success', 'Cuenta creada. Ya puedes iniciar sesión.');
             redirect('login.php');
         }
     }
@@ -102,17 +102,17 @@ render_header('Crear cuenta');
         <input type="email" name="email" required>
       </label>
       <label>
-        Telefono
+        Teléfono
         <input type="text" name="phone">
       </label>
     </div>
     <div class="grid two">
       <label>
-        Pais
+        País
         <input type="text" name="country">
       </label>
       <label>
-        Contrasena
+        Contraseña
         <input type="password" name="password" required>
       </label>
     </div>

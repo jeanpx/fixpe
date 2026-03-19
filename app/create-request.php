@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $urgency = $_POST['urgency'] ?? 'medium';
 
     if ($title === '' || $category === '' || $description === '') {
-        set_flash('error', 'Completa titulo, categoria y descripcion.');
+        set_flash('error', 'Completa título, categoría y descripción.');
         redirect('create-request.php');
     }
 
@@ -46,13 +46,13 @@ render_header('Nueva solicitud');
   <h1>Publicar solicitud</h1>
   <form method="post">
     <label>
-      Titulo
+      Título
       <input type="text" name="title" required>
     </label>
     <div class="grid two">
       <label>
-        Categoria
-        <input type="text" name="category" placeholder="Implementacion Odoo" required>
+        Categoría
+        <input type="text" name="category" placeholder="Implementación Odoo" required>
       </label>
       <label>
         Urgencia
@@ -65,20 +65,20 @@ render_header('Nueva solicitud');
     </div>
     <div class="grid two">
       <label>
-        Presupuesto minimo
+        Presupuesto mínimo
         <input type="number" step="0.01" name="budget_min">
       </label>
       <label>
-        Presupuesto maximo
+        Presupuesto máximo
         <input type="number" step="0.01" name="budget_max">
       </label>
     </div>
     <label>
-      Pais
+      País
       <input type="text" name="country">
     </label>
     <label>
-      Descripcion
+      Descripción
       <textarea name="description" rows="6" required></textarea>
     </label>
     <div class="form-actions">

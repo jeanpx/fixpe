@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+ini_set('default_charset', 'UTF-8');
+
 session_start();
 
 $config = require __DIR__ . '/config.php';
@@ -78,12 +80,12 @@ function require_auth(?string $role = null): array
     $user = current_user();
 
     if (!$user) {
-        set_flash('error', 'Inicia sesion para continuar.');
+        set_flash('error', 'Inicia sesión para continuar.');
         redirect('login.php');
     }
 
     if ($role !== null && $user['role'] !== $role) {
-        set_flash('error', 'No tienes acceso a esta seccion.');
+        set_flash('error', 'No tienes acceso a esta sección.');
         redirect('dashboard.php');
     }
 

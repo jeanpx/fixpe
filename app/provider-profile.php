@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $budget = trim($_POST['budget'] ?? '');
 
     if ($subject === '' || $message === '') {
-        set_flash('error', 'Completa asunto y descripcion.');
+        set_flash('error', 'Completa asunto y descripción.');
         redirect('provider-profile.php?id=' . $providerId);
     }
 
@@ -71,15 +71,15 @@ render_header('Perfil de especialista');
 <section class="card">
   <h1><?= e($provider['full_name']) ?></h1>
   <p><?= e($provider['headline']) ?></p>
-  <p class="muted"><?= e($provider['bio'] ?: 'Este especialista aun no completo su biografia.') ?></p>
+  <p class="muted"><?= e($provider['bio'] ?: 'Este especialista aún no completó su biografía.') ?></p>
   <div class="meta">
-    <span class="chip"><?= e($provider['country'] ?: 'Pais no definido') ?></span>
+    <span class="chip"><?= e($provider['country'] ?: 'País no definido') ?></span>
     <span class="chip"><?= e($provider['availability_status']) ?></span>
     <?php if ($provider['hourly_rate'] !== null): ?>
       <span class="chip">Tarifa/hora <?= e((string) $provider['hourly_rate']) ?></span>
     <?php endif; ?>
     <?php if ($provider['experience_years'] !== null): ?>
-      <span class="chip"><?= e((string) $provider['experience_years']) ?> anios</span>
+      <span class="chip"><?= e((string) $provider['experience_years']) ?> años</span>
     <?php endif; ?>
     <?php if ((int) $provider['verified'] === 1): ?>
       <span class="chip">Verificado</span>
@@ -91,7 +91,7 @@ render_header('Perfil de especialista');
     <h2>Especialidades y servicios</h2>
     <p class="muted"><?= e($provider['specialties'] ?: 'Sin especialidades cargadas') ?></p>
     <?php if (!$services): ?>
-      <p class="muted">Aun no tiene servicios publicados.</p>
+      <p class="muted">Aún no tiene servicios publicados.</p>
     <?php else: ?>
       <div class="list">
         <?php foreach ($services as $service): ?>
@@ -104,7 +104,7 @@ render_header('Perfil de especialista');
                 <span class="chip">Desde <?= e((string) $service['price_from']) ?></span>
               <?php endif; ?>
               <?php if ($service['delivery_days'] !== null): ?>
-                <span class="chip"><?= e((string) $service['delivery_days']) ?> dias</span>
+                <span class="chip"><?= e((string) $service['delivery_days']) ?> días</span>
               <?php endif; ?>
             </div>
           </article>
@@ -125,7 +125,7 @@ render_header('Perfil de especialista');
         <input type="number" step="0.01" name="budget">
       </label>
       <label>
-        Descripcion
+        Descripción
         <textarea name="message" rows="7" required></textarea>
       </label>
       <div class="toolbar">

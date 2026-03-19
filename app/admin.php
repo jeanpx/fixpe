@@ -18,7 +18,7 @@ render_header('Panel admin');
 ?>
 <section class="card">
   <h1>Panel admin</h1>
-  <p class="muted">Hola, <?= e($user['full_name']) ?>. Desde aqui controlas usuarios, leads y membresias.</p>
+  <p class="muted">Hola, <?= e($user['full_name']) ?>. Desde aquí controlas usuarios, leads y membresías.</p>
 </section>
 <section class="stats">
   <article><strong><?= e((string) $stats['users']) ?></strong><p class="muted">Usuarios registrados</p></article>
@@ -31,7 +31,7 @@ render_header('Panel admin');
   <article><strong>Marketplace</strong><p class="muted">Clientes exploran perfiles y partners cotizan requerimientos.</p></article>
 </section>
 <section class="table-wrap">
-  <h2>Ultimos usuarios</h2>
+  <h2>Últimos usuarios</h2>
   <table>
     <thead>
       <tr>

@@ -55,11 +55,11 @@ render_header('Explorar requerimientos');
 ?>
 <section class="card">
   <h1>Requerimientos de clientes</h1>
-  <p class="muted">Revisa publicaciones abiertas y envia tu cotizacion desde la plataforma.</p>
+  <p class="muted">Revisa publicaciones abiertas y envía tu cotización desde la plataforma.</p>
   <form method="get" class="grid two">
     <label>
-      Categoria
-      <input type="text" name="category" value="<?= e($category) ?>" placeholder="Implementacion, soporte, inventario">
+      Categoría
+      <input type="text" name="category" value="<?= e($category) ?>" placeholder="Implementación, soporte, inventario">
     </label>
     <label>
       Urgencia
@@ -91,7 +91,7 @@ render_header('Explorar requerimientos');
         <div class="meta">
           <span class="chip"><?= e($request['category']) ?></span>
           <span class="chip"><?= e($request['urgency']) ?></span>
-          <span class="chip"><?= e($request['country'] ?: 'Pais no definido') ?></span>
+          <span class="chip"><?= e($request['country'] ?: 'País no definido') ?></span>
           <span class="chip">Cotizaciones: <?= e((string) $request['quotes_count']) ?></span>
           <?php if ($request['budget_min'] !== null || $request['budget_max'] !== null): ?>
             <span class="chip">
@@ -99,7 +99,7 @@ render_header('Explorar requerimientos');
             </span>
           <?php endif; ?>
           <?php if ($request['my_quote_status']): ?>
-            <span class="chip">Tu cotizacion: <?= e($request['my_quote_status']) ?></span>
+            <span class="chip">Tu cotización: <?= e($request['my_quote_status']) ?></span>
           <?php endif; ?>
         </div>
         <div class="toolbar">

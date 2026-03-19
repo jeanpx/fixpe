@@ -71,7 +71,7 @@ render_header('Panel cliente');
 <section class="card">
   <h2>Mis solicitudes</h2>
   <?php if (!$requests): ?>
-    <p class="muted">Aun no has publicado solicitudes.</p>
+    <p class="muted">Aún no has publicado solicitudes.</p>
   <?php else: ?>
     <div class="list">
       <?php foreach ($requests as $request): ?>
@@ -88,9 +88,9 @@ render_header('Panel cliente');
 </section>
 <section class="grid two">
   <section class="card">
-    <h2>Ultimas cotizaciones</h2>
+    <h2>Últimas cotizaciones</h2>
     <?php if (!$quotes): ?>
-      <p class="muted">Aun no recibiste cotizaciones.</p>
+      <p class="muted">Aún no recibiste cotizaciones.</p>
     <?php else: ?>
       <div class="list">
         <?php foreach ($quotes as $quote): ?>
@@ -100,7 +100,7 @@ render_header('Panel cliente');
             <div class="meta">
               <span class="chip">Monto <?= e((string) $quote['amount']) ?></span>
               <?php if ($quote['delivery_days'] !== null): ?>
-                <span class="chip"><?= e((string) $quote['delivery_days']) ?> dias</span>
+                <span class="chip"><?= e((string) $quote['delivery_days']) ?> días</span>
               <?php endif; ?>
             </div>
             <div class="toolbar">
@@ -114,7 +114,7 @@ render_header('Panel cliente');
   <section class="card">
     <h2>Solicitudes directas enviadas</h2>
     <?php if (!$directRequests): ?>
-      <p class="muted">Aun no envias solicitudes directas a especialistas.</p>
+      <p class="muted">Aún no envías solicitudes directas a especialistas.</p>
     <?php else: ?>
       <div class="list">
         <?php foreach ($directRequests as $directRequest): ?>
@@ -129,7 +129,7 @@ render_header('Panel cliente');
                 <span class="chip">Respuesta <?= e((string) $directRequest['quoted_amount']) ?></span>
               <?php endif; ?>
               <?php if ($directRequest['quoted_delivery_days'] !== null): ?>
-                <span class="chip"><?= e((string) $directRequest['quoted_delivery_days']) ?> dias</span>
+                <span class="chip"><?= e((string) $directRequest['quoted_delivery_days']) ?> días</span>
               <?php endif; ?>
               <span class="chip"><?= e($directRequest['created_at']) ?></span>
             </div>

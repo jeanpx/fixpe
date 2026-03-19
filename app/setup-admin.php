@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $country = trim($_POST['country'] ?? '');
 
     if ($fullName === '' || $email === '' || $password === '') {
-        set_flash('error', 'Completa nombre, correo y contrasena.');
+        set_flash('error', 'Completa nombre, correo y contraseña.');
         redirect('setup-admin.php');
     }
 
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->execute(['email' => $email]);
 
     if ($stmt->fetch()) {
-        set_flash('error', 'Ese correo ya esta registrado.');
+        set_flash('error', 'Ese correo ya está registrado.');
         redirect('setup-admin.php');
     }
 
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'country' => $country !== '' ? $country : null,
     ]);
 
-    set_flash('success', 'Admin creado. Ya puedes iniciar sesion.');
+    set_flash('success', 'Admin creado. Ya puedes iniciar sesión.');
     redirect('login.php');
 }
 
@@ -50,7 +50,7 @@ render_header('Crear admin');
 <section class="card">
   <h1>Crear primer admin</h1>
   <p class="muted">
-    Esta pantalla solo funciona mientras no exista ningun administrador en la base de datos.
+    Esta pantalla solo funciona mientras no exista ningún administrador en la base de datos.
   </p>
   <form method="post">
     <div class="grid two">
@@ -65,16 +65,16 @@ render_header('Crear admin');
     </div>
     <div class="grid two">
       <label>
-        Telefono
+        Teléfono
         <input type="text" name="phone">
       </label>
       <label>
-        Contrasena
+        Contraseña
         <input type="password" name="password" required>
       </label>
     </div>
     <label>
-      Pais
+      País
       <input type="text" name="country">
     </label>
     <div class="form-actions">

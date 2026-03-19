@@ -62,7 +62,7 @@ render_header('Explorar especialistas');
       <input type="text" name="q" value="<?= e($query) ?>" placeholder="Nombre, especialidad o perfil">
     </label>
     <label>
-      Categoria
+      Categoría
       <input type="text" name="category" value="<?= e($category) ?>" placeholder="Inventario, contabilidad, soporte">
     </label>
     <div class="toolbar">
@@ -84,7 +84,7 @@ render_header('Explorar especialistas');
         <p><?= e($provider['headline']) ?></p>
         <p class="muted"><?= e($provider['specialties'] ?: 'Sin especialidades cargadas') ?></p>
         <div class="meta">
-          <span class="chip"><?= e($provider['country'] ?: 'Pais no definido') ?></span>
+          <span class="chip"><?= e($provider['country'] ?: 'País no definido') ?></span>
           <span class="chip"><?= e($provider['availability_status']) ?></span>
           <span class="chip">Servicios: <?= e((string) $provider['services_count']) ?></span>
           <?php if ($provider['min_price'] !== null): ?>

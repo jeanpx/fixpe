@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = $stmt->fetch();
 
     if (!$user || !password_verify($password, $user['password_hash'])) {
-        set_flash('error', 'Credenciales invalidas.');
+        set_flash('error', 'Credenciales inválidas.');
         redirect('login.php');
     }
 
@@ -39,7 +39,7 @@ render_header('Ingresar');
       <input type="email" name="email" required>
     </label>
     <label>
-      Contrasena
+      Contraseña
       <input type="password" name="password" required>
     </label>
     <div class="form-actions">

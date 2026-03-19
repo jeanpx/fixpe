@@ -15,7 +15,7 @@ render_header('Inicio');
 <section class="hero">
   <h1>Marketplace MVP de Fixpe</h1>
   <p class="muted">
-    Esta app ya usa tu base MySQL para registrar clientes, proveedores y membresias.
+    Esta app ya usa tu base MySQL para registrar clientes, proveedores y membresías.
     El siguiente paso es empezar a cargar usuarios reales y validar el flujo comercial.
   </p>
   <div class="hero-actions">
@@ -34,7 +34,7 @@ render_header('Inicio');
   </article>
   <article>
     <strong>Admin</strong>
-    <p class="muted">Aprueba, revisa matches y controla membresias.</p>
+    <p class="muted">Aprueba, revisa matches y controla membresías.</p>
   </article>
 </section>
 <?php render_footer(); ?>

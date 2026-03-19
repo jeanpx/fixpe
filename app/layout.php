@@ -6,6 +6,7 @@ require_once __DIR__ . '/bootstrap.php';
 
 function render_header(string $title): void
 {
+    header('Content-Type: text/html; charset=UTF-8');
     $flash = flash();
     $user = current_user();
     ?>
