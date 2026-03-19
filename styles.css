@@ -104,6 +104,8 @@ a {
   height: 100%;
   z-index: 0;
   pointer-events: none;
+  opacity: 0.92;
+  transition: opacity 0.3s ease, filter 0.3s ease;
 }
 
 #three-bg.is-interactive {
@@ -122,6 +124,11 @@ a {
 
 .theme-light .orb-b {
   background: radial-gradient(circle, rgba(148, 163, 184, 0.32), transparent 68%);
+}
+
+.theme-light #three-bg {
+  opacity: 0.3;
+  filter: saturate(0.75);
 }
 
 .site-header {
@@ -641,6 +648,18 @@ a {
   background: rgba(255, 255, 255, 0.8);
 }
 
+.theme-light .profile-content {
+  position: relative;
+  padding: 32px;
+  border-radius: 30px;
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.9),
+      rgba(255, 255, 255, 0.72));
+  border: 1px solid rgba(37, 99, 235, 0.14);
+  box-shadow: 0 18px 44px rgba(148, 163, 184, 0.2);
+  backdrop-filter: blur(18px);
+}
+
 .theme-light .profile-tags span {
   background: rgba(37, 99, 235, 0.08);
   border-color: rgba(37, 99, 235, 0.2);
@@ -988,6 +1007,10 @@ a {
     padding: 22px;
   }
 
+  .theme-light .profile-content {
+    padding: 24px;
+  }
+
   .section {
     padding: 52px 6vw;
   }
@@ -1023,6 +1046,10 @@ a {
 
   #three-bg {
     opacity: 0.28;
+  }
+
+  .theme-light #three-bg {
+    opacity: 0.18;
   }
 }
 
