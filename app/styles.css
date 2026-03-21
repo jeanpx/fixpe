@@ -234,8 +234,17 @@ body.body-auth .topbar {
   padding-bottom: 0;
 }
 
+.provider-dashboard-main {
+  min-height: calc(100dvh - 88px);
+  padding-bottom: 16px;
+}
+
 @media (min-width: 901px) {
   body.body-dashboard-empty {
+    overflow: hidden;
+  }
+
+  body.body-provider-overview {
     overflow: hidden;
   }
 }
@@ -839,6 +848,31 @@ tbody tr:hover {
 
 .empty-state-card h2 {
   margin-bottom: 10px;
+}
+
+.provider-overview-grid {
+  gap: 16px;
+}
+
+.provider-column-card {
+  padding: 22px 22px 18px;
+}
+
+.compact-list {
+  gap: 12px;
+}
+
+.compact-item {
+  padding: 16px 18px;
+}
+
+.compact-item h4,
+.compact-item p {
+  margin-bottom: 6px;
+}
+
+.compact-item .toolbar {
+  margin-top: 12px;
 }
 
 @keyframes rise-in {
