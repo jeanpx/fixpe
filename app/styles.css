@@ -497,6 +497,109 @@ tbody tr:hover {
   color: var(--ink-soft);
 }
 
+.auth-card {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.auth-card-register {
+  padding: 24px;
+}
+
+.auth-intro {
+  margin-bottom: 22px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  margin-bottom: 12px;
+  border-radius: 999px;
+  background: rgba(37, 99, 235, 0.08);
+  color: var(--brand-strong);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.auth-card h1 {
+  margin-bottom: 10px;
+}
+
+.auth-card .muted {
+  margin: 0;
+  max-width: 56ch;
+}
+
+.role-picker {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.role-option {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 18px;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.72);
+  cursor: pointer;
+  transition: border-color 0.24s ease, box-shadow 0.24s ease, background 0.24s ease, transform 0.24s ease;
+}
+
+.role-option input {
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  accent-color: var(--brand);
+  box-shadow: none;
+}
+
+.role-option span {
+  display: grid;
+  gap: 4px;
+}
+
+.role-option strong {
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.role-option small {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.role-option:has(input:checked) {
+  border-color: rgba(37, 99, 235, 0.4);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 16px 34px rgba(37, 99, 235, 0.1);
+}
+
+.role-option:hover {
+  transform: translateY(-1px);
+  border-color: rgba(37, 99, 235, 0.28);
+}
+
+.compact-grid {
+  gap: 16px;
+}
+
+.auth-card .form-actions {
+  margin-top: 6px;
+}
+
+.auth-card .form-actions button {
+  width: 100%;
+}
+
 @keyframes rise-in {
   from {
     opacity: 0;
@@ -554,7 +657,8 @@ tbody tr:hover {
 @media (max-width: 900px) {
   .grid.two,
   .grid.three,
-  .stats {
+  .stats,
+  .role-picker {
     grid-template-columns: 1fr;
   }
 
@@ -587,5 +691,13 @@ tbody tr:hover {
   button,
   .button {
     width: 100%;
+  }
+
+  .auth-card-register {
+    padding: 20px 18px;
+  }
+
+  .role-option {
+    padding: 14px 16px;
   }
 }

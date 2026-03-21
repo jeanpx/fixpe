@@ -8,6 +8,13 @@ require_guest();
 
 $requestedRole = $_GET['role'] ?? '';
 $prefilledRole = in_array($requestedRole, ['client', 'provider'], true) ? $requestedRole : '';
+$formData = [
+    'role' => $prefilledRole,
+    'full_name' => '',
+    'email' => '',
+    'phone' => '',
+    'country' => '',
+];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $role = $_POST['role'] ?? '';
@@ -16,6 +23,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
     $phone = trim($_POST['phone'] ?? '');
     $country = trim($_POST['country'] ?? '');
+    $formData = [
+        'role' => $role,
+        'full_name' => $fullName,
+        'email' => $email,
+        'phone' => $phone,
+        'country' => $country,
+    ];
 
     if (!in_array($role, ['client', 'provider'], true)) {
         set_flash('error', 'Selecciona un tipo de cuenta valido.');
@@ -82,56 +96,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 render_header('Crear cuenta');
 ?>
-<section class="card">
-  <h1>Crear cuenta</h1>
-  <p class="muted">
-    Entra como cliente si quieres publicar requerimientos y recibir cotizaciones.
-    Entra como proveedor si quieres vender servicios y captar proyectos.
-  </p>
-</section>
-<section class="grid two">
-  <section class="card">
-    <h2>Cuenta cliente</h2>
-    <p class="muted">Publica necesidades, compara propuestas y centraliza la compra de soporte, desarrollo u Odoo.</p>
-  </section>
-  <section class="card">
-    <h2>Cuenta proveedor</h2>
-    <p class="muted">Muestra tu perfil, recibe leads y cotiza oportunidades activas dentro de la plataforma.</p>
-  </section>
-</section>
-<section class="card">
+<section class="card auth-card auth-card-register">
+  <div class="auth-intro">
+    <span class="eyebrow">Registro rápido</span>
+    <h1>Crea tu cuenta</h1>
+    <p class="muted">Elige tu tipo de cuenta y completa lo básico para empezar.</p>
+  </div>
   <form method="post">
-    <div class="grid two">
-      <label>
-        Tipo de cuenta
-        <select name="role" required>
-          <option value="">Selecciona</option>
-          <option value="client" <?= $prefilledRole === 'client' ? 'selected' : '' ?>>Cliente</option>
-          <option value="provider" <?= $prefilledRole === 'provider' ? 'selected' : '' ?>>Proveedor</option>
-        </select>
+    <div class="role-picker" aria-label="Tipo de cuenta">
+      <label class="role-option">
+        <input type="radio" name="role" value="client" <?= ($formData['role'] === 'client' || $formData['role'] === '') ? 'checked' : '' ?> required>
+        <span>
+          <strong>Cliente</strong>
+          <small>Publica requerimientos y recibe propuestas.</small>
+        </span>
       </label>
+      <label class="role-option">
+        <input type="radio" name="role" value="provider" <?= $formData['role'] === 'provider' ? 'checked' : '' ?> required>
+        <span>
+          <strong>Proveedor</strong>
+          <small>Muestra tu perfil y cotiza oportunidades.</small>
+        </span>
+      </label>
+    </div>
+    <div class="grid two compact-grid">
       <label>
         Nombre completo
-        <input type="text" name="full_name" required>
+        <input type="text" name="full_name" value="<?= e($formData['full_name']) ?>" required>
       </label>
-    </div>
-    <div class="grid two">
       <label>
         Correo
-        <input type="email" name="email" required>
-      </label>
-      <label>
-        Telefono
-        <input type="text" name="phone">
+        <input type="email" name="email" value="<?= e($formData['email']) ?>" required>
       </label>
     </div>
-    <div class="grid two">
+    <div class="grid two compact-grid">
       <label>
-        Pais
-        <input type="text" name="country">
+        Teléfono
+        <input type="text" name="phone" value="<?= e($formData['phone']) ?>">
       </label>
       <label>
-        Contrasena
+        País
+        <input type="text" name="country" value="<?= e($formData['country']) ?>">
+      </label>
+    </div>
+    <div class="grid compact-grid">
+      <label>
+        Contraseña
         <input type="password" name="password" required>
       </label>
     </div>
