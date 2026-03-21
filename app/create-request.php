@@ -77,16 +77,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 render_header('Nueva solicitud');
 ?>
 <section class="card auth-card auth-card-register request-form-card">
-  <div class="auth-intro">
-    <span class="eyebrow">Nueva solicitud</span>
-    <h1>Publicar solicitud</h1>
-    <p class="muted">Completa lo esencial para recibir propuestas más rápido.</p>
+  <div class="auth-intro auth-intro-simple">
+    <h1>Nueva solicitud</h1>
   </div>
 
   <form method="post">
     <label>
-      Título
-      <input type="text" name="title" value="<?= e($formData['title']) ?>" required>
+      Qué necesitas
+      <input type="text" name="title" value="<?= e($formData['title']) ?>" placeholder="Ej. Implementación Odoo para inventario" required>
     </label>
 
     <div class="grid two compact-grid">
@@ -110,12 +108,12 @@ render_header('Nueva solicitud');
 
     <div class="grid two compact-grid">
       <label>
-        Presupuesto mínimo
-        <input type="number" step="0.01" name="budget_min" value="<?= e($formData['budget_min']) ?>">
+        Desde
+        <input type="number" step="0.01" name="budget_min" value="<?= e($formData['budget_min']) ?>" placeholder="Opcional">
       </label>
       <label>
-        Presupuesto máximo
-        <input type="number" step="0.01" name="budget_max" value="<?= e($formData['budget_max']) ?>">
+        Hasta
+        <input type="number" step="0.01" name="budget_max" value="<?= e($formData['budget_max']) ?>" placeholder="Opcional">
       </label>
     </div>
 
@@ -130,7 +128,7 @@ render_header('Nueva solicitud');
 
     <label>
       Descripción
-      <textarea name="description" rows="6" required><?= e($formData['description']) ?></textarea>
+      <textarea name="description" rows="5" placeholder="Describe el alcance, tiempos o cualquier detalle importante" required><?= e($formData['description']) ?></textarea>
     </label>
 
     <div class="form-actions">

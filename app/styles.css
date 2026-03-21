@@ -707,6 +707,10 @@ tbody tr:hover {
   margin-bottom: 22px;
 }
 
+.auth-intro-simple {
+  margin-bottom: 14px;
+}
+
 .eyebrow {
   display: inline-flex;
   align-items: center;
