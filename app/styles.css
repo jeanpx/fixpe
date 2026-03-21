@@ -65,12 +65,16 @@ body.theme-dark {
     linear-gradient(180deg, #081120 0%, #0b1322 100%);
 }
 
-body.page-enter {
+body.page-enter .topbar,
+body.page-enter .container {
   opacity: 0;
+  filter: blur(10px);
+  transform: scale(0.985);
 }
 
-body.page-enter.is-ready {
-  animation: page-fade-in 0.82s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+body.page-enter.is-ready .topbar,
+body.page-enter.is-ready .container {
+  animation: page-fade-in 0.48s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 html::-webkit-scrollbar,
@@ -860,14 +864,14 @@ tbody tr:hover {
 @keyframes page-fade-in {
   from {
     opacity: 0;
-  }
-
-  60% {
-    opacity: 1;
+    filter: blur(10px);
+    transform: scale(0.985);
   }
 
   to {
     opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
   }
 }
 
