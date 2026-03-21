@@ -506,6 +506,10 @@ tbody tr:hover {
   padding: 24px;
 }
 
+.request-form-card {
+  max-width: 940px;
+}
+
 .auth-intro {
   margin-bottom: 22px;
 }

@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 render_header('Nueva solicitud');
 ?>
-<section class="card auth-card auth-card-register">
+<section class="card auth-card auth-card-register request-form-card">
   <div class="auth-intro">
     <span class="eyebrow">Nueva solicitud</span>
     <h1>Publicar solicitud</h1>
