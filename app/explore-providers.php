@@ -7,6 +7,16 @@ require_once __DIR__ . '/layout.php';
 $user = require_auth('client');
 $query = trim($_GET['q'] ?? '');
 $category = trim($_GET['category'] ?? '');
+$categoryOptions = [
+    '',
+    'Implementación Odoo',
+    'Soporte técnico',
+    'Desarrollo web',
+    'Sistema a medida',
+    'Automatización',
+    'Integración',
+    'Otro',
+];
 
 $sql = 'SELECT
             u.id,
@@ -63,15 +73,22 @@ render_header('Explorar especialistas');
     </label>
     <label>
       Categoría
-      <input type="text" name="category" value="<?= e($category) ?>" placeholder="Inventario, contabilidad, soporte">
+      <select name="category">
+        <?php foreach ($categoryOptions as $categoryOption): ?>
+          <option value="<?= e($categoryOption) ?>" <?= $category === $categoryOption ? 'selected' : '' ?>>
+            <?= e($categoryOption !== '' ? $categoryOption : 'Todas') ?>
+          </option>
+        <?php endforeach; ?>
+      </select>
     </label>
     <div class="toolbar">
       <button type="submit">Filtrar</button>
-      <a class="button secondary" href="explore-providers.php">Limpiar</a>
-      <a class="button secondary" href="client.php">Volver al panel</a>
+      <a class="button secondary" href="<?= e(route_url('explore-providers.php')) ?>">Limpiar</a>
+      <a class="button secondary" href="<?= e(route_url('client.php')) ?>">Volver al panel</a>
     </div>
   </form>
 </section>
+
 <section class="stack">
   <?php if (!$providers): ?>
     <section class="card">
@@ -95,7 +112,7 @@ render_header('Explorar especialistas');
           <?php endif; ?>
         </div>
         <div class="toolbar">
-          <a class="button" href="provider-profile.php?id=<?= e((string) $provider['id']) ?>">Ver perfil</a>
+          <a class="button" href="<?= e(route_url('provider-profile.php?id=' . (string) $provider['id'])) ?>">Ver perfil</a>
         </div>
       </article>
     <?php endforeach; ?>
