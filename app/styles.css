@@ -219,10 +219,10 @@ body.body-auth .container {
   min-height: 0;
   width: 100%;
   display: grid;
-  align-content: center;
+  align-content: start;
   justify-items: center;
   gap: 20px;
-  padding-top: 24px;
+  padding-top: 48px;
   padding-bottom: 24px;
 }
 
