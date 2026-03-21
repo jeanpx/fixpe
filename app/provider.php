@@ -68,6 +68,10 @@ $sentQuotes = fetch_rows(
 );
 $firstName = trim((string) strtok((string) ($user['full_name'] ?? ''), ' '));
 $displayName = $firstName !== '' ? $firstName : 'proveedor';
+$hasServices = !empty($services);
+$hasDirectLeads = !empty($directLeads);
+$hasSentQuotes = !empty($sentQuotes);
+$hasOpenRequests = !empty($openRequests);
 
 render_header('Panel proveedor');
 ?>
@@ -101,11 +105,9 @@ render_header('Panel proveedor');
   </article>
 </section>
 
+<?php if ($hasServices): ?>
 <section class="card">
   <h2>Mis servicios</h2>
-  <?php if (!$services): ?>
-    <p class="muted">Aún no has publicado servicios.</p>
-  <?php else: ?>
     <div class="list">
       <?php foreach ($services as $service): ?>
         <article class="item">
@@ -114,15 +116,14 @@ render_header('Panel proveedor');
         </article>
       <?php endforeach; ?>
     </div>
-  <?php endif; ?>
 </section>
+<?php endif; ?>
 
+<?php if ($hasDirectLeads || $hasOpenRequests): ?>
 <section class="grid two">
+  <?php if ($hasDirectLeads): ?>
   <section class="card">
     <h2>Solicitudes directas</h2>
-    <?php if (!$directLeads): ?>
-      <p class="muted">Aún no recibes solicitudes directas.</p>
-    <?php else: ?>
       <div class="list">
         <?php foreach ($directLeads as $lead): ?>
           <article class="item">
@@ -143,49 +144,46 @@ render_header('Panel proveedor');
           </article>
         <?php endforeach; ?>
       </div>
-    <?php endif; ?>
   </section>
+  <?php endif; ?>
 
+  <?php if ($hasOpenRequests): ?>
   <section class="card">
-    <h2>Cotizaciones</h2>
-    <?php if (!$sentQuotes): ?>
-      <p class="muted">Aún no envías cotizaciones.</p>
-    <?php else: ?>
+    <h2>Requerimientos abiertos</h2>
       <div class="list">
-        <?php foreach ($sentQuotes as $quote): ?>
+        <?php foreach ($openRequests as $openRequest): ?>
           <article class="item">
-            <h4><?= e($quote['title']) ?></h4>
-            <p class="muted"><?= e($quote['client_name']) ?> | <?= e($quote['status']) ?></p>
-            <div class="meta">
-              <span class="chip">Monto <?= e((string) $quote['amount']) ?></span>
-              <span class="chip"><?= e($quote['created_at']) ?></span>
-            </div>
+            <h4><?= e($openRequest['title']) ?></h4>
+            <p class="muted"><?= e($openRequest['category']) ?> | <?= e($openRequest['urgency']) ?></p>
             <div class="toolbar">
-              <a class="button secondary" href="<?= e(route_url('request-detail.php?id=' . (string) $quote['request_id'])) ?>">Abrir</a>
+              <a class="button secondary" href="<?= e(route_url('request-detail.php?id=' . (string) $openRequest['id'])) ?>">Ver y cotizar</a>
             </div>
           </article>
         <?php endforeach; ?>
       </div>
-    <?php endif; ?>
   </section>
+  <?php endif; ?>
 </section>
+<?php endif; ?>
 
+<?php if ($hasSentQuotes): ?>
 <section class="card">
-  <h2>Requerimientos abiertos</h2>
-  <?php if (!$openRequests): ?>
-    <p class="muted">No hay requerimientos abiertos.</p>
-  <?php else: ?>
+  <h2>Cotizaciones enviadas</h2>
     <div class="list">
-      <?php foreach ($openRequests as $openRequest): ?>
+      <?php foreach ($sentQuotes as $quote): ?>
         <article class="item">
-          <h4><?= e($openRequest['title']) ?></h4>
-          <p class="muted"><?= e($openRequest['category']) ?> | <?= e($openRequest['urgency']) ?></p>
+          <h4><?= e($quote['title']) ?></h4>
+          <p class="muted"><?= e($quote['client_name']) ?> | <?= e($quote['status']) ?></p>
+          <div class="meta">
+            <span class="chip">Monto <?= e((string) $quote['amount']) ?></span>
+            <span class="chip"><?= e($quote['created_at']) ?></span>
+          </div>
           <div class="toolbar">
-            <a class="button secondary" href="<?= e(route_url('request-detail.php?id=' . (string) $openRequest['id'])) ?>">Ver y cotizar</a>
+            <a class="button secondary" href="<?= e(route_url('request-detail.php?id=' . (string) $quote['request_id'])) ?>">Abrir</a>
           </div>
         </article>
       <?php endforeach; ?>
     </div>
-  <?php endif; ?>
 </section>
+<?php endif; ?>
 <?php render_footer(); ?>
