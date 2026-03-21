@@ -12,7 +12,7 @@ if ($user) {
 
 render_header('Inicio');
 ?>
-<section class="hero auth-card">
+<section class="hero auth-card entry-hero">
   <span class="eyebrow">Fixpe App</span>
   <h1>Elige cómo quieres entrar</h1>
   <p class="muted">Crea tu cuenta o ingresa para continuar.</p>

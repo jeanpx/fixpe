@@ -519,6 +519,10 @@ tbody tr:hover {
   margin: 0 auto;
 }
 
+.entry-hero {
+  max-width: 820px;
+}
+
 .auth-card-register {
   padding: 24px;
 }
