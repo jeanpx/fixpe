@@ -83,13 +83,6 @@ render_header('Panel cliente');
   </article>
 </section>
 
-<?php if (!$hasActivity): ?>
-  <section class="card empty-state-card">
-    <h2>Empieza con tu primera solicitud</h2>
-    <p class="muted">Publica lo que necesitas y compara propuestas desde aquí.</p>
-  </section>
-<?php endif; ?>
-
 <?php if ($requests): ?>
   <section class="card">
     <h2>Mis solicitudes</h2>
