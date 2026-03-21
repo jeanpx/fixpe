@@ -214,8 +214,21 @@ body::after {
   padding: 36px 22px 80px;
 }
 
+body.body-auth .container {
+  min-height: calc(100vh - 88px);
+  display: grid;
+  align-content: center;
+  gap: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
 .container > * + * {
   margin-top: 32px;
+}
+
+body.body-auth .container > * + * {
+  margin-top: 0;
 }
 
 .hero,
@@ -633,6 +646,10 @@ tbody tr:hover {
   margin: 0 auto;
 }
 
+.auth-card-login {
+  max-width: 1140px;
+}
+
 .entry-hero {
   max-width: 820px;
 }
@@ -845,6 +862,12 @@ tbody tr:hover {
 
   .container {
     padding: 26px 16px 64px;
+  }
+
+  body.body-auth .container {
+    min-height: calc(100vh - 82px);
+    padding-top: 16px;
+    padding-bottom: 16px;
   }
 }
 

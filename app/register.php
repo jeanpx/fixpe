@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     redirect('register.php' . ($role !== '' ? '?role=' . rawurlencode($role) : ''));
 }
 
-render_header('Crear cuenta');
+render_header('Crear cuenta', 'body-auth');
 ?>
 <section class="card auth-card auth-card-register">
   <div class="auth-intro">

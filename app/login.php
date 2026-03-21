@@ -29,9 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     redirect('dashboard.php');
 }
 
-render_header('Ingresar');
+render_header('Ingresar', 'body-auth');
 ?>
-<section class="card">
+<section class="card auth-card auth-card-login">
   <h1>Ingresar</h1>
   <form method="post">
     <label>

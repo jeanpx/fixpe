@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/bootstrap.php';
 
-function render_header(string $title): void
+function render_header(string $title, string $bodyClass = ''): void
 {
     header('Content-Type: text/html; charset=UTF-8');
     header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
@@ -21,7 +21,7 @@ function render_header(string $title): void
   <title><?= e($title) ?> | <?= e(app_name()) ?></title>
   <link rel="stylesheet" href="<?= e(asset_url('styles.css')) ?>">
 </head>
-<body class="page-enter">
+<body class="page-enter<?= $bodyClass !== '' ? ' ' . e($bodyClass) : '' ?>">
   <header class="topbar">
     <a class="brand" href="<?= e(route_url('index.php')) ?>"><?= e(app_name()) ?></a>
     <nav class="topnav">
