@@ -87,10 +87,6 @@ render_header('Panel cliente');
   <section class="card empty-state-card">
     <h2>Empieza con tu primera solicitud</h2>
     <p class="muted">Publica lo que necesitas y compara propuestas desde aquí.</p>
-    <div class="toolbar">
-      <a class="button" href="create-request.php">Publicar ahora</a>
-      <a class="button secondary" href="explore-providers.php">Ver especialistas</a>
-    </div>
   </section>
 <?php endif; ?>
 
