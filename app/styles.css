@@ -215,12 +215,19 @@ body::after {
 }
 
 body.body-auth .container {
-  min-height: calc(100vh - 88px);
+  min-height: calc(100dvh - 88px);
   display: grid;
   align-content: center;
+  justify-items: center;
   gap: 20px;
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+@media (min-width: 901px) {
+  body.body-auth {
+    overflow: hidden;
+  }
 }
 
 .container > * + * {
@@ -647,7 +654,8 @@ tbody tr:hover {
 }
 
 .auth-card-login {
-  max-width: 1140px;
+  width: min(100%, 720px);
+  max-width: 720px;
 }
 
 .entry-hero {
