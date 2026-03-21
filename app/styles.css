@@ -498,16 +498,12 @@ tbody tr:hover {
 }
 
 .auth-card {
-  max-width: 760px;
+  max-width: 940px;
   margin: 0 auto;
 }
 
 .auth-card-register {
   padding: 24px;
-}
-
-.request-form-card {
-  max-width: 940px;
 }
 
 .auth-intro {
