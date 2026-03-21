@@ -176,11 +176,11 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 4px 10px;
-  border-radius: 16px;
+  padding: 2px 8px;
+  border-radius: 12px;
   background: rgba(255, 255, 255, 0.96);
   border: 1px solid rgba(255, 255, 255, 0.28);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
   font-family: "Unbounded", "Space Grotesk", sans-serif;
   font-size: 1.1rem;
   letter-spacing: 0.06em;
@@ -196,7 +196,7 @@ a {
 }
 
 .logo img {
-  width: 150px;
+  width: 126px;
   max-width: 100%;
   height: auto;
   aspect-ratio: 2816 / 1536;
