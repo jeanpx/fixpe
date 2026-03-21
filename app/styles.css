@@ -134,6 +134,8 @@ body.body-auth .topbar {
   position: relative;
   top: auto;
   box-shadow: none;
+  backdrop-filter: none;
+  background: linear-gradient(135deg, #1e293b, #273449);
 }
 
 .brand,
