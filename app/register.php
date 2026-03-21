@@ -6,6 +6,9 @@ require_once __DIR__ . '/layout.php';
 
 require_guest();
 
+$requestedRole = $_GET['role'] ?? '';
+$prefilledRole = in_array($requestedRole, ['client', 'provider'], true) ? $requestedRole : '';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $role = $_POST['role'] ?? '';
     $fullName = trim($_POST['full_name'] ?? '');
@@ -15,15 +18,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $country = trim($_POST['country'] ?? '');
 
     if (!in_array($role, ['client', 'provider'], true)) {
-        set_flash('error', 'Selecciona un tipo de cuenta válido.');
+        set_flash('error', 'Selecciona un tipo de cuenta valido.');
     } elseif ($fullName === '' || $email === '' || $password === '') {
-        set_flash('error', 'Completa nombre, correo y contraseña.');
+        set_flash('error', 'Completa nombre, correo y contrasena.');
     } else {
         $stmt = db()->prepare('SELECT id FROM users WHERE email = :email LIMIT 1');
         $stmt->execute(['email' => $email]);
 
         if ($stmt->fetch()) {
-            set_flash('error', 'Ese correo ya está registrado.');
+            set_flash('error', 'Ese correo ya esta registrado.');
         } else {
             $insert = db()->prepare(
                 'INSERT INTO users (role, full_name, email, password_hash, phone, country)
@@ -69,26 +72,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ]);
             }
 
-            set_flash('success', 'Cuenta creada. Ya puedes iniciar sesión.');
+            set_flash('success', 'Cuenta creada. Ya puedes iniciar sesion.');
             redirect('login.php');
         }
     }
 
-    redirect('register.php');
+    redirect('register.php' . ($role !== '' ? '?role=' . rawurlencode($role) : ''));
 }
 
 render_header('Crear cuenta');
 ?>
 <section class="card">
   <h1>Crear cuenta</h1>
+  <p class="muted">
+    Entra como cliente si quieres publicar requerimientos y recibir cotizaciones.
+    Entra como proveedor si quieres vender servicios y captar proyectos.
+  </p>
+</section>
+<section class="grid two">
+  <section class="card">
+    <h2>Cuenta cliente</h2>
+    <p class="muted">Publica necesidades, compara propuestas y centraliza la compra de soporte, desarrollo u Odoo.</p>
+  </section>
+  <section class="card">
+    <h2>Cuenta proveedor</h2>
+    <p class="muted">Muestra tu perfil, recibe leads y cotiza oportunidades activas dentro de la plataforma.</p>
+  </section>
+</section>
+<section class="card">
   <form method="post">
     <div class="grid two">
       <label>
         Tipo de cuenta
         <select name="role" required>
           <option value="">Selecciona</option>
-          <option value="client">Cliente</option>
-          <option value="provider">Proveedor</option>
+          <option value="client" <?= $prefilledRole === 'client' ? 'selected' : '' ?>>Cliente</option>
+          <option value="provider" <?= $prefilledRole === 'provider' ? 'selected' : '' ?>>Proveedor</option>
         </select>
       </label>
       <label>
@@ -102,17 +121,17 @@ render_header('Crear cuenta');
         <input type="email" name="email" required>
       </label>
       <label>
-        Teléfono
+        Telefono
         <input type="text" name="phone">
       </label>
     </div>
     <div class="grid two">
       <label>
-        País
+        Pais
         <input type="text" name="country">
       </label>
       <label>
-        Contraseña
+        Contrasena
         <input type="password" name="password" required>
       </label>
     </div>

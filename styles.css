@@ -1124,6 +1124,90 @@ a {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
+.pricing-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.pricing-card {
+  position: relative;
+  overflow: hidden;
+  padding: 28px;
+  border-radius: 24px;
+  background: rgba(22, 29, 38, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 22px 46px rgba(6, 10, 18, 0.2);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.7s ease, border-color 0.45s ease, box-shadow 0.45s ease,
+    color 0.55s ease;
+}
+
+.pricing-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(124, 181, 255, 0.48);
+  box-shadow: 0 24px 50px rgba(6, 10, 18, 0.3);
+}
+
+.pricing-card-featured {
+  border-color: rgba(255, 176, 0, 0.42);
+  box-shadow: 0 26px 60px rgba(255, 176, 0, 0.12);
+}
+
+.pricing-label {
+  display: inline-flex;
+  margin-bottom: 14px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(255, 176, 0, 0.14);
+  color: #ffd279;
+  border: 1px solid rgba(255, 176, 0, 0.24);
+  font-size: 0.8rem;
+}
+
+.pricing-card h3 {
+  margin: 0 0 10px;
+  font-size: 1.5rem;
+}
+
+.pricing-price {
+  margin: 0 0 10px;
+  font-size: clamp(2rem, 3vw, 2.9rem);
+  font-family: "Unbounded", "Space Grotesk", sans-serif;
+}
+
+.pricing-price span {
+  font-size: 1rem;
+  color: var(--ink-muted);
+  font-family: "Space Grotesk", system-ui, -apple-system, sans-serif;
+}
+
+.pricing-copy {
+  color: var(--ink-muted);
+  min-height: 72px;
+}
+
+.pricing-list {
+  margin: 0 0 24px;
+  padding-left: 18px;
+  color: var(--ink-muted);
+}
+
+.pricing-list li + li {
+  margin-top: 10px;
+}
+
+.faq-card {
+  align-items: center;
+}
+
+.faq-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
 .case {
   position: relative;
   overflow: hidden;
@@ -1144,6 +1228,27 @@ a {
 
 .theme-light .case span {
   color: #1d4ed8;
+}
+
+.theme-light .pricing-card {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(15, 23, 42, 0.12);
+  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.08);
+}
+
+.theme-light .pricing-card:hover {
+  border-color: rgba(37, 99, 235, 0.34);
+  box-shadow: 0 22px 44px rgba(37, 99, 235, 0.14);
+}
+
+.theme-light .pricing-card-featured {
+  border-color: rgba(37, 99, 235, 0.34);
+}
+
+.theme-light .pricing-label {
+  background: rgba(37, 99, 235, 0.1);
+  color: #1d4ed8;
+  border-color: rgba(37, 99, 235, 0.18);
 }
 
 .case-link {
@@ -1671,7 +1776,8 @@ a {
   .about-grid,
   .profile-grid,
   .steps,
-  .case-grid {
+  .case-grid,
+  .pricing-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1679,6 +1785,14 @@ a {
     flex-direction: column;
     align-items: flex-start;
     padding: 24px;
+  }
+
+  .faq-actions {
+    width: 100%;
+  }
+
+  .faq-actions .btn {
+    width: 100%;
   }
 
   .claims-form {
