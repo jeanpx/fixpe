@@ -135,7 +135,7 @@ render_header('Nueva solicitud');
 
     <div class="form-actions">
       <button type="submit">Publicar</button>
-      <a class="button secondary" href="client.php">Cancelar</a>
+      <a class="button secondary" href="<?= e(route_url('client.php')) ?>">Cancelar</a>
     </div>
   </form>
 </section>

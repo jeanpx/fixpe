@@ -63,8 +63,8 @@ render_header('Panel cliente');
   <h1>Hola, <?= e($displayName) ?></h1>
   <p class="muted">Plan activo: <?= e($plan) ?></p>
   <div class="toolbar">
-    <a class="button" href="create-request.php">Publicar solicitud</a>
-    <a class="button secondary" href="explore-providers.php">Explorar especialistas</a>
+    <a class="button" href="<?= e(route_url('create-request.php')) ?>">Publicar solicitud</a>
+    <a class="button secondary" href="<?= e(route_url('explore-providers.php')) ?>">Explorar especialistas</a>
   </div>
 </section>
 
@@ -99,7 +99,7 @@ render_header('Panel cliente');
           <strong><?= e($request['title']) ?></strong>
           <p class="muted"><?= e($request['category']) ?> | <?= e($request['status']) ?> | <?= e($request['created_at']) ?></p>
           <div class="toolbar">
-            <a class="button secondary" href="request-detail.php?id=<?= e((string) $request['id']) ?>">Ver detalle</a>
+            <a class="button secondary" href="<?= e(route_url('request-detail.php?id=' . (string) $request['id'])) ?>">Ver detalle</a>
           </div>
         </article>
       <?php endforeach; ?>
@@ -124,7 +124,7 @@ render_header('Panel cliente');
                 <?php endif; ?>
               </div>
               <div class="toolbar">
-                <a class="button secondary" href="request-detail.php?id=<?= e((string) $quote['request_id']) ?>">Abrir</a>
+                <a class="button secondary" href="<?= e(route_url('request-detail.php?id=' . (string) $quote['request_id'])) ?>">Abrir</a>
               </div>
             </article>
           <?php endforeach; ?>
@@ -152,7 +152,7 @@ render_header('Panel cliente');
                 <?php endif; ?>
               </div>
               <div class="toolbar">
-                <a class="button secondary" href="direct-request-detail.php?id=<?= e((string) $directRequest['id']) ?>">Abrir</a>
+                <a class="button secondary" href="<?= e(route_url('direct-request-detail.php?id=' . (string) $directRequest['id'])) ?>">Abrir</a>
               </div>
             </article>
           <?php endforeach; ?>

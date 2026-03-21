@@ -46,6 +46,25 @@ function asset_url(string $path): string
     return $path . '?v=' . rawurlencode($version);
 }
 
+function route_url(string $path): string
+{
+    $parts = explode('?', $path, 2);
+    $base = trim($parts[0]);
+    $query = $parts[1] ?? '';
+
+    if ($base === '' || $base === 'index.php') {
+        $clean = './';
+    } else {
+        $clean = preg_replace('/\.php$/', '', $base) ?? $base;
+    }
+
+    if ($query !== '') {
+        $clean .= '?' . $query;
+    }
+
+    return $clean;
+}
+
 function e(?string $value): string
 {
     return htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8');
@@ -101,7 +120,7 @@ function require_auth(?string $role = null): array
 
 function redirect(string $path): void
 {
-    header('Location: ' . $path);
+    header('Location: ' . route_url($path));
     exit;
 }
 

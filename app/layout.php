@@ -23,14 +23,14 @@ function render_header(string $title): void
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="./"><?= e(app_name()) ?></a>
+    <a class="brand" href="<?= e(route_url('index.php')) ?>"><?= e(app_name()) ?></a>
     <nav class="topnav">
       <?php if ($user): ?>
-        <a href="dashboard.php">Panel</a>
-        <a href="logout.php">Salir</a>
+        <a href="<?= e(route_url('dashboard.php')) ?>">Panel</a>
+        <a href="<?= e(route_url('logout.php')) ?>">Salir</a>
       <?php else: ?>
-        <a href="login.php">Ingresar</a>
-        <a href="register.php">Crear cuenta</a>
+        <a href="<?= e(route_url('login.php')) ?>">Ingresar</a>
+        <a href="<?= e(route_url('register.php')) ?>">Crear cuenta</a>
       <?php endif; ?>
     </nav>
   </header>

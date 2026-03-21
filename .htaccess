@@ -6,4 +6,13 @@ DirectoryIndex index.php index.html
   # Redirect explicit index files to their clean directory URL.
   RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.(php|html)(?:[\?\s]|$) [NC]
   RewriteRule ^(.*/)?index\.(php|html)$ /$1 [R=301,L]
+
+  # Redirect explicit PHP files to extensionless routes.
+  RewriteCond %{THE_REQUEST} \s/+(.+?)\.php(?:[\?\s]|$) [NC]
+  RewriteRule ^(.+?)\.php$ /$1 [R=301,L]
+
+  # Serve extensionless routes from PHP files when the file exists.
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}\.php -f
+  RewriteRule ^(.+?)/?$ $1.php [L,QSA]
 </IfModule>
