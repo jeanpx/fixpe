@@ -547,6 +547,11 @@ button:active,
   border-color: rgba(239, 68, 68, 0.18);
 }
 
+body.body-auth .alert {
+  width: min(100%, 720px);
+  margin: 0 auto;
+}
+
 .list {
   display: grid;
   gap: 14px;
