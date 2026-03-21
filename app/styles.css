@@ -236,7 +236,12 @@ body.body-auth .topbar {
 
 .provider-dashboard-main {
   min-height: calc(100dvh - 88px);
-  padding-bottom: 16px;
+  padding-top: 18px;
+  padding-bottom: 0;
+}
+
+.provider-dashboard-main > * + * {
+  margin-top: 18px;
 }
 
 @media (min-width: 901px) {
@@ -813,19 +818,37 @@ tbody tr:hover {
 }
 
 .dashboard-hero {
-  padding: 24px 28px;
+  padding: 18px 22px;
 }
 
 .dashboard-hero .eyebrow {
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
 .dashboard-hero h1 {
-  margin-bottom: 8px;
+  margin-bottom: 4px;
+  font-size: clamp(1.9rem, 3.2vw, 2.7rem);
 }
 
 .dashboard-hero .muted {
   margin-bottom: 0;
+}
+
+.provider-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.provider-summary span {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(37, 99, 235, 0.08);
+  color: var(--ink-soft);
+  font-size: 0.92rem;
 }
 
 .compact-stats {
@@ -833,13 +856,13 @@ tbody tr:hover {
 }
 
 .compact-stats article {
-  min-height: 112px;
-  padding: 20px;
+  min-height: 92px;
+  padding: 16px 18px;
 }
 
 .compact-stats strong {
-  margin-bottom: 6px;
-  font-size: clamp(1.9rem, 3vw, 2.3rem);
+  margin-bottom: 4px;
+  font-size: clamp(1.7rem, 2.5vw, 2.1rem);
 }
 
 .empty-state-card {
@@ -855,7 +878,43 @@ tbody tr:hover {
 }
 
 .provider-column-card {
-  padding: 22px 22px 18px;
+  padding: 18px 18px 14px;
+}
+
+.provider-opportunities-card {
+  padding: 18px 22px;
+}
+
+.provider-opportunities-card h2 {
+  margin-bottom: 14px;
+}
+
+.provider-opportunities-list {
+  display: grid;
+  gap: 12px;
+}
+
+.provider-opportunity-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.provider-opportunity-item h4,
+.provider-opportunity-item p {
+  margin-bottom: 4px;
+}
+
+.provider-opportunity-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.provider-opportunity-actions .button {
+  min-width: 108px;
 }
 
 .compact-list {
@@ -863,7 +922,7 @@ tbody tr:hover {
 }
 
 .compact-item {
-  padding: 16px 18px;
+  padding: 14px 16px;
 }
 
 .compact-item h4,
@@ -949,6 +1008,16 @@ tbody tr:hover {
     min-height: calc(100vh - 82px);
     padding-top: 16px;
     padding-bottom: 16px;
+  }
+
+  .provider-opportunity-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .provider-opportunity-actions {
+    width: 100%;
+    flex-wrap: wrap;
   }
 }
 

@@ -46,6 +46,27 @@ $firstName = trim((string) strtok((string) ($user['full_name'] ?? ''), ' '));
 $displayName = $firstName !== '' ? $firstName : 'proveedor';
 $hasDirectLeads = !empty($directLeads);
 $hasOpenRequests = !empty($openRequests);
+$opportunities = [];
+
+foreach (array_slice($directLeads, 0, 1) as $lead) {
+    $opportunities[] = [
+        'title' => (string) $lead['subject'],
+        'meta' => trim((string) $lead['client_name']) . ' | directa',
+        'chip' => $lead['budget'] !== null ? 'S/ ' . (string) $lead['budget'] : null,
+        'button' => 'Abrir',
+        'href' => route_url('direct-request-detail.php?id=' . (string) $lead['id']),
+    ];
+}
+
+foreach (array_slice($openRequests, 0, 1) as $openRequest) {
+    $opportunities[] = [
+        'title' => (string) $openRequest['title'],
+        'meta' => (string) $openRequest['category'] . ' | ' . (string) $openRequest['urgency'],
+        'chip' => null,
+        'button' => 'Cotizar',
+        'href' => route_url('request-detail.php?id=' . (string) $openRequest['id']),
+    ];
+}
 
 render_header('Panel proveedor', 'body-provider-overview', 'provider-dashboard-main');
 ?>
@@ -53,67 +74,38 @@ render_header('Panel proveedor', 'body-provider-overview', 'provider-dashboard-m
   <p class="eyebrow">Proveedor</p>
   <h1>Hola, <?= e($displayName) ?></h1>
   <p class="muted">Plan activo: <?= e($plan) ?></p>
+  <div class="provider-summary">
+    <span>Servicios: <?= e((string) $stats['services']) ?></span>
+    <span>Cotizaciones: <?= e((string) $stats['quotes']) ?></span>
+    <span>Directas: <?= e((string) $stats['direct_requests']) ?></span>
+  </div>
   <div class="toolbar">
     <a class="button" href="<?= e(route_url('create-service.php')) ?>">Publicar servicio</a>
     <a class="button secondary" href="<?= e(route_url('browse-requests.php')) ?>">Ver requerimientos</a>
   </div>
 </section>
 
-<section class="stats compact-stats">
-  <article>
-    <strong><?= e((string) $stats['services']) ?></strong>
-    <p class="muted">Servicios</p>
-  </article>
-  <article>
-    <strong><?= e((string) $stats['quotes']) ?></strong>
-    <p class="muted">Cotizaciones</p>
-  </article>
-  <article>
-    <strong><?= e((string) $stats['direct_requests']) ?></strong>
-    <p class="muted">Directas</p>
-  </article>
-</section>
-
-<?php if ($hasDirectLeads || $hasOpenRequests): ?>
-<section class="grid two provider-overview-grid">
-  <?php if ($hasDirectLeads): ?>
-  <section class="card provider-column-card">
-    <h2>Directas</h2>
-    <div class="list compact-list">
-      <?php foreach (array_slice($directLeads, 0, 2) as $lead): ?>
-        <article class="item compact-item">
-          <h4><?= e($lead['subject']) ?></h4>
-          <p class="muted"><?= e($lead['client_name']) ?> | <?= e($lead['status']) ?></p>
-          <?php if ($lead['budget'] !== null): ?>
-            <div class="meta">
-              <span class="chip">S/ <?= e((string) $lead['budget']) ?></span>
-            </div>
-          <?php endif; ?>
-          <div class="toolbar">
-            <a class="button secondary" href="<?= e(route_url('direct-request-detail.php?id=' . (string) $lead['id'])) ?>">Abrir</a>
+<section class="card provider-opportunities-card">
+  <h2>Oportunidades</h2>
+  <?php if (!empty($opportunities)): ?>
+    <div class="provider-opportunities-list">
+      <?php foreach ($opportunities as $opportunity): ?>
+        <article class="item compact-item provider-opportunity-item">
+          <div>
+            <h4><?= e($opportunity['title']) ?></h4>
+            <p class="muted"><?= e($opportunity['meta']) ?></p>
+          </div>
+          <div class="provider-opportunity-actions">
+            <?php if ($opportunity['chip'] !== null): ?>
+              <span class="chip"><?= e($opportunity['chip']) ?></span>
+            <?php endif; ?>
+            <a class="button secondary" href="<?= e($opportunity['href']) ?>"><?= e($opportunity['button']) ?></a>
           </div>
         </article>
       <?php endforeach; ?>
     </div>
-  </section>
-  <?php endif; ?>
-
-  <?php if ($hasOpenRequests): ?>
-  <section class="card provider-column-card">
-    <h2>Abiertos</h2>
-    <div class="list compact-list">
-      <?php foreach (array_slice($openRequests, 0, 2) as $openRequest): ?>
-        <article class="item compact-item">
-          <h4><?= e($openRequest['title']) ?></h4>
-          <p class="muted"><?= e($openRequest['category']) ?> | <?= e($openRequest['urgency']) ?></p>
-          <div class="toolbar">
-            <a class="button secondary" href="<?= e(route_url('request-detail.php?id=' . (string) $openRequest['id'])) ?>">Cotizar</a>
-          </div>
-        </article>
-      <?php endforeach; ?>
-    </div>
-  </section>
+  <?php else: ?>
+    <p class="muted">Todavía no hay oportunidades.</p>
   <?php endif; ?>
 </section>
-<?php endif; ?>
 <?php render_footer(); ?>
