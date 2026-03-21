@@ -634,6 +634,71 @@ a {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
+.social-proof {
+  padding-top: 18px;
+}
+
+.logo-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.logo-strip span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 12px 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--ink-muted);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.82rem;
+}
+
+.testimonial-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.testimonial-card {
+  padding: 24px;
+  border-radius: 22px;
+  background: rgba(22, 29, 38, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.7s ease, border-color 0.45s ease,
+    box-shadow 0.45s ease, color 0.55s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(124, 181, 255, 0.48);
+  box-shadow: 0 22px 46px rgba(6, 10, 18, 0.28);
+}
+
+.testimonial-card p {
+  margin: 0 0 14px;
+  color: var(--ink);
+}
+
+.testimonial-card strong,
+.testimonial-card span {
+  display: block;
+}
+
+.testimonial-card span {
+  color: var(--ink-muted);
+  margin-top: 4px;
+}
+
 .proof-card,
 .faq-item {
   padding: 24px;
@@ -760,6 +825,13 @@ a {
   box-shadow: 0 20px 40px rgba(37, 99, 235, 0.08);
 }
 
+.theme-light .logo-strip span,
+.theme-light .testimonial-card {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(15, 23, 42, 0.12);
+  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.08);
+}
+
 .theme-light .about-card:hover {
   border-color: rgba(37, 99, 235, 0.34);
   box-shadow: 0 20px 40px rgba(37, 99, 235, 0.14);
@@ -767,6 +839,11 @@ a {
 
 .theme-light .proof-card:hover,
 .theme-light .faq-item:hover {
+  border-color: rgba(37, 99, 235, 0.34);
+  box-shadow: 0 22px 44px rgba(37, 99, 235, 0.14);
+}
+
+.theme-light .testimonial-card:hover {
   border-color: rgba(37, 99, 235, 0.34);
   box-shadow: 0 22px 44px rgba(37, 99, 235, 0.14);
 }
@@ -1373,6 +1450,13 @@ a {
   gap: 24px;
   border: 1px solid rgba(255, 255, 255, 0.16);
   backdrop-filter: blur(18px);
+}
+
+.cta-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .cta h2,
