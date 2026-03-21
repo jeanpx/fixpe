@@ -668,6 +668,8 @@ a {
 }
 
 .testimonial-card {
+  display: flex;
+  flex-direction: column;
   padding: 24px;
   border-radius: 22px;
   background: rgba(22, 29, 38, 0.55);
@@ -687,6 +689,7 @@ a {
 .testimonial-card p {
   margin: 0 0 14px;
   color: var(--ink);
+  flex: 1;
 }
 
 .testimonial-card strong,
@@ -1351,6 +1354,7 @@ a {
 }
 
 .faq-card {
+  margin-top: 20px;
   align-items: center;
 }
 
