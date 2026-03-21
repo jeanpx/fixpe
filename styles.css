@@ -176,8 +176,8 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 4px 16px;
-  border-radius: 18px;
+  padding: 4px 10px;
+  border-radius: 16px;
   background: rgba(255, 255, 255, 0.96);
   border: 1px solid rgba(255, 255, 255, 0.28);
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
@@ -192,11 +192,11 @@ a {
   background: transparent;
   border-color: transparent;
   box-shadow: none;
-  padding: 4px 16px;
+  padding: 4px 10px;
 }
 
 .logo img {
-  width: 170px;
+  width: 150px;
   max-width: 100%;
   height: auto;
   aspect-ratio: 2816 / 1536;
