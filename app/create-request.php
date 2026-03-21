@@ -5,6 +5,30 @@ declare(strict_types=1);
 require_once __DIR__ . '/layout.php';
 
 $user = require_auth('client');
+$categoryOptions = [
+    'Implementación Odoo',
+    'Soporte técnico',
+    'Desarrollo web',
+    'Sistema a medida',
+    'Automatización',
+    'Integración',
+    'Otro',
+];
+$countryOptions = ['Perú', 'Chile', 'Colombia', 'México', 'Argentina', 'Ecuador', 'Bolivia', 'España', 'Otro'];
+$urgencyOptions = [
+    'low' => 'Baja',
+    'medium' => 'Media',
+    'high' => 'Alta',
+];
+$formData = [
+    'title' => '',
+    'category' => 'Implementación Odoo',
+    'description' => '',
+    'budget_min' => '',
+    'budget_max' => '',
+    'country' => 'Perú',
+    'urgency' => 'medium',
+];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = trim($_POST['title'] ?? '');
@@ -12,8 +36,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $description = trim($_POST['description'] ?? '');
     $budgetMin = trim($_POST['budget_min'] ?? '');
     $budgetMax = trim($_POST['budget_max'] ?? '');
-    $country = trim($_POST['country'] ?? '');
+    $country = trim($_POST['country'] ?? 'Perú');
     $urgency = $_POST['urgency'] ?? 'medium';
+
+    $formData = [
+        'title' => $title,
+        'category' => $category,
+        'description' => $description,
+        'budget_min' => $budgetMin,
+        'budget_max' => $budgetMax,
+        'country' => $country,
+        'urgency' => $urgency,
+    ];
 
     if ($title === '' || $category === '' || $description === '') {
         set_flash('error', 'Completa título, categoría y descripción.');
@@ -42,48 +76,66 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 render_header('Nueva solicitud');
 ?>
-<section class="card">
-  <h1>Publicar solicitud</h1>
+<section class="card auth-card auth-card-register">
+  <div class="auth-intro">
+    <span class="eyebrow">Nueva solicitud</span>
+    <h1>Publicar solicitud</h1>
+    <p class="muted">Completa lo esencial para recibir propuestas más rápido.</p>
+  </div>
+
   <form method="post">
     <label>
       Título
-      <input type="text" name="title" required>
+      <input type="text" name="title" value="<?= e($formData['title']) ?>" required>
     </label>
-    <div class="grid two">
+
+    <div class="grid two compact-grid">
       <label>
         Categoría
-        <input type="text" name="category" placeholder="Implementación Odoo" required>
+        <select name="category" required>
+          <?php foreach ($categoryOptions as $categoryOption): ?>
+            <option value="<?= e($categoryOption) ?>" <?= $formData['category'] === $categoryOption ? 'selected' : '' ?>><?= e($categoryOption) ?></option>
+          <?php endforeach; ?>
+        </select>
       </label>
       <label>
         Urgencia
         <select name="urgency">
-          <option value="low">Baja</option>
-          <option value="medium" selected>Media</option>
-          <option value="high">Alta</option>
+          <?php foreach ($urgencyOptions as $urgencyValue => $urgencyLabel): ?>
+            <option value="<?= e($urgencyValue) ?>" <?= $formData['urgency'] === $urgencyValue ? 'selected' : '' ?>><?= e($urgencyLabel) ?></option>
+          <?php endforeach; ?>
         </select>
       </label>
     </div>
-    <div class="grid two">
+
+    <div class="grid two compact-grid">
       <label>
         Presupuesto mínimo
-        <input type="number" step="0.01" name="budget_min">
+        <input type="number" step="0.01" name="budget_min" value="<?= e($formData['budget_min']) ?>">
       </label>
       <label>
         Presupuesto máximo
-        <input type="number" step="0.01" name="budget_max">
+        <input type="number" step="0.01" name="budget_max" value="<?= e($formData['budget_max']) ?>">
       </label>
     </div>
+
     <label>
       País
-      <input type="text" name="country">
+      <select name="country">
+        <?php foreach ($countryOptions as $countryOption): ?>
+          <option value="<?= e($countryOption) ?>" <?= $formData['country'] === $countryOption ? 'selected' : '' ?>><?= e($countryOption) ?></option>
+        <?php endforeach; ?>
+      </select>
     </label>
+
     <label>
       Descripción
-      <textarea name="description" rows="6" required></textarea>
+      <textarea name="description" rows="6" required><?= e($formData['description']) ?></textarea>
     </label>
+
     <div class="form-actions">
-      <button type="submit">Guardar</button>
-      <a class="button secondary" href="client.php">Volver</a>
+      <button type="submit">Publicar</button>
+      <a class="button secondary" href="client.php">Cancelar</a>
     </div>
   </form>
 </section>
