@@ -130,6 +130,12 @@ body::after {
   top: 0;
 }
 
+body.body-auth .topbar {
+  position: relative;
+  top: auto;
+  box-shadow: none;
+}
+
 .brand,
 .topnav a {
   color: inherit;
