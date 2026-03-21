@@ -48,6 +48,21 @@ body {
   scrollbar-width: none;
 }
 
+body.theme-dark {
+  --panel: rgba(9, 16, 28, 0.82);
+  --panel-strong: rgba(12, 20, 34, 0.94);
+  --panel-line: rgba(148, 163, 184, 0.16);
+  --ink: #e5edf8;
+  --ink-soft: #9fb0c8;
+  --brand-soft: rgba(59, 130, 246, 0.18);
+  --shadow-lg: 0 28px 80px rgba(2, 6, 23, 0.4);
+  --shadow-md: 0 18px 40px rgba(2, 6, 23, 0.28);
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.14), transparent 28%),
+    radial-gradient(circle at 85% 10%, rgba(20, 184, 166, 0.1), transparent 24%),
+    linear-gradient(180deg, #081120 0%, #0b1322 100%);
+}
+
 body.page-enter {
   opacity: 0;
   transform: translateY(16px) scale(0.996);
@@ -141,6 +156,7 @@ body::after {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  align-items: center;
 }
 
 .topnav a {
@@ -154,6 +170,42 @@ body::after {
   color: #fff;
   background: rgba(255, 255, 255, 0.08);
   transform: translateY(-1px);
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.88);
+  box-shadow: none;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: none;
+}
+
+.theme-toggle-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ffd166, #f4b942);
+  box-shadow: inset -5px -2px 0 0 #0f172a;
+  flex-shrink: 0;
+}
+
+.theme-dark .theme-toggle {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.theme-dark .theme-toggle-icon {
+  background: linear-gradient(135deg, #cbd5e1, #94a3b8);
+  box-shadow: inset -5px -2px 0 0 #1e293b;
 }
 
 .container {
@@ -349,6 +401,15 @@ textarea {
   transition: border-color 0.24s ease, box-shadow 0.24s ease, background 0.24s ease, transform 0.2s ease;
 }
 
+.theme-dark input,
+.theme-dark select,
+.theme-dark textarea {
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(148, 163, 184, 0.2);
+  color: var(--ink);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
 input:focus,
 select:focus,
 textarea:focus {
@@ -400,6 +461,27 @@ button:active,
 
 .button.secondary:hover {
   box-shadow: 0 14px 28px rgba(15, 23, 42, 0.1);
+}
+
+.topnav .theme-toggle {
+  display: inline-flex;
+  width: auto;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.88);
+  box-shadow: none;
+  filter: none;
+}
+
+.topnav .theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: none;
+  filter: none;
+}
+
+.topnav .theme-toggle:active {
+  transform: translateY(0);
 }
 
 .alert {
@@ -753,6 +835,10 @@ tbody tr:hover {
   button,
   .button {
     width: 100%;
+  }
+
+  .topnav .theme-toggle {
+    width: auto;
   }
 
   .auth-card-register {

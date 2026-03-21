@@ -21,7 +21,7 @@ function render_header(string $title): void
   <title><?= e($title) ?> | <?= e(app_name()) ?></title>
   <link rel="stylesheet" href="<?= e(asset_url('styles.css')) ?>">
 </head>
-<body>
+<body class="page-enter">
   <header class="topbar">
     <a class="brand" href="<?= e(route_url('index.php')) ?>"><?= e(app_name()) ?></a>
     <nav class="topnav">
@@ -32,6 +32,10 @@ function render_header(string $title): void
         <a href="<?= e(route_url('login.php')) ?>">Ingresar</a>
         <a href="<?= e(route_url('register.php')) ?>">Crear cuenta</a>
       <?php endif; ?>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Cambiar tema">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Modo oscuro</span>
+      </button>
     </nav>
   </header>
   <main class="container">
@@ -45,6 +49,48 @@ function render_footer(): void
 {
     ?>
   </main>
+  <script>
+    (function () {
+      var body = document.body;
+      var toggle = document.getElementById('themeToggle');
+      var label = toggle ? toggle.querySelector('.theme-toggle-label') : null;
+      var savedTheme = localStorage.getItem('app-theme');
+
+      function updateLabel() {
+        if (!label) {
+          return;
+        }
+
+        label.textContent = body.classList.contains('theme-dark')
+          ? 'Modo claro'
+          : 'Modo oscuro';
+      }
+
+      function applyTheme(theme) {
+        body.classList.toggle('theme-dark', theme === 'dark');
+        localStorage.setItem('app-theme', theme);
+        updateLabel();
+      }
+
+      if (savedTheme === 'dark') {
+        body.classList.add('theme-dark');
+      }
+
+      updateLabel();
+
+      if (toggle) {
+        toggle.addEventListener('click', function () {
+          applyTheme(body.classList.contains('theme-dark') ? 'light' : 'dark');
+        });
+      }
+
+      window.requestAnimationFrame(function () {
+        window.requestAnimationFrame(function () {
+          body.classList.add('is-ready');
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
 <?php
