@@ -16,7 +16,7 @@ render_header('Inicio');
   <span class="eyebrow">Fixpe App</span>
   <h1>Elige cómo quieres entrar</h1>
   <p class="muted">Crea tu cuenta o ingresa para continuar.</p>
-  <div class="hero-actions">
+  <div class="hero-actions auth-entry-actions">
     <a class="button" href="register.php?role=client">Soy cliente</a>
     <a class="button secondary" href="register.php?role=provider">Soy proveedor</a>
     <a class="button secondary" href="login.php">Ingresar</a>

@@ -241,6 +241,19 @@ body::after {
   margin-bottom: 12px;
 }
 
+.auth-entry-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.auth-entry-actions .button {
+  width: auto;
+  min-width: 190px;
+}
+
 .toolbar {
   display: flex;
   flex-wrap: wrap;
