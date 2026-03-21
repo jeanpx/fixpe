@@ -23,7 +23,7 @@ function render_header(string $title): void
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="index.php"><?= e(app_name()) ?></a>
+    <a class="brand" href="./"><?= e(app_name()) ?></a>
     <nav class="topnav">
       <?php if ($user): ?>
         <a href="dashboard.php">Panel</a>

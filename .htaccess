@@ -1,0 +1,9 @@
+DirectoryIndex index.php index.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Redirect explicit index files to their clean directory URL.
+  RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.(php|html)(?:[\?\s]|$) [NC]
+  RewriteRule ^(.*/)?index\.(php|html)$ /$1 [R=301,L]
+</IfModule>

@@ -237,6 +237,10 @@ body::after {
   gap: 16px;
 }
 
+.hero .muted {
+  margin-bottom: 12px;
+}
+
 .toolbar {
   display: flex;
   flex-wrap: wrap;
