@@ -602,6 +602,44 @@ tbody tr:hover {
   width: 100%;
 }
 
+.dashboard-hero {
+  padding: 24px 28px;
+}
+
+.dashboard-hero .eyebrow {
+  margin-bottom: 10px;
+}
+
+.dashboard-hero h1 {
+  margin-bottom: 8px;
+}
+
+.dashboard-hero .muted {
+  margin-bottom: 0;
+}
+
+.compact-stats {
+  gap: 16px;
+}
+
+.compact-stats article {
+  min-height: 112px;
+  padding: 20px;
+}
+
+.compact-stats strong {
+  margin-bottom: 6px;
+  font-size: clamp(1.9rem, 3vw, 2.3rem);
+}
+
+.empty-state-card {
+  max-width: 760px;
+}
+
+.empty-state-card h2 {
+  margin-bottom: 10px;
+}
+
 @keyframes rise-in {
   from {
     opacity: 0;
