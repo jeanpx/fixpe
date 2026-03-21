@@ -66,29 +66,41 @@ $sentQuotes = fetch_rows(
      LIMIT 8',
     ['provider_user_id' => $user['id']]
 );
+$firstName = trim((string) strtok((string) ($user['full_name'] ?? ''), ' '));
+$displayName = $firstName !== '' ? $firstName : 'proveedor';
 
 render_header('Panel proveedor');
 ?>
-<section class="card">
-  <h1>Panel proveedor</h1>
+<section class="card dashboard-hero">
+  <p class="eyebrow">Proveedor</p>
+  <h1>Hola, <?= e($displayName) ?></h1>
   <p class="muted">Plan activo: <?= e($plan) ?></p>
   <?php if ($profileRow): ?>
     <p class="muted">
-      Perfil: <?= e($profileRow['headline']) ?> |
-      Estado: <?= e($profileRow['availability_status']) ?> |
-      Verificado: <?= (int) $profileRow['verified'] === 1 ? 'sí' : 'no' ?>
+      <?= e($profileRow['headline']) ?> | <?= e($profileRow['availability_status']) ?> | <?= (int) $profileRow['verified'] === 1 ? 'Verificado' : 'Sin verificar' ?>
     </p>
   <?php endif; ?>
   <div class="toolbar">
-    <a class="button" href="create-service.php">Publicar servicio</a>
-    <a class="button secondary" href="browse-requests.php">Ver requerimientos</a>
+    <a class="button" href="<?= e(route_url('create-service.php')) ?>">Publicar servicio</a>
+    <a class="button secondary" href="<?= e(route_url('browse-requests.php')) ?>">Ver requerimientos</a>
   </div>
 </section>
-<section class="stats">
-  <article><strong><?= e((string) $stats['services']) ?></strong><p class="muted">Servicios publicados</p></article>
-  <article><strong><?= e((string) $stats['quotes']) ?></strong><p class="muted">Cotizaciones enviadas</p></article>
-  <article><strong><?= e((string) $stats['direct_requests']) ?></strong><p class="muted">Solicitudes directas recibidas</p></article>
+
+<section class="stats compact-stats">
+  <article>
+    <strong><?= e((string) $stats['services']) ?></strong>
+    <p class="muted">Servicios</p>
+  </article>
+  <article>
+    <strong><?= e((string) $stats['quotes']) ?></strong>
+    <p class="muted">Cotizaciones</p>
+  </article>
+  <article>
+    <strong><?= e((string) $stats['direct_requests']) ?></strong>
+    <p class="muted">Directas</p>
+  </article>
 </section>
+
 <section class="card">
   <h2>Mis servicios</h2>
   <?php if (!$services): ?>
@@ -98,19 +110,16 @@ render_header('Panel proveedor');
       <?php foreach ($services as $service): ?>
         <article class="item">
           <strong><?= e($service['title']) ?></strong>
-          <p class="muted">
-            <?= e($service['category']) ?> |
-            Desde <?= e((string) $service['price_from']) ?> |
-            <?= e($service['created_at']) ?>
-          </p>
+          <p class="muted"><?= e($service['category']) ?> | Desde <?= e((string) $service['price_from']) ?></p>
         </article>
       <?php endforeach; ?>
     </div>
   <?php endif; ?>
 </section>
+
 <section class="grid two">
   <section class="card">
-    <h2>Solicitudes directas de clientes</h2>
+    <h2>Solicitudes directas</h2>
     <?php if (!$directLeads): ?>
       <p class="muted">Aún no recibes solicitudes directas.</p>
     <?php else: ?>
@@ -127,18 +136,18 @@ render_header('Panel proveedor');
               <?php if ($lead['quoted_amount'] !== null): ?>
                 <span class="chip">Cotizado <?= e((string) $lead['quoted_amount']) ?></span>
               <?php endif; ?>
-              <span class="chip"><?= e($lead['created_at']) ?></span>
             </div>
             <div class="toolbar">
-              <a class="button secondary" href="direct-request-detail.php?id=<?= e((string) $lead['id']) ?>">Abrir solicitud</a>
+              <a class="button secondary" href="<?= e(route_url('direct-request-detail.php?id=' . (string) $lead['id'])) ?>">Abrir</a>
             </div>
           </article>
         <?php endforeach; ?>
       </div>
     <?php endif; ?>
   </section>
+
   <section class="card">
-    <h2>Cotizaciones enviadas</h2>
+    <h2>Cotizaciones</h2>
     <?php if (!$sentQuotes): ?>
       <p class="muted">Aún no envías cotizaciones.</p>
     <?php else: ?>
@@ -152,7 +161,7 @@ render_header('Panel proveedor');
               <span class="chip"><?= e($quote['created_at']) ?></span>
             </div>
             <div class="toolbar">
-              <a class="button secondary" href="request-detail.php?id=<?= e((string) $quote['request_id']) ?>">Abrir solicitud</a>
+              <a class="button secondary" href="<?= e(route_url('request-detail.php?id=' . (string) $quote['request_id'])) ?>">Abrir</a>
             </div>
           </article>
         <?php endforeach; ?>
@@ -160,8 +169,9 @@ render_header('Panel proveedor');
     <?php endif; ?>
   </section>
 </section>
+
 <section class="card">
-  <h2>Requerimientos abiertos recientes</h2>
+  <h2>Requerimientos abiertos</h2>
   <?php if (!$openRequests): ?>
     <p class="muted">No hay requerimientos abiertos.</p>
   <?php else: ?>
@@ -169,9 +179,9 @@ render_header('Panel proveedor');
       <?php foreach ($openRequests as $openRequest): ?>
         <article class="item">
           <h4><?= e($openRequest['title']) ?></h4>
-          <p class="muted"><?= e($openRequest['category']) ?> | <?= e($openRequest['urgency']) ?> | <?= e($openRequest['created_at']) ?></p>
+          <p class="muted"><?= e($openRequest['category']) ?> | <?= e($openRequest['urgency']) ?></p>
           <div class="toolbar">
-            <a class="button secondary" href="request-detail.php?id=<?= e((string) $openRequest['id']) ?>">Ver y cotizar</a>
+            <a class="button secondary" href="<?= e(route_url('request-detail.php?id=' . (string) $openRequest['id'])) ?>">Ver y cotizar</a>
           </div>
         </article>
       <?php endforeach; ?>
