@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/bootstrap.php';
 
-function render_header(string $title, string $bodyClass = ''): void
+function render_header(string $title, string $bodyClass = '', string $mainClass = ''): void
 {
     header('Content-Type: text/html; charset=UTF-8');
     header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
@@ -38,7 +38,7 @@ function render_header(string $title, string $bodyClass = ''): void
       </button>
     </nav>
   </header>
-  <main class="container">
+  <main class="container<?= $mainClass !== '' ? ' ' . e($mainClass) : '' ?>">
     <?php if ($flash): ?>
       <div class="alert alert-<?= e($flash['type']) ?>"><?= e($flash['message']) ?></div>
     <?php endif; ?>

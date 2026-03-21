@@ -56,7 +56,7 @@ $firstName = trim((string) strtok((string) ($user['full_name'] ?? ''), ' '));
 $displayName = $firstName !== '' ? $firstName : 'cliente';
 $hasActivity = $stats['requests'] > 0 || $stats['quotes'] > 0 || $stats['direct_requests'] > 0;
 
-render_header('Panel cliente');
+render_header('Panel cliente', !$hasActivity ? 'body-dashboard-empty' : '', 'client-dashboard-main');
 ?>
 <section class="card dashboard-hero">
   <p class="eyebrow">Cliente</p>

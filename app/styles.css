@@ -218,6 +218,17 @@ body::after {
   padding: 36px 22px 32px;
 }
 
+.client-dashboard-main {
+  min-height: calc(100dvh - 88px);
+  padding-bottom: 0;
+}
+
+@media (min-width: 901px) {
+  body.body-dashboard-empty {
+    overflow: hidden;
+  }
+}
+
 body.body-auth .container {
   flex: 1 1 auto;
   min-height: 0;
