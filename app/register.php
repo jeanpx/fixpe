@@ -8,12 +8,13 @@ require_guest();
 
 $requestedRole = $_GET['role'] ?? '';
 $prefilledRole = in_array($requestedRole, ['client', 'provider'], true) ? $requestedRole : '';
+$countryOptions = ['Perú', 'Chile', 'Colombia', 'México', 'Argentina', 'Ecuador', 'Bolivia', 'España', 'Otro'];
 $formData = [
     'role' => $prefilledRole,
     'full_name' => '',
     'email' => '',
     'phone' => '',
-    'country' => '',
+    'country' => 'Perú',
 ];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -22,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
     $phone = trim($_POST['phone'] ?? '');
-    $country = trim($_POST['country'] ?? '');
+    $country = trim($_POST['country'] ?? 'Perú');
     $formData = [
         'role' => $role,
         'full_name' => $fullName,
@@ -136,7 +137,11 @@ render_header('Crear cuenta');
       </label>
       <label>
         País
-        <input type="text" name="country" value="<?= e($formData['country']) ?>">
+        <select name="country">
+          <?php foreach ($countryOptions as $countryOption): ?>
+            <option value="<?= e($countryOption) ?>" <?= $formData['country'] === $countryOption ? 'selected' : '' ?>><?= e($countryOption) ?></option>
+          <?php endforeach; ?>
+        </select>
       </label>
     </div>
     <div class="grid compact-grid">
