@@ -295,7 +295,7 @@ a {
 
 .btn-primary {
   background: linear-gradient(120deg, var(--accent), var(--accent-dark));
-  color: #0b1220;
+  color: #fff;
   border-color: transparent;
   font-weight: 600;
 }
