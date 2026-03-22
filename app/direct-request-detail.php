@@ -12,10 +12,12 @@ $directRequest = fetch_one(
         dr.*,
         client.full_name AS client_name,
         client.email AS client_email,
-        provider.full_name AS provider_name
+        provider.full_name AS provider_name,
+        p.status AS payment_status
      FROM direct_requests dr
      INNER JOIN users client ON client.id = dr.client_user_id
      INNER JOIN users provider ON provider.id = dr.provider_user_id
+     LEFT JOIN payments p ON p.payment_target_type = "direct_request" AND p.payment_target_id = dr.id
      WHERE dr.id = :id
      LIMIT 1',
     ['id' => $directRequestId]
@@ -161,8 +163,16 @@ render_header('Solicitud directa');
             <span class="chip"><?= e((string) $directRequest['quoted_delivery_days']) ?> días</span>
           <?php endif; ?>
           <span class="chip"><?= e($directRequest['status']) ?></span>
+          <?php if ($directRequest['payment_status'] === 'paid'): ?>
+            <span class="chip">Pagado</span>
+          <?php endif; ?>
         </div>
       </article>
+      <?php if ($directRequest['quoted_amount'] !== null && $directRequest['payment_status'] !== 'paid'): ?>
+        <div class="toolbar">
+          <a class="button" href="<?= e(route_url('payment-checkout.php?type=direct_request&id=' . (string) $directRequest['id'])) ?>">Pagar ahora</a>
+        </div>
+      <?php endif; ?>
     <?php endif; ?>
     <div class="toolbar">
       <a class="button secondary" href="client.php">Volver</a>

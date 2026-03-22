@@ -39,6 +39,12 @@ function app_name(): string
     return $config['app_name'] ?? 'Fixpe App';
 }
 
+function app_config(string $key, mixed $default = null): mixed
+{
+    global $config;
+    return $config[$key] ?? $default;
+}
+
 function asset_url(string $path): string
 {
     $fullPath = __DIR__ . DIRECTORY_SEPARATOR . ltrim($path, '/\\');
@@ -63,6 +69,18 @@ function route_url(string $path): string
     }
 
     return $clean;
+}
+
+function app_url(string $path = ''): string
+{
+    $base = rtrim((string) app_config('app_url', ''), '/');
+    $cleanPath = ltrim($path, '/');
+
+    if ($base === '') {
+        return $cleanPath !== '' ? $cleanPath : './';
+    }
+
+    return $cleanPath !== '' ? $base . '/' . $cleanPath : $base;
 }
 
 function e(?string $value): string
@@ -170,4 +188,101 @@ function count_rows(string $sql, array $params = []): int
     }
 
     return (int) array_values($row)[0];
+}
+
+function format_amount(float $amount, string $currency = 'PEN'): string
+{
+    $symbol = strtoupper($currency) === 'PEN' ? 'S/ ' : strtoupper($currency) . ' ';
+    return $symbol . number_format($amount, 2, '.', ',');
+}
+
+function json_response(array $payload, int $statusCode = 200): void
+{
+    http_response_code($statusCode);
+    header('Content-Type: application/json; charset=UTF-8');
+    echo json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    exit;
+}
+
+function request_json(): array
+{
+    $rawBody = file_get_contents('php://input');
+    if ($rawBody === false || trim($rawBody) === '') {
+        return [];
+    }
+
+    $decoded = json_decode($rawBody, true);
+    return is_array($decoded) ? $decoded : [];
+}
+
+function culqi_is_enabled(): bool
+{
+    return (bool) app_config('culqi_enabled', false)
+        && app_config('culqi_public_key', '') !== ''
+        && app_config('culqi_private_key', '') !== '';
+}
+
+function culqi_checkout_config(): array
+{
+    return [
+        'public_key' => (string) app_config('culqi_public_key', ''),
+        'rsa_id' => (string) app_config('culqi_rsa_id', ''),
+        'rsa_public_key' => (string) app_config('culqi_rsa_public_key', ''),
+    ];
+}
+
+function culqi_charge(string $sourceId, int $amountInCents, string $email, string $description, array $metadata = []): array
+{
+    $privateKey = (string) app_config('culqi_private_key', '');
+
+    if ($privateKey === '') {
+        throw new RuntimeException('CULQI_PRIVATE_KEY no configurada.');
+    }
+
+    if (!function_exists('curl_init')) {
+        throw new RuntimeException('La extension cURL no esta habilitada en PHP.');
+    }
+
+    $payload = [
+        'amount' => $amountInCents,
+        'currency_code' => 'PEN',
+        'email' => $email,
+        'source_id' => $sourceId,
+        'capture' => true,
+        'description' => $description,
+        'metadata' => $metadata,
+    ];
+
+    $ch = curl_init('https://api.culqi.com/v2/charges');
+    curl_setopt_array($ch, [
+        CURLOPT_POST => true,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_HTTPHEADER => [
+            'Content-Type: application/json',
+            'Authorization: Bearer ' . $privateKey,
+        ],
+        CURLOPT_POSTFIELDS => json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
+        CURLOPT_TIMEOUT => 30,
+    ]);
+
+    $rawResponse = curl_exec($ch);
+    $httpCode = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $curlError = curl_error($ch);
+    curl_close($ch);
+
+    if ($rawResponse === false || $curlError !== '') {
+        throw new RuntimeException('No se pudo conectar con Culqi.');
+    }
+
+    $response = json_decode($rawResponse, true);
+    if (!is_array($response)) {
+        throw new RuntimeException('Respuesta invalida de Culqi.');
+    }
+
+    if ($httpCode >= 400) {
+        $message = $response['merchant_message'] ?? $response['user_message'] ?? $response['message'] ?? 'Pago rechazado por Culqi.';
+        throw new RuntimeException((string) $message);
+    }
+
+    return $response;
 }

@@ -934,6 +934,59 @@ tbody tr:hover {
   margin-top: 12px;
 }
 
+.payment-shell h1 {
+  margin-bottom: 8px;
+}
+
+.payment-grid {
+  align-items: stretch;
+}
+
+.payment-summary,
+.payment-action-panel {
+  height: 100%;
+}
+
+.payment-methods {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.payment-method-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(37, 99, 235, 0.18);
+  background: rgba(37, 99, 235, 0.06);
+}
+
+.payment-method-card.yape {
+  border-color: rgba(15, 118, 110, 0.22);
+  background: rgba(15, 118, 110, 0.08);
+}
+
+.payment-method-card strong,
+.payment-method-card span {
+  display: block;
+}
+
+.payment-method-card span {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+.payment-note {
+  margin-top: 14px;
+}
+
+.payment-error {
+  color: var(--danger);
+}
+
 @keyframes rise-in {
   from {
     opacity: 0;

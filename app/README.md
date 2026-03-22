@@ -8,6 +8,11 @@
 4. Sube la carpeta `app` al hosting.
 5. Abre `app/setup-admin.php` para crear el primer admin si aún no existe.
 
+## Pagos
+
+- Ejecuta `app/sql/payment_checkout_upgrade.sql`.
+- Configura `culqi_enabled`, `culqi_public_key`, `culqi_private_key`, `culqi_rsa_id` y `culqi_rsa_public_key` en `app/config.php`.
+
 ## Flujo inicial
 
 - `app/index.php`: portada mínima

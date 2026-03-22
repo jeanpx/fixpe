@@ -20,16 +20,19 @@ $requests = fetch_rows(
 );
 $quotes = fetch_rows(
     'SELECT
+        q.id AS quote_id,
         q.amount,
         q.delivery_days,
         q.status,
         q.created_at,
         cr.id AS request_id,
         cr.title,
-        u.full_name AS provider_name
+        u.full_name AS provider_name,
+        p.status AS payment_status
      FROM quotes q
      INNER JOIN client_requests cr ON cr.id = q.request_id
      INNER JOIN users u ON u.id = q.provider_user_id
+     LEFT JOIN payments p ON p.payment_target_type = "quote" AND p.payment_target_id = q.id
      WHERE q.client_user_id = :client_user_id
      ORDER BY q.created_at DESC
      LIMIT 8',
@@ -44,9 +47,11 @@ $directRequests = fetch_rows(
         dr.quoted_amount,
         dr.quoted_delivery_days,
         dr.created_at,
-        u.full_name AS provider_name
+        u.full_name AS provider_name,
+        p.status AS payment_status
      FROM direct_requests dr
      INNER JOIN users u ON u.id = dr.provider_user_id
+     LEFT JOIN payments p ON p.payment_target_type = "direct_request" AND p.payment_target_id = dr.id
      WHERE dr.client_user_id = :client_user_id
      ORDER BY dr.created_at DESC
      LIMIT 8',
@@ -116,7 +121,15 @@ render_header('Panel cliente', !$hasActivity ? 'body-dashboard-empty' : '', 'cli
                   <span class="chip"><?= e((string) $quote['delivery_days']) ?> días</span>
                 <?php endif; ?>
               </div>
+              <?php if ($quote['payment_status'] === 'paid'): ?>
+                <div class="meta">
+                  <span class="chip">Pagado</span>
+                </div>
+              <?php endif; ?>
               <div class="toolbar">
+                <?php if ($quote['payment_status'] !== 'paid'): ?>
+                  <a class="button" href="<?= e(route_url('payment-checkout.php?type=quote&id=' . (string) $quote['quote_id'])) ?>">Pagar</a>
+                <?php endif; ?>
                 <a class="button secondary" href="<?= e(route_url('request-detail.php?id=' . (string) $quote['request_id'])) ?>">Abrir</a>
               </div>
             </article>
@@ -144,7 +157,15 @@ render_header('Panel cliente', !$hasActivity ? 'body-dashboard-empty' : '', 'cli
                   <span class="chip"><?= e((string) $directRequest['quoted_delivery_days']) ?> días</span>
                 <?php endif; ?>
               </div>
+              <?php if ($directRequest['payment_status'] === 'paid'): ?>
+                <div class="meta">
+                  <span class="chip">Pagado</span>
+                </div>
+              <?php endif; ?>
               <div class="toolbar">
+                <?php if ($directRequest['quoted_amount'] !== null && $directRequest['payment_status'] !== 'paid'): ?>
+                  <a class="button" href="<?= e(route_url('payment-checkout.php?type=direct_request&id=' . (string) $directRequest['id'])) ?>">Pagar</a>
+                <?php endif; ?>
                 <a class="button secondary" href="<?= e(route_url('direct-request-detail.php?id=' . (string) $directRequest['id'])) ?>">Abrir</a>
               </div>
             </article>

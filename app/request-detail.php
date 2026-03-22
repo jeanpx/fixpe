@@ -89,9 +89,11 @@ $quotes = fetch_rows(
         q.delivery_days,
         q.status,
         q.created_at,
-        u.full_name AS provider_name
+        u.full_name AS provider_name,
+        p.status AS payment_status
      FROM quotes q
      INNER JOIN users u ON u.id = q.provider_user_id
+     LEFT JOIN payments p ON p.payment_target_type = "quote" AND p.payment_target_id = q.id
      WHERE q.request_id = :request_id
      ORDER BY q.created_at DESC',
     ['request_id' => $requestId]
@@ -186,7 +188,15 @@ render_header('Detalle de solicitud');
                 <span class="chip"><?= e((string) $quote['delivery_days']) ?> días</span>
               <?php endif; ?>
               <span class="chip"><?= e($quote['status']) ?></span>
+              <?php if ($quote['payment_status'] === 'paid'): ?>
+                <span class="chip">Pagado</span>
+              <?php endif; ?>
             </div>
+            <?php if ($quote['payment_status'] !== 'paid'): ?>
+              <div class="toolbar">
+                <a class="button" href="<?= e(route_url('payment-checkout.php?type=quote&id=' . (string) $quote['id'])) ?>">Pagar ahora</a>
+              </div>
+            <?php endif; ?>
           </article>
         <?php endforeach; ?>
       </div>
