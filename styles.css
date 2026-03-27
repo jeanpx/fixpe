@@ -666,7 +666,7 @@ a {
 
 .feature-showcase {
   background:
-    radial-gradient(circle at top left, rgba(91, 163, 255, 0.12), transparent 34%),
+    radial-gradient(circle at top left, rgba(91, 163, 255, 0.08), transparent 34%),
     linear-gradient(180deg, rgba(91, 163, 255, 0.06), transparent);
 }
 
@@ -709,9 +709,8 @@ a {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at top right, rgba(255, 210, 121, 0.12), transparent 30%),
-    radial-gradient(circle at bottom left, rgba(124, 181, 255, 0.12), transparent 34%);
-  opacity: 0.85;
+    radial-gradient(circle at top left, rgba(124, 181, 255, 0.1), transparent 34%);
+  opacity: 0.7;
   pointer-events: none;
 }
 
